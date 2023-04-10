@@ -13,7 +13,7 @@ const Login = () => {
             <div className="login-heading ">
               <h1>Login</h1>
             </div>
-            <div className="profile-details d-flex-center d-flex-col">
+            <div className="login-profile-details d-flex-center d-flex-col">
               <div className="profile-pic">
                 <img src="https://www.w3schools.com/howto/img_avatar.png" alt="profile-pic" />
               </div>
