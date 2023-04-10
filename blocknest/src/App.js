@@ -1,10 +1,13 @@
 import './App.scss';
+import Login from './screens/Login';
+import Signup from './screens/Signup';
 
 function App() {
   return (
-    <>
-      <login />
-    </>
+    <div>
+      <Login />
+      <Signup />
+    </div >
   );
 }
 
