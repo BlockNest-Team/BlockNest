@@ -2,6 +2,7 @@
 $primary-color: #1877f2;
 $app-backgroud-color: #f1f2f6;
 $btn-primary-color: #f0f7ff;
+$card-background: #fff;
 
 *,
 *::before,
@@ -32,163 +33,77 @@ p {
 }
 
 
-// .card {
-//   background-color: #fff;
-//   border-radius: 10px;
-//   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-//   padding: 20px;
-//   margin: 20px;
-//   width: max-content;
-// }
-
-// .d-flex-justify-align-center {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-
-// .d-flex-justify-align-center-col {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   flex-direction: column;
-// }
-
-.btn {
+button {
   border: none;
   outline: none;
-  padding: 10px 20px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.card {
+  background-color: $card-background;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  overflow: hidden; // Hide any overflow content
+}
+
+.btn {
   border-radius: 5px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 500;
   cursor: pointer;
+  width: 162px;
+  height: 31px;
+  display: block;
+  text-align: center;
+  background-color: $btn-primary-color;
+  color: $primary-color;
 }
 
 .redirect {
   a {
     text-decoration: none;
     color: $primary-color;
+    font-size: 1.2rem;
   }
 }
 
-// .main-container {
-//   width: 100%;
-//   min-height: 100vh;
-//   background: $app-backgroud-color;
-//   padding: 1rem;
+.app-name {
+  text-align: center;
+  margin: 2rem 0;
 
-//   .container {
-//     display: grid;
-//     place-items: center;
-//     margin-top: 1rem;
-//     position: relative;
+  h1 {
+    font-size: 4rem;
+    font-weight: 500;
+    color: $primary-color;
+  }
+}
 
-//     h1 {
-//       font-size: 4.4rem;
-//       font-weight: 500;
-//       color: $primary-color;
-//     }
-//   }
+.d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-//   .card {
-//     margin-top: 1rem;
-//     padding: 1rem;
-//     display: flex;
-//     position: relative;
-//     align-items: center;
-//     justify-content: center;
+.d-flex-justify-center {
+  display: flex;
+  justify-content: center;
+}
 
-//     .login__account-content {
-//       width: 615px;
-//       max-width: 620px;
-//       height: 420px;
-//       background: #fff;
-//       position: relative;
-//       border-radius: .5rem;
-//       filter: drop-shadow(drop-shadow);
+.d-flex-align-center {
+  display: flex;
+  align-items: center;
 
-//       .account-content {
-//         width: 100%;
-//         display: flex;
-//         align-items: center;
-//         flex-direction: column;
-//         margin-top: 1rem;
+}
 
-//         h1 {
-//           font-size: 3rem;
-//           color: #203758;
-//           font-weight: 500;
-//         }
+.d-flex-col {
+  flex-direction: column;
+}
 
-//         .login__account-img {
-//           width: 45px;
-//           height: 45px;
-//           display: grid;
-//           place-items: center;
-//           margin-top: 2.5rem;
-//           border: 1px solid $primary-color;
-//           border-radius: 50%;
-
-//           img {
-//             width: 40px;
-//             height: 40px;
-//           }
-//         }
-
-//         .container {
-//           h5 {
-//             font-weight: 400;
-//             font-size: 15px;
-//             line-height: 18px;
-//             margin-top: .5rem;
-//           }
-//         }
-
-//         .authrize-content {
-//           display: flex;
-//           background: var(--bg-color);
-//           border-radius: .5rem;
-//           text-decoration: none;
-//           padding: .4rem 1.5rem;
-//           margin-top: 1rem;
-
-//           h4 {
-//             font-weight: 400;
-//             font-size: 14px;
-//             margin-right: 1rem;
-//             color: var(--text-Bluecolor);
-//           }
-
-//           img {
-//             width: 16px;
-//             height: 16px;
-//           }
-//         }
-//       }
-
-//     }
-
-//     .login-register {
-//       margin-top: .5rem;
-
-//       a {
-//         font-weight: 500;
-//         font-size: 13px;
-//         line-height: 16px;
-//         color: var(--text-Bluecolor);
-//         padding: .4rem;
-//       }
-//     }
-//   }
-// }
-
-$card-background: #fff; // Card background color
-$card-width: 400px; // Card width for medium screens and up
+// Login Page
 
 .container {
   height: 100vh; // Make the container full height
-  display: flex;
-  justify-content: center;
 
   .login-container {
     width: 100%; // Take full width of the container
@@ -196,30 +111,10 @@ $card-width: 400px; // Card width for medium screens and up
     height: 594px !important;
     padding: 1rem;
 
-
-    .app-name {
-      text-align: center;
-      margin-bottom: 2rem;
-
-      h1 {
-        font-size: 4rem;
-        font-weight: 500;
-        color: $primary-color;
-      }
-    }
-
     .card {
-      background-color: $card-background;
-      border-radius: 0.5rem;
-      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-      overflow: hidden; // Hide any overflow content
-
 
       .login-content {
         padding: 2rem;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
         padding-top: 80px;
         height: 500px;
 
@@ -233,11 +128,7 @@ $card-width: 400px; // Card width for medium screens and up
         }
 
         .profile-details {
-          margin-bottom: 2rem;
-          display: flex;
-          align-items: center;
-          flex-direction: column;
-          justify-content: center;
+          margin-top: 4rem;
           gap: 5px;
 
           .profile-pic {
@@ -250,12 +141,13 @@ $card-width: 400px; // Card width for medium screens and up
               height: 100%;
               object-fit: cover;
               border-radius: 50%;
+              border: 1px solid $primary-color;
             }
           }
 
           .profile-name {
             p {
-              font-size: 1.4rem;
+              font-size: 1.6rem;
               font-weight: 500;
               margin-bottom: 1rem;
             }
@@ -263,21 +155,6 @@ $card-width: 400px; // Card width for medium screens and up
 
           .btn-container {
             margin-bottom: 1rem;
-
-            .login-btn {
-              background-color: $btn-primary-color;
-              color: $primary-color;
-              border: none;
-              border-radius: 0.3rem;
-              padding: 0.5rem 1rem;
-              font-size: 1.1rem;
-              font-weight: 500;
-              cursor: pointer;
-
-              &:hover {
-                background-color: #555;
-              }
-            }
           }
         }
       }
