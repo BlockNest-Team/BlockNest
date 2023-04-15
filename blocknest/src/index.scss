@@ -57,9 +57,15 @@ button {
   height: 31px;
   display: block;
   text-align: center;
-  background-color: $btn-primary-color;
-  color: $primary-color;
+  background-color: $primary-color;
+  color: $btn-primary-color;
   border: none;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #1a76d2;
+    box-shadow: 0px 0px 10px rgba(26, 118, 210, 0.5);
+  }
 }
 
 .redirect {
@@ -67,6 +73,23 @@ button {
     text-decoration: none;
     color: $primary-color;
     font-size: 1.2rem;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: $primary-color;
+      transition: width 0.5s ease-out;
+      transition-delay: 0.2s;
+    }
+
+    &:hover::before {
+      width: 100%;
+    }
   }
 }
 
@@ -223,6 +246,12 @@ button {
           outline: none;
           border-radius: 5px;
           box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 6px 24px 0 rgba(0, 0, 0, 0.05);
+          transition: border 0.2s ease-in-out;
+
+          &:hover,
+          &:focus {
+            border: 1px solid $primary-color;
+          }
 
           @media screen and (max-width: 768px) {
             width: 200px;
@@ -243,6 +272,7 @@ button {
           &[type="file"] {
             width: 100%;
             padding: 0.7rem;
+            cursor: pointer;
 
             @media screen and (max-width: 500px) {
               width: 270px;
@@ -254,6 +284,7 @@ button {
               padding: 0.3rem;
               border-radius: 4px;
               background-color: #ffffff;
+              cursor: pointer;
             }
           }
         }
