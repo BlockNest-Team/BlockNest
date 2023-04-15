@@ -1,7 +1,15 @@
-import React from 'react'
-
+import React from 'react';
 
 const Signup = () => {
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
+    console.log(data);
+  };
+
   return (
     <div className="container d-flex-justify-center">
       <div className="signup-container ">
@@ -14,7 +22,7 @@ const Signup = () => {
               <h1>Create Account</h1>
             </div>
             <div className="signup-details">
-              <form action="">
+              <form onSubmit={handleSubmit}>
                 <div className="group">
                   <div className="formgroup">
                     <label htmlFor="firstName">First Name</label>
@@ -40,7 +48,7 @@ const Signup = () => {
 
                 <div className="formgroup">
                   <label htmlFor="email">Email Address</label>
-                  <input type="email" name="emial" id="email" required />
+                  <input type="email" name="email" id="email" required />
                 </div>
                 <div className="formgroup">
                   <label htmlFor="fileUpload">
@@ -62,7 +70,7 @@ const Signup = () => {
         </div>
       </div >
     </div>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;
