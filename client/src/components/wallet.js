@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Modal from './modal';
 import copyIcon from '../assets/svgs/copy.svg';
 import sendIcon from '../assets/svgs/send.svg';
 import '../styles/components/wallet.scss';
@@ -8,11 +9,8 @@ const Wallet = () => {
   const [balance, setBalance] = useState('');
   const [address, setAddress] = useState('');
   const [showCopiedText, setShowCopiedText] = useState(false);
-
-  useEffect(() => {
-    setBalance(walletData.balance);
-    setAddress(walletData.address);
-  }, []);
+  const [showSendModal, setShowSendModal] = useState(true);
+  const [showReceiveModal, setShowReceiveModal] = useState(false);
 
   const handleCopyClick = () => {
     navigator.clipboard.writeText(address)
@@ -21,6 +19,24 @@ const Wallet = () => {
   };
 
   const shortAddress = `${address.substring(0, 15)}...`;
+
+  const openSendModal = () => {
+    setShowSendModal(true);
+  };
+
+  const openReceiveModal = () => {
+    setShowReceiveModal(true);
+  };
+
+  const closeModal = () => {
+    setShowSendModal(false);
+    setShowReceiveModal(false);
+  };
+
+  useEffect(() => {
+    setBalance(walletData.balance);
+    setAddress(walletData.address);
+  }, []);
 
   return (
     <div className="card">
@@ -36,16 +52,30 @@ const Wallet = () => {
           )}
         </div>
         <div className="button-container d-flex-align-center">
-          <button className="btn d-flex-center">
+          <button className="btn d-flex-center" onClick={openSendModal}>
             <img src={sendIcon} alt="send" />
             <span>Send</span>
           </button>
-          <button className="btn d-flex-center">
+          <button className="btn d-flex-center" onClick={openReceiveModal}>
             <img className="recieve-icon" src={sendIcon} alt="send" />
             <span>Request</span>
           </button>
         </div>
       </div>
+      {showSendModal && (
+        <Modal
+          title="Send"
+          onClose={closeModal}
+          content={<div>Send modal content here</div>}
+        />
+      )}
+      {showReceiveModal && (
+        <Modal
+          title="Request"
+          onClose={closeModal}
+          content={<div>Receive modal content here</div>}
+        />
+      )}
     </div>
   );
 };

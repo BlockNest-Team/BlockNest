@@ -19,13 +19,18 @@ body {
   background-color: $app-backgroud-color;
   max-width: 1800px;
   margin: auto;
-  color: $prussian-blue;
 }
 
 h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 p {
   margin: 0;
   padding: 0;
+  color: $prussian-blue;
   font-weight: 500;
 }
 
@@ -34,6 +39,7 @@ button {
   outline: none;
   cursor: pointer;
   background-color: transparent;
+  color: $prussian-blue;
 }
 
 .page-wrapper {

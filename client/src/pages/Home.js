@@ -3,6 +3,7 @@ import Wallet from '../components/wallet'
 import PostUpload from '../components/postUpload'
 import Post from '../components/post'
 import Status from '../components/status'
+
 import '../styles/pages/home.scss'
 
 const home = () => {
