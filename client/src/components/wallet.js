@@ -7,6 +7,7 @@ import walletData from './../data/wallet.json';
 const Wallet = () => {
   const [balance, setBalance] = useState('');
   const [address, setAddress] = useState('');
+  const [showCopiedText, setShowCopiedText] = useState(false);
 
   useEffect(() => {
     setBalance(walletData.balance);
@@ -15,6 +16,8 @@ const Wallet = () => {
 
   const handleCopyClick = () => {
     navigator.clipboard.writeText(address)
+    setShowCopiedText(true);
+    setTimeout(() => setShowCopiedText(false), 2000);
   };
 
   const shortAddress = `${address.substring(0, 15)}...`;
@@ -28,6 +31,9 @@ const Wallet = () => {
             <p>{shortAddress}</p>
             <img className="copy-icon" src={copyIcon} alt="copy" onClick={handleCopyClick} />
           </span>
+          {showCopiedText && (
+            <div className="copied-text">Copied!</div>
+          )}
         </div>
         <div className="button-container d-flex-align-center">
           <button className="btn d-flex-center">
