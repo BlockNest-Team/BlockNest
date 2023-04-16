@@ -37,19 +37,24 @@ const Signup = () => {
                   <div className="formgroup">
                     <label htmlFor="location">Location</label>
                     <input type="text" name="location" id="location" required />
-                    {/* how to make the input importnat */}
-
                   </div>
                   <div className="formgroup">
                     <label htmlFor="occupation">Occupation</label>
                     <input type="text" name="occupation" id="occupation" required />
                   </div>
                 </div>
-
-                <div className="formgroup">
-                  <label htmlFor="email">Email Address</label>
-                  <input type="email" name="email" id="email" required />
+                <div className="group">
+                  <div className="formgroup">
+                    <label htmlFor="dob">Date of Birth</label>
+                    <input type="date" name="dob" id="dob" required />
+                  </div>
+                  <div className="formgroup">
+                    <label htmlFor="email">Email Address</label>
+                    <input type="email" name="email" id="email" required />
+                  </div>
                 </div>
+
+
                 <div className="formgroup">
                   <label htmlFor="fileUpload">
                     <p> Upload Picture</p>
