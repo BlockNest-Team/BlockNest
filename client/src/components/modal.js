@@ -10,7 +10,7 @@ const Modal = ({ title, onClose, content }) => {
           <div></div>
           <h1 className="modal-title">{title}</h1>
           <button className="modal-close-container" onClick={onClose}>
-            <sapn className="modal-close">&times;</sapn>
+            <span className="modal-close">&times;</span>
           </button>
         </div>
         <div className="modal-content">{content}</div>

@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useState } from 'react';
 import '../styles/components/dynamicPopup.scss'
 
-const dynamicPopup = (status) => {
+const DynamicPopup = ({ status, onClose }) => {
+
   let heading, desc, buttonLabel;
 
   if (status === "payment success") {
@@ -22,16 +23,20 @@ const dynamicPopup = (status) => {
     desc = "We were unable to publish your post. Please try again.";
     buttonLabel = "Try Again";
   }
-
+  const handleClose = () => {
+    onClose();
+  }
   return (
     <div className="popup-overlay">
       <div className="popup d-flex-center d-flex-col">
-        <h1>Payments</h1>
-        <p>Payment  send Successfully!</p>
-        <button className='btn'>Ok</button>
+        <h1>{heading}</h1>
+        <p>{desc}</p>
+        <button className='btn' onClick={handleClose}>{buttonLabel}</button>
       </div>
     </div>
   );
 }
 
-export default dynamicPopup
+export default DynamicPopup
+
+
