@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from './modal';
 import copyIcon from '../assets/svgs/copy.svg';
 import sendIcon from '../assets/svgs/send.svg';
+import submitIcon from '../assets/svgs/submit.svg'
 import '../styles/components/wallet.scss';
 import walletData from './../data/wallet.json';
 
@@ -9,8 +10,9 @@ const Wallet = () => {
   const [balance, setBalance] = useState('');
   const [address, setAddress] = useState('');
   const [showCopiedText, setShowCopiedText] = useState(false);
-  const [showSendModal, setShowSendModal] = useState(true);
+  const [showSendModal, setShowSendModal] = useState(false);
   const [showReceiveModal, setShowReceiveModal] = useState(false);
+  const [sendTransactions, setSendTransactions] = useState([]);
 
   const handleCopyClick = () => {
     navigator.clipboard.writeText(address)
@@ -33,10 +35,36 @@ const Wallet = () => {
     setShowReceiveModal(false);
   };
 
+  const handleSendFormSubmit = (event) => {
+    // event.preventDefault();
+    // const senderAddress = event.target.elements.senderAddress.value;
+    // const receiverAddress = event.target.elements.receiverAddress.value;
+    // const amount = event.target.elements.amount.value;
+    // const newTransaction = {
+    //   senderAddress,
+    //   receiverAddress,
+    //   amount,
+    //   date: new Date().toLocaleString(),
+    // };
+    // setSendTransactions([...sendTransactions, newTransaction]);
+    // localStorage.setItem('sendTransactions', JSON.stringify([...sendTransactions, newTransaction]));
+    // event.target.reset();
+    // console.log(newTransaction);
+    // setShowSendModal(false);
+
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
+    setSendTransactions([...sendTransactions, data]);
+    console.log('Submitted data:', data);
+    // setShowSendModal(false);
+  };
+
   useEffect(() => {
     setBalance(walletData.balance);
     setAddress(walletData.address);
   }, []);
+
 
   return (
     <div className="card">
@@ -66,7 +94,28 @@ const Wallet = () => {
         <Modal
           title="Send"
           onClose={closeModal}
-          content={<div>Send modal content here</div>}
+          content={<div className="send-crypto-content d-flex-center">
+            <form onSubmit={handleSendFormSubmit}>
+              <div className="formgroup">
+                <label htmlFor="senderAddress">Sender’s Address</label>
+                <input type="text" name="senderAddress" id="senderAddress" value={address} readOnly />
+              </div>
+              <div className="formgroup">
+                <label htmlFor="receiverAddress">Reciever’s Address</label>
+                <input type="text" name="receiverAddress" id="receiverAddress" required />
+              </div>
+              <div className="formgroup">
+                <label htmlFor="amount">Amount</label>
+                <input type="number" name="amount" id="amount" required />
+              </div>
+              <div className="btn-container d-flex-center">
+                <button className='btn d-flex-center' type="submit">
+                  <span>Request</span>
+                  <img src={submitIcon} alt="submit" />
+                </button>
+              </div>
+            </form>
+          </div>}
         />
       )}
       {showReceiveModal && (
