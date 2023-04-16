@@ -1,70 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
-$primary-color: #1877f2;
-$app-backgroud-color: #f1f2f6;
-$btn-primary-color: #f0f7ff;
-$card-background: #fff;
-$prussian-blue: #203758;
+@import '../theme/theme.scss';
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
+// *
+
+// ***** Common styling *****
+
+// *
+
+.container {
+  height: 100vh; // Make the container full height
 }
 
-html {
-  font-size: 10px; // 1rem = 10px
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  background-color: $app-backgroud-color;
-  max-width: 1800px;
-  margin: auto;
-  color: $prussian-blue;
-}
-
-h1,
-p {
-  margin: 0;
-  padding: 0;
-}
-
-
-button {
-  border: none;
-  outline: none;
-  cursor: pointer;
-  background-color: transparent;
-}
-
-.card {
-  background-color: $card-background;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  overflow: hidden; // Hide any overflow content
-}
-
-.btn {
-  border-radius: 5px;
-  font-size: 1.2rem;
-  font-weight: 500;
-  cursor: pointer;
-  width: 162px;
-  height: 31px;
-  display: block;
+.app-name {
   text-align: center;
-  background-color: $primary-color;
-  color: $btn-primary-color;
-  border: none;
-  transition: all 0.3s ease-in-out;
+  margin: 2rem 0;
 
-  &:hover {
-    background-color: #1a76d2;
-    box-shadow: 0px 0px 10px rgba(26, 118, 210, 0.5);
+  h1 {
+    font-size: 4rem;
+    font-weight: 500;
+    color: $primary-color;
+  }
+}
+
+.login-container,
+.signup-container {
+  width: 100%; // Take full width of the container
+  max-width: 901px; // Limit the width for medium screens and up
+  height: 594px !important;
+  padding: 1rem;
+}
+
+.login-content,
+.signup-content {
+  padding: 2rem;
+  padding-top: 2rem;
+  height: 500px;
+}
+
+.login-heading,
+.signup-heading {
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 4rem;
+    font-weight: 500;
   }
 }
 
@@ -93,74 +71,11 @@ button {
   }
 }
 
-.app-name {
-  text-align: center;
-  margin: 2rem 0;
+// *
 
-  h1 {
-    font-size: 4rem;
-    font-weight: 500;
-    color: $primary-color;
-  }
-}
+// ***** Login *****
 
-.d-flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.d-flex-justify-center {
-  display: flex;
-  justify-content: center;
-}
-
-.d-flex-align-center {
-  display: flex;
-  align-items: center;
-
-}
-
-.d-flex-col {
-  flex-direction: column;
-}
-
-// *****
-
-//  Login / Signup Page
-
-// *****
-
-
-.container {
-  height: 100vh; // Make the container full height
-}
-
-.login-container,
-.signup-container {
-  width: 100%; // Take full width of the container
-  max-width: 901px; // Limit the width for medium screens and up
-  height: 594px !important;
-  padding: 1rem;
-}
-
-.login-content,
-.signup-content {
-  padding: 2rem;
-  padding-top: 2rem;
-  height: 500px;
-}
-
-.login-heading,
-.signup-heading {
-  margin-bottom: 2rem;
-
-  h1 {
-    font-size: 4rem;
-    font-weight: 500;
-  }
-}
-
+// *
 
 .login-profile-details {
   margin-top: 4rem;
@@ -193,7 +108,12 @@ button {
   }
 }
 
-// Signup
+// *
+
+// ***** Signup *****
+
+// *
+
 .signup-content {
   height: max-content;
 

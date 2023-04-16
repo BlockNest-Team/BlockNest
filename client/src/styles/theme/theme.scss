@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import './theme-variable.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+html {
+  font-size: 10px; // 1rem = 10px
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  background-color: $app-backgroud-color;
+  max-width: 1800px;
+  margin: auto;
+  color: $prussian-blue;
+}
+
+h1,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.card {
+  background-color: $card-background;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  overflow: hidden; // Hide any overflow content
+}
+
+.btn {
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  width: 162px;
+  height: 31px;
+  display: block;
+  text-align: center;
+  background-color: $primary-color;
+  color: $btn-primary-color;
+  border: none;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #1a76d2;
+    box-shadow: 0px 0px 10px rgba(26, 118, 210, 0.5);
+  }
+}
+
+.d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.d-flex-justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.d-flex-align-center {
+  display: flex;
+  align-items: center;
+
+}
+
+.d-flex-col {
+  flex-direction: column;
+}

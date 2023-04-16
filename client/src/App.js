@@ -1,11 +1,10 @@
-import './App.scss';
-import Login from './screens/Login';
-import Signup from './screens/Signup';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 function App() {
   return (
     <div>
-      <Login />
+      {/* <Login /> */}
       <Signup />
     </div >
   );
