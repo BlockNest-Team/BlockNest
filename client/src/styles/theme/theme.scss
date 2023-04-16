@@ -16,7 +16,6 @@ html {
 
 body {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
   background-color: $app-backgroud-color;
   max-width: 1800px;
   margin: auto;
@@ -27,6 +26,7 @@ h1,
 p {
   margin: 0;
   padding: 0;
+  font-weight: 500;
 }
 
 button {
@@ -36,10 +36,17 @@ button {
   background-color: transparent;
 }
 
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
 .card {
   background-color: $card-background;
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  border: solid 1.5px #f1f2f6;
   overflow: hidden; // Hide any overflow content
 }
 
@@ -77,9 +84,14 @@ button {
 .d-flex-align-center {
   display: flex;
   align-items: center;
+}
 
+.d-flex-justify-between {
+  display: flex;
+  justify-content: space-between;
 }
 
 .d-flex-col {
+  display: flex;
   flex-direction: column;
 }

@@ -1,0 +1,51 @@
+@import '../theme/theme.scss';
+
+.wallet-content {
+  padding: 5rem 2rem 3rem;
+
+
+  .balance-container {
+
+    gap: 1rem;
+    margin-bottom: 4rem;
+
+    .d-flex-align-center {
+      gap: 0.5rem;
+
+      .copy-icon {
+        cursor: pointer;
+      }
+    }
+
+    h1,
+    p {
+      color: $primary-color;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+    }
+
+    p {
+      font-size: 1.3rem;
+    }
+
+  }
+
+  .button-container {
+    gap: 0.7rem;
+
+    .btn {
+      width: 110px;
+      height: 31px;
+      font-size: 1rem;
+      background-color: $btn-primary-color;
+      color: $primary-color;
+      gap: 0.8rem;
+
+      .recieve-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
