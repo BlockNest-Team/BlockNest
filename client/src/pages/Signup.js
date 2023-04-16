@@ -12,7 +12,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="container d-flex-justify-center">
+    <div className="d-flex-justify-center">
       <div className="signup-container ">
         <div className="app-name">
           <h1>BlockNest</h1>

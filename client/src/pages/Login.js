@@ -23,7 +23,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container d-flex-justify-center">
+    <div className="d-flex-justify-center">
       <div className="login-container ">
         <div className="app-name">
           <h1>BlockNest</h1>

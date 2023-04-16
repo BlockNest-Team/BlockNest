@@ -6,10 +6,6 @@
 
 // *
 
-.container {
-  height: 100vh; // Make the container full height
-}
-
 .app-name {
   text-align: center;
   margin: 2rem 0;
@@ -21,11 +17,17 @@
   }
 }
 
-.login-container,
-.signup-container {
+.login-container {
   width: 100%; // Take full width of the container
   max-width: 901px; // Limit the width for medium screens and up
   height: 594px !important;
+  padding: 1rem;
+}
+
+.signup-container {
+  width: 100%; // Take full width of the container
+  max-width: 901px; // Limit the width for medium screens and up
+  height: auto;
   padding: 1rem;
 }
 
