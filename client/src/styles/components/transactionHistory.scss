@@ -1,0 +1,47 @@
+@import '../theme/theme.scss';
+
+.transaction-history {
+  margin: 20px;
+  width: 230px;
+
+  h2 {
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+  }
+
+  .table-container {
+    overflow-y: auto;
+    overflow-x: auto;
+    max-height: 450px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    table {
+      width: 100%;
+      width: 380px;
+      border-collapse: collapse;
+
+      th {
+        font-weight: 600;
+      }
+
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+
+      tbody {
+        tr {
+          &:nth-child(odd) {
+            background-color: $btn-primary-color;
+          }
+        }
+      }
+
+    }
+  }
+}
