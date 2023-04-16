@@ -122,7 +122,7 @@ const Wallet = () => {
               </div>
               <div className="btn-container d-flex-center">
                 <button className='btn d-flex-center' type="submit">
-                  <span>Request</span>
+                  <span>Send</span>
                   <img src={submitIcon} alt="submit" />
                 </button>
               </div>
@@ -134,7 +134,28 @@ const Wallet = () => {
         <Modal
           title="Request"
           onClose={closeModal}
-          content={<div>Receive modal content here</div>}
+          content={<div className="request-crypto-content d-flex-center">
+            <form onSubmit={handleSendFormSubmit}>
+              <div className="formgroup">
+                <label htmlFor="senderAddress">Sender’s Address</label>
+                <input type="text" name="senderAddress" id="senderAddress" value={address} readOnly />
+              </div>
+              <div className="formgroup">
+                <label htmlFor="receiverAddress">Reciever’s Address</label>
+                <input type="text" name="receiverAddress" id="receiverAddress" required />
+              </div>
+              <div className="formgroup">
+                <label htmlFor="amount">Amount</label>
+                <input type="number" name="amount" id="amount" required />
+              </div>
+              <div className="btn-container d-flex-center">
+                <button className='btn d-flex-center' type="submit">
+                  <span>Request</span>
+                  <img src={submitIcon} alt="submit" />
+                </button>
+              </div>
+            </form>
+          </div>}
         />
       )}
 
