@@ -1,0 +1,28 @@
+@import "../theme/theme.scss";
+
+.card {
+  .post-upload-container {
+    width: 100%;
+    max-width: 622px;
+    height: 50px;
+    margin: 0 auto;
+    padding: 15px;
+    .post-upload {
+      gap: 20rem;
+      height: 100%;
+
+      @media screen and (max-width: 1024px) {
+        gap: 10rem;
+      }
+      p {
+        font-size: 1.5rem;
+        width: 100%;
+        color: $steel-blue;
+        text-align: center;
+      }
+      img {
+        width: 20px;
+      }
+    }
+  }
+}

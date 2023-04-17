@@ -1,11 +1,13 @@
-@import '../theme/theme.scss';
+@import "../theme/theme.scss";
+.page-wrapper {
+  padding: 30px;
+  .container {
+    max-width: 1440px;
+    width: 100%;
+    padding: 0 20px;
 
-.container {
-  max-width: 1440px;
-  width: 100%;
-  padding: 0 20px;
-
-  .wallet-container {
-    gap: 2rem;
+    .wallet-container {
+      gap: 2rem;
+    }
   }
 }
