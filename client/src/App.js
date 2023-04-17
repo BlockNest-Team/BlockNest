@@ -5,8 +5,8 @@ import Home from './pages/Home';
 function App() {
   return (
     <div>
-      {/* <Login /> */}
-      {/* <Signup /> */}
+      {/* <Login /> 
+       <Signup /> */}
       <Home />
     </div >
   );

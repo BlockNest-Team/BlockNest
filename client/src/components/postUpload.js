@@ -1,54 +1,62 @@
-import React, { useState, useEffect }  from "react";
-import Modal from './modal';
+import React, { useState, useEffect } from "react";
+import Modal from "./modal";
 import uploadIcon from "../assets/svgs/upload-image.svg";
 import "../styles/components/postUpload.scss";
 
 const PostUpload = () => {
   const [showPostUploadModal, setShowPostUploadModal] = useState(false);
-  
+
   const openPostUploadModal = () => {
-      setShowPostUploadModal(true);
-      console.log("Modal Opens");
+    setShowPostUploadModal(true);
+    console.log("Modal Opens");
   };
 
   const closePostUploadModal = () => {
-      setShowPostUploadModal(false);
-      console.log("clicked");
+    setShowPostUploadModal(false);
+    console.log("clicked");
   };
 
-  const handleSendFormSubmit = (event) => { }
+  const handleSendFormSubmit = (event) => {};
   return (
-    <div className="card" >
+    <div className="card">
       <div className="post-upload-container" onClick={openPostUploadModal}>
-      <div className="post-upload d-flex-justify-between">
-        <div></div>
-        <p>What’s on you mind?</p>
-        <img src={uploadIcon} alt="upload" />
-      </div>
+        <div className="post-upload d-flex-justify-between">
+          <div></div>
+          <p>What’s on you mind?</p>
+          <img src={uploadIcon} alt="upload" />
+        </div>
       </div>
       {showPostUploadModal && (
-         <Modal
-          title="Send"
+        <Modal
+          title="Create Post"
           onClose={closePostUploadModal}
-          content={<div className="send-crypto-content d-flex-center">
-            <form onSubmit={handleSendFormSubmit}>
-           
-             
-              <div className="formgroup">
-                <label htmlFor="amount">Amount</label>
-                <input type="number" name="amount" id="amount" required />
-              </div>
-              <div className="btn-container d-flex-center">
-                <button className='btn d-flex-center' type="submit">
-                  <span>Send</span>
-                </button>
-              </div>
-            </form>
-          </div>}
+          content={
+            <div className="post-upload-content">
+              <form onSubmit={handleSendFormSubmit}>
+                <div className="post-upload-header d-flex-align-center">
+                  <div className="profile-pic">
+                    <img
+                      src="https://www.w3schools.com/howto/img_avatar.png"
+                      alt="profile-pic"
+                    />
+                  </div>
+
+                  <div className="profile-name">
+                    <p>John Doe</p>
+                  </div>
+                </div>
+                <textarea
+                  name="postContent"
+                  placeholder="What’s on you mind?"
+                  rows="4"
+                  required
+                />
+              </form>
+            </div>
+          }
         />
-       )}
+      )}
     </div>
-   
   );
 };
 

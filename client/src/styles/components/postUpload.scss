@@ -26,4 +26,19 @@
       }
     }
   }
+  .post-upload-content {
+    .post-upload-header {
+      gap: 1rem;
+      .profile-pic {
+        margin-bottom: 0;
+      }
+      .profile-name {
+        p {
+          font-size: 1.8rem;
+          font-weight: 600;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
 }

@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import './theme-variable.scss';
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "./theme-variable.scss";
 
 *,
 *::before,
@@ -15,7 +15,7 @@ html {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: $app-backgroud-color;
   max-width: 1800px;
   margin: auto;
@@ -100,4 +100,27 @@ button {
 .d-flex-col {
   display: flex;
   flex-direction: column;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 2.5rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    padding: 0.2rem;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid $primary-color;
+  }
+}
+
+.profile-name {
+  p {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
 }
