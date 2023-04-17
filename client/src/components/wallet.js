@@ -27,6 +27,7 @@ const Wallet = () => {
 
   const openSendModal = () => {
     setShowSendModal(true);
+     console.log("Modal Opens");
   };
 
   const openReceiveModal = () => {
@@ -36,6 +37,7 @@ const Wallet = () => {
   const closeModal = () => {
     setShowSendModal(false);
     setShowReceiveModal(false);
+     console.log("clicked");
   };
 
   const handleSendFormSubmit = (event) => {
