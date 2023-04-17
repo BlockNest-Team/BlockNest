@@ -6,7 +6,8 @@ import "../styles/components/postUpload.scss";
 
 const PostUpload = () => {
   const [showPostUploadModal, setShowPostUploadModal] = useState(false);
-
+  const [fileInput, setFileInput] = useState("");
+  const [previewImage, setPreviewImage] = useState("");
   const openPostUploadModal = () => {
     setShowPostUploadModal(true);
     console.log("Modal Opens");
@@ -15,6 +16,16 @@ const PostUpload = () => {
   const closePostUploadModal = () => {
     setShowPostUploadModal(false);
     console.log("clicked");
+  };
+
+  const handleFileInputChange = (event) => {
+    const file = event.target.files[0];
+    setFileInput(file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewImage(reader.result);
+    };
   };
 
   const handleSendFormSubmit = (event) => {};
@@ -50,11 +61,23 @@ const PostUpload = () => {
                   name="postContent"
                   placeholder="What’s on you mind?"
                   rows="4"
-                  required
                 />
+                <div>
+                  {previewImage && <img src={previewImage} alt="preview" className="image-previewer"/>}
+                </div>
                 <div className="upload-image-emojis-container">
-                    <input type="file" name="fileUpload" id="fileUpload" accept="image/png, image/jpg, image/gif, image/jpeg" />
-                
+                  <input
+                    type="file"
+                    onChange={handleFileInputChange}
+                    name="fileUpload"
+                    id="fileUpload"
+                    accept="image/png, image/jpg, image/gif, image/jpeg"
+                  />
+                </div>
+
+                <div className="post-upload-footer d-flex-center">
+                  <button type="submit" className="btn secondary">Post</button>
+                  <button type="submit" className="btn secondary">Post as NFT</button>
                 </div>
               </form>
             </div>
@@ -66,5 +89,3 @@ const PostUpload = () => {
 };
 
 export default PostUpload;
-
-

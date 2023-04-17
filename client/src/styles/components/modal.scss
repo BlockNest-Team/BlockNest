@@ -1,4 +1,4 @@
-@import '../theme/theme.scss';
+@import "../theme/theme.scss";
 
 .modal-overlay {
   position: fixed;
@@ -42,14 +42,12 @@
         .modal-close {
           font-size: 2rem;
           color: $primary-color;
-
-
         }
       }
     }
 
-    .modal-content {
-      padding: 20px;
-    }
+    // .modal-content {
+    //   padding: 20px;
+    // }
   }
 }
