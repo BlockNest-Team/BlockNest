@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./modal";
 import uploadIcon from "../assets/svgs/upload-image.svg";
-import imageIcon from "../assets/svgs/image.svg";
 import "../styles/components/postUpload.scss";
 
 const PostUpload = () => {
