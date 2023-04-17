@@ -29,6 +29,7 @@
   .post-upload-content {
     .post-upload-header {
       gap: 1rem;
+      margin: 10px 0;
       .profile-pic {
         margin-bottom: 0;
       }
@@ -38,6 +39,33 @@
           font-weight: 600;
           margin-bottom: 0;
         }
+      }
+    }
+
+    textarea {
+      font-family: "Montserrat", sans-serif;
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      resize: none;
+      rows: 5;
+      font-size: 1.5rem;
+      color: $steel-blue;
+      padding: 1rem 0;
+    }
+
+    .upload-image-emojis-container {
+      display: flex;
+      justify-content: end;
+      input[type="file"] {
+        background-image: url("../../assets/svgs/image.svg");
+        background-size: contain;
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+        color: transparent;
+        text-indent: -9999px;
       }
     }
   }

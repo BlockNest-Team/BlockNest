@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./modal";
 import uploadIcon from "../assets/svgs/upload-image.svg";
+import imageIcon from "../assets/svgs/image.svg";
 import "../styles/components/postUpload.scss";
 
 const PostUpload = () => {
@@ -51,6 +52,10 @@ const PostUpload = () => {
                   rows="4"
                   required
                 />
+                <div className="upload-image-emojis-container">
+                    <input type="file" name="fileUpload" id="fileUpload" accept="image/png, image/jpg, image/gif, image/jpeg" />
+                
+                </div>
               </form>
             </div>
           }
@@ -61,3 +66,5 @@ const PostUpload = () => {
 };
 
 export default PostUpload;
+
+
