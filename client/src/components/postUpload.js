@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./modal";
+import EmojiPicker from 'emoji-picker-react';
 import uploadIcon from "../assets/svgs/upload-image.svg";
+import emojiIcon from "../assets/svgs/emoji.svg";
 import "../styles/components/postUpload.scss";
 
 const PostUpload = () => {
   const [showPostUploadModal, setShowPostUploadModal] = useState(false);
   const [fileInput, setFileInput] = useState("");
   const [previewImage, setPreviewImage] = useState("");
+ const [inputEmoji, setInputEmoji] = useState("");
+  const [showPicker, setShowPicker] = useState(false);
+
   const openPostUploadModal = () => {
     setShowPostUploadModal(true);
     console.log("Modal Opens");
@@ -27,7 +32,17 @@ const PostUpload = () => {
     };
   };
 
-  const handleSendFormSubmit = (event) => {};
+  const handleEmojiClick = () => { 
+    // Toggle the emoji picker
+    setShowPicker((prevState) => !prevState)
+  }
+
+   const onEmojiClick = ( emojiObject) => {
+    setInputEmoji((prevInput) => prevInput + emojiObject.emoji);
+    setShowPicker(false);
+  };
+
+  const handleSendFormSubmit = () => {};
   return (
     <div className="card">
       <div className="post-upload-container" onClick={openPostUploadModal}>
@@ -60,6 +75,8 @@ const PostUpload = () => {
                   name="postContent"
                   placeholder="What’s on you mind?"
                   rows="4"
+                  value={inputEmoji}
+          onChange={(e) => setInputEmoji(e.target.value)}
                 />
                 <div>
                   {previewImage && <img src={previewImage} alt="preview" className="image-previewer"/>}
@@ -72,6 +89,16 @@ const PostUpload = () => {
                     id="fileUpload"
                     accept="image/png, image/jpg, image/gif, image/jpeg"
                   />
+                  <img src={emojiIcon}
+                    alt="upload"
+                    className="emoji-icon"
+                    onClick={handleEmojiClick}
+                  />
+                  {
+                    showPicker && (
+<EmojiPicker onEmojiClick={onEmojiClick}/>
+                    )
+                  }
                 </div>
 
                 <div className="post-upload-footer d-flex-center">

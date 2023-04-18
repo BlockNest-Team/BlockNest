@@ -63,6 +63,7 @@
     }
     .upload-image-emojis-container {
       display: flex;
+      gap: 0.5rem;
       justify-content: end;
       border: 1px solid $border-color;
       border-left: 0;
@@ -73,8 +74,14 @@
         background-size: contain;
         cursor: pointer;
         width: 20px;
+        height: 20px;
         color: transparent;
         text-indent: -9999px;
+      }
+      .emoji-icon {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
       }
     }
 
