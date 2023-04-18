@@ -1,13 +1,8 @@
-@import '../theme/theme.scss';
+@import "../theme/theme.scss";
 
 .transaction-history {
   margin: 20px;
   width: 230px;
-
-  h2 {
-    font-size: 1.7rem;
-    margin-bottom: 10px;
-  }
 
   .table-container {
     overflow-y: auto;
@@ -27,7 +22,6 @@
         font-weight: 600;
       }
 
-
       th,
       td {
         padding: 10px;
@@ -41,7 +35,6 @@
           }
         }
       }
-
     }
   }
 }

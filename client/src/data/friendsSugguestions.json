@@ -2,77 +2,77 @@
   "suggestions": [
   {
   "name": "John Smith",
-  "avatar": "https://example.com/john_smith_avatar.png",
+  "avatar": "https://picsum.photos/200/300/",
   "mutualFriends": 5
 },
 {
   "name": "Jane Doe",
-  "avatar": "https://example.com/jane_doe_avatar.png",
+"avatar": "https://picsum.photos/200/300/",
   "mutualFriends": 3
 },
 {
   "name": "Bob Johnson",
-  "avatar": "https://example.com/bob_johnson_avatar.png",
+ "avatar": "https://picsum.photos/200/300/",
   "mutualFriends": 2
 },
 {
   "name": "Mary Davis",
-  "avatar": "https://example.com/mary_davis_avatar.png",
+ "avatar": "https://picsum.photos/200/300/",
   "mutualFriends": 1
 },
 {
   "name": "Tom Brown",
-  "avatar": "https://example.com/tom_brown_avatar.png",
+"avatar": "https://picsum.photos/200/300/",
   "mutualFriends": 4
 },
 {
   "name": "Samantha Green",
-  "avatar": "https://example.com/samantha_green_avatar.png",
+"avatar": "https://picsum.photos/200/300/",
   "mutualFriends": 2
 },
 {
   "name": "David Lee",
-  "avatar": "https://example.com/david_lee_avatar.png",
+"avatar": "https://picsum.photos/200/300/",
   "mutualFriends": 3
 },
 {
   "name": "Amy Chen",
-  "avatar": "https://example.com/amy_chen_avatar.png",
+"avatar": "https://picsum.photos/200/300/",
   "mutualFriends": 2
 },
 {
   "name": "Michael Nguyen",
-  "avatar": "https://example.com/michael_nguyen_avatar.png",
+"avatar": "https://picsum.photos/200/300/",
   "mutualFriends": 5
 },
 {
   "name": "Sophie Taylor",
-  "avatar": "https://example.com/sophie_taylor_avatar.png",
+"avatar": "https://picsum.photos/200/300/",
   "mutualFriends": 1
 },
 {
   "name": "Ryan Johnson",
-  "avatar": "https://example.com/ryan_johnson_avatar.png",
+"avatar": "https://picsum.photos/200/300/",
   "mutualFriends": 0
 },
 {
   "name": "Emily Wilson",
-  "avatar": "https://example.com/emily_wilson_avatar.png",
+ "avatar": "https://picsum.photos/200/300/",
   "mutualFriends": 3
 },
 {
   "name": "Andrew Lee",
-  "avatar": "https://example.com/andrew_lee_avatar.png",
+"avatar": "https://picsum.photos/200/300/",
   "mutualFriends": 2
 },
 {
   "name": "Jessica Kim",
-  "avatar": "https://example.com/jessica_kim_avatar.png",
+"avatar": "https://picsum.photos/200/300/",
   "mutualFriends": 4
 },
 {
   "name": "Mark Wilson",
-  "avatar": "https://example.com/mark_wilson_avatar.png",
+"avatar": "https://picsum.photos/200/300/",
   "mutualFriends": 1
 }
 

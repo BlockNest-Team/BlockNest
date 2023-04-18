@@ -27,7 +27,7 @@ const TransactionHistory = () => {
   return (
     <div className="card">
       <div className="transaction-history">
-        <h2>Transaction History</h2>
+        <h1 className='card-heading'>Transaction History</h1>
         <div className="table-container">
           <table>
             <thead>
