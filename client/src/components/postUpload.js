@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./modal";
-import EmojiPicker from 'emoji-picker-react';
+import EmojiPicker from "emoji-picker-react";
 import uploadIcon from "../assets/svgs/upload-image.svg";
 import emojiIcon from "../assets/svgs/emoji.svg";
 import "../styles/components/postUpload.scss";
@@ -9,7 +9,7 @@ const PostUpload = () => {
   const [showPostUploadModal, setShowPostUploadModal] = useState(false);
   const [fileInput, setFileInput] = useState("");
   const [previewImage, setPreviewImage] = useState("");
- const [inputEmoji, setInputEmoji] = useState("");
+  const [inputEmoji, setInputEmoji] = useState("");
   const [showPicker, setShowPicker] = useState(false);
 
   const openPostUploadModal = () => {
@@ -32,12 +32,12 @@ const PostUpload = () => {
     };
   };
 
-  const handleEmojiClick = () => { 
+  const handleEmojiClick = () => {
     // Toggle the emoji picker
-    setShowPicker((prevState) => !prevState)
-  }
+    setShowPicker((prevState) => !prevState);
+  };
 
-   const onEmojiClick = ( emojiObject) => {
+  const onEmojiClick = (emojiObject) => {
     setInputEmoji((prevInput) => prevInput + emojiObject.emoji);
     setShowPicker(false);
   };
@@ -76,10 +76,16 @@ const PostUpload = () => {
                   placeholder="What’s on you mind?"
                   rows="4"
                   value={inputEmoji}
-          onChange={(e) => setInputEmoji(e.target.value)}
+                  onChange={(e) => setInputEmoji(e.target.value)}
                 />
                 <div>
-                  {previewImage && <img src={previewImage} alt="preview" className="image-previewer"/>}
+                  {previewImage && (
+                    <img
+                      src={previewImage}
+                      alt="preview"
+                      className="image-previewer"
+                    />
+                  )}
                 </div>
                 <div className="upload-image-emojis-container">
                   <input
@@ -89,21 +95,30 @@ const PostUpload = () => {
                     id="fileUpload"
                     accept="image/png, image/jpg, image/gif, image/jpeg"
                   />
-                  <img src={emojiIcon}
+                  <img
+                    src={emojiIcon}
                     alt="upload"
                     className="emoji-icon"
                     onClick={handleEmojiClick}
                   />
-                  {
-                    showPicker && (
-<EmojiPicker onEmojiClick={onEmojiClick}/>
-                    )
-                  }
+                  <div className="emoji-picker">
+                  {showPicker && (
+                    <EmojiPicker
+                        onEmojiClick={onEmojiClick}
+                        height="35%" width="100%"
+                        epr-emoji-size={4}
+                    />
+                    )}
+                    </div>
                 </div>
 
                 <div className="post-upload-footer d-flex-center">
-                  <button type="submit" className="btn secondary">Post</button>
-                  <button type="submit" className="btn secondary">Post as NFT</button>
+                  <button type="submit" className="btn secondary">
+                    Post
+                  </button>
+                  <button type="submit" className="btn secondary">
+                    Post as NFT
+                  </button>
                 </div>
               </form>
             </div>

@@ -69,6 +69,7 @@
       border-left: 0;
       border-right: 0;
       padding: 0.5rem 2rem;
+      position: relative;
       input[type="file"] {
         background-image: url("../../assets/svgs/image.svg");
         background-size: contain;
@@ -83,11 +84,70 @@
         height: 20px;
         cursor: pointer;
       }
+
+      .emoji-picker {
+        position: absolute;
+        right: 9%;
+        top: 0rem;
+        height: 39rem;
+        overflow-x: auto;
+
+        .EmojiPickerReact {
+          --epr-emoji-size: 1.5rem;
+          --epr-emoji-gap: 2rem;
+          --epr-hover-bg-color: $btn-primary-color;
+          --epr-text-color: $prussian-blue;
+
+          .epr-header {
+            .epr-header-overlay {
+              padding: 1rem;
+            }
+            .epr-search-container {
+              input {
+                font-size: 1rem;
+                height: 2.5rem;
+                color: $prussian-blue;
+              }
+              .epr-icn-search {
+                height: 1.8rem;
+                background-size: 1.8rem;
+                top: 48%;
+              }
+            }
+
+            .epr-skin-tones {
+              display: none;
+            }
+          }
+          .epr-category-nav {
+            display: none;
+          }
+
+          li {
+            .epr-emoji-category-label {
+              height: 1.5rem;
+              padding: 0 1.5rem;
+            }
+          }
+
+          .epr-preview {
+            height: 2.5rem;
+            img {
+              width: 1.8rem !important;
+              height: 1.8rem !important;
+            }
+
+            .epr-preview-emoji-label {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
     }
 
     .post-upload-footer {
       gap: 3rem;
-      padding: 3rem 2rem;
+      padding: 4rem 2rem;
 
       @media screen and (max-width: 500px) {
         .btn {
