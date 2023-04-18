@@ -7,7 +7,6 @@ import "../styles/components/postUpload.scss";
 
 const PostUpload = () => {
   const [showPostUploadModal, setShowPostUploadModal] = useState(false);
-  const [fileInput, setFileInput] = useState("");
   const [previewImage, setPreviewImage] = useState("");
   const [inputEmoji, setInputEmoji] = useState("");
   const [showPicker, setShowPicker] = useState(false);
@@ -24,7 +23,6 @@ const PostUpload = () => {
 
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
-    setFileInput(file);
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
