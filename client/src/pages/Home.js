@@ -1,17 +1,16 @@
-import React from 'react'
-import Wallet from '../components/wallet'
-import PostUpload from '../components/postUpload'
-import Post from '../components/post'
-import Status from '../components/status'
-import TransactionHistory from '../components/transactionHistory'
+import React from "react";
+import Wallet from "../components/wallet";
+import PostUpload from "../components/postUpload";
+import Post from "../components/post";
+import Status from "../components/status";
+import TransactionHistory from "../components/transactionHistory";
 
-import '../styles/pages/home.scss'
+import "../styles/pages/home.scss";
 
-const home = () => {
+const home = ({ walletAddress }) => {
   return (
     <div className="page-wrapper">
       <div className="container d-flex-justify-between">
-
         <div className="wallet-container d-flex-col">
           <Wallet />
           <TransactionHistory />
@@ -25,7 +24,7 @@ const home = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default home
+export default home;
