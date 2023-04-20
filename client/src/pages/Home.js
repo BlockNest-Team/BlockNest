@@ -13,8 +13,7 @@ const Home = () => {
 
   return (
     <div className="page-wrapper">
-      <div className="container d-flex-justify-between">
-
+      <div className="container ">
         <div className="wallet-container d-flex-col">
           <Wallet currentPage={currentPage} />
 
