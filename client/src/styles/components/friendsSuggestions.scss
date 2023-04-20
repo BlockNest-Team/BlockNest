@@ -1,25 +1,31 @@
 @import "../theme/theme.scss";
+
 .card {
   .card-heading {
     padding: 0 2rem;
   }
+
   .friends-suggestions-container {
     padding: 2rem 0;
     max-width: 271px;
     width: 271px;
+    max-height: calc(100vh - 4rem);
 
     .friends-suggestions {
       max-height: 75rem;
       overflow-x: auto;
+
       .friend {
         width: 100%;
         gap: 1.5rem;
         justify-content: flex-start;
         padding: 1rem 2rem;
         border-bottom: 1px solid $border-color;
+
         &:last-child {
           border-bottom: none;
         }
+
         .profile-pic {
           width: 4.5rem;
           height: 4.5rem;
