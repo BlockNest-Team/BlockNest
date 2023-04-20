@@ -48,7 +48,7 @@ const Login = () => {
                 </a>
               </div>
               <div className="redirect">
-                <a href='/'>Don’t have an account? Register</a>
+                <a href='/signup' >Don’t have an account? Register</a>
               </div>
             </div>
           </div>

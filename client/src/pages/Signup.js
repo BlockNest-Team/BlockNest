@@ -1,8 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import '../styles/pages/login-signup.scss'
 
 const Signup = () => {
+  const navigate = useNavigate();
 
+  const navigateToHome = () => {
+    navigate('/home');
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -64,7 +70,7 @@ const Signup = () => {
                 </div>
                 <div className="submit d-flex-center d-flex-col">
                   <div className="btn-container ">
-                    <input className='btn' type="submit" value="Proceed" />
+                    <input className='btn' type="submit" onClick={navigateToHome} value="Proceed" />
                   </div>
                   <div className="redirect">
                     <a href='/'>Don’t have an account? Register</a>
