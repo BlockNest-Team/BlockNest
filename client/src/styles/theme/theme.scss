@@ -58,10 +58,16 @@ button {
 }
 
 .card-heading {
-  font-size: 1.8rem;
-  font-weight: 600;
-  line-height: 1rem;
+
   margin-bottom: 1.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid $border-color;
+
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1rem;
+  }
 }
 
 .btn {

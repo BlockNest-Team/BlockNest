@@ -11,7 +11,9 @@ const FriendsSuggestions = () => {
   return (
     <div className="card">
       <div className="friends-suggestions-container">
-        <h1 className="card-heading">Friends Suggestions</h1>
+        <div className="card-heading">
+          <h1>Friends Suggestions</h1>
+        </div>
         <div className="friends-suggestions">
           {friendSuggestions.map((friend, index) => (
             <div className="friend d-flex-center" key={index}>
