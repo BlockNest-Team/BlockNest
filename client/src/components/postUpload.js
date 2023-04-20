@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "./modal";
 import EmojiPicker from "emoji-picker-react";
 import uploadIcon from "../assets/svgs/upload-image.svg";
@@ -40,7 +40,7 @@ const PostUpload = () => {
     setShowPicker(false);
   };
 
-  const handleSendFormSubmit = () => {};
+  const handleSendFormSubmit = () => { };
   return (
     <div className="card">
       <div className="post-upload-container" onClick={openPostUploadModal}>
@@ -100,14 +100,14 @@ const PostUpload = () => {
                     onClick={handleEmojiClick}
                   />
                   <div className="emoji-picker">
-                  {showPicker && (
-                    <EmojiPicker
+                    {showPicker && (
+                      <EmojiPicker
                         onEmojiClick={onEmojiClick}
                         height="35%" width="100%"
                         epr-emoji-size={4}
-                    />
+                      />
                     )}
-                    </div>
+                  </div>
                 </div>
 
                 <div className="post-upload-footer d-flex-center">
