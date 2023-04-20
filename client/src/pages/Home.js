@@ -3,7 +3,6 @@ import Wallet from '../components/wallet'
 import PostUpload from '../components/postUpload'
 import Post from '../components/post'
 // import Status from '../components/status'
-import TransactionHistory from '../components/transactionHistory'
 
 import '../styles/pages/home.scss'
 import FriendsSuggestions from '../components/friendsSuggestions'
@@ -18,7 +17,7 @@ const Home = () => {
 
         <div className="wallet-container d-flex-col">
           <Wallet currentPage={currentPage} />
-          <TransactionHistory />
+
         </div>
         <div className="feed-container">
           <PostUpload />
