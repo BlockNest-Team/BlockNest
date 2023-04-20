@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Modal from './modal';
 import copyIcon from '../assets/svgs/copy.svg';
 import sendIcon from '../assets/svgs/send.svg';
+import walletIcon from '../assets/svgs/wallet.svg';
 import submitIcon from '../assets/svgs/submit.svg'
 import '../styles/components/wallet.scss';
 import walletData from './../data/wallet.json';
@@ -98,7 +99,7 @@ const Wallet = ({ currentPage }) => {
           {currentPage === '/home' && (
             <Link to="/wallet">
               <button className="btn d-flex-center">
-                <img src={sendIcon} alt="send" />
+                <img className='wallet-icon' src={walletIcon} alt="wallet" />
                 <span>View Wallet</span>
               </button>
             </Link>
@@ -111,7 +112,7 @@ const Wallet = ({ currentPage }) => {
                 <span>Send</span>
               </button>
               <button className="btn d-flex-center" onClick={openReceiveModal}>
-                <img className="recieve-icon" src={sendIcon} alt="send" />
+                <img className="recieve-icon" src={sendIcon} alt="receive" />
                 <span>Request</span>
               </button>
             </div>

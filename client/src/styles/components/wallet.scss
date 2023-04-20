@@ -77,9 +77,15 @@
       color: $primary-color;
       gap: 0.8rem;
 
+      .wallet-icon {
+        width: 1.7rem;
+        height: 1.7rem;
+      }
+
       .recieve-icon {
         transform: rotate(180deg);
       }
+
     }
   }
 }
