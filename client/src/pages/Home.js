@@ -8,13 +8,16 @@ import TransactionHistory from '../components/transactionHistory'
 import '../styles/pages/home.scss'
 import FriendsSuggestions from '../components/friendsSuggestions'
 
-const home = () => {
+const Home = () => {
+
+  const currentPage = window.location.pathname;
+
   return (
     <div className="page-wrapper">
       <div className="container d-flex-justify-between">
 
         <div className="wallet-container d-flex-col">
-          <Wallet />
+          <Wallet currentPage={currentPage} />
           <TransactionHistory />
         </div>
         <div className="feed-container">
@@ -22,11 +25,11 @@ const home = () => {
           <Post />
         </div>
         <div className="friends-request-container">
-         <FriendsSuggestions/>
+          <FriendsSuggestions />
         </div>
       </div>
     </div>
   )
 }
 
-export default home
+export default Home

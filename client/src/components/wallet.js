@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import Modal from './modal';
 import copyIcon from '../assets/svgs/copy.svg';
 import sendIcon from '../assets/svgs/send.svg';
@@ -7,7 +9,7 @@ import '../styles/components/wallet.scss';
 import walletData from './../data/wallet.json';
 import Popup from './dynamicPopup'
 
-const Wallet = () => {
+const Wallet = ({ currentPage }) => {
   const [balance, setBalance] = useState('');
   const [address, setAddress] = useState('');
   const [showCopiedText, setShowCopiedText] = useState(false);
@@ -92,14 +94,28 @@ const Wallet = () => {
           )}
         </div>
         <div className="button-container d-flex-align-center">
-          <button className="btn d-flex-center" onClick={openSendModal}>
-            <img src={sendIcon} alt="send" />
-            <span>Send</span>
-          </button>
-          <button className="btn d-flex-center" onClick={openReceiveModal}>
-            <img className="recieve-icon" src={sendIcon} alt="send" />
-            <span>Request</span>
-          </button>
+          {/* Render View Wallet button only when on home page */}
+          {currentPage === '/home' && (
+            <Link to="/wallet">
+              <button className="btn d-flex-center">
+                <img src={sendIcon} alt="send" />
+                <span>View Wallet</span>
+              </button>
+            </Link>
+          )}
+          {/* Render Send and Request buttons only when on VIEWWALLET page */}
+          {currentPage === '/wallet' && (
+            <div className="button-container d-flex-align-center">
+              <button className="btn d-flex-center" onClick={openSendModal}>
+                <img src={sendIcon} alt="send" />
+                <span>Send</span>
+              </button>
+              <button className="btn d-flex-center" onClick={openReceiveModal}>
+                <img className="recieve-icon" src={sendIcon} alt="send" />
+                <span>Request</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
       {showSendModal && (

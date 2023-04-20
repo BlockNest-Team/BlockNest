@@ -1,8 +1,9 @@
 @import "../theme/theme.scss";
 
 .wallet-content {
-  padding: 4rem 2rem 2rem;
+  padding: 5rem 2rem 4rem;
   width: 271px;
+  max-height: 200px;
 
   .balance-container {
     gap: 1rem;
