@@ -46,6 +46,7 @@ button {
   display: flex;
   justify-content: center;
   height: 100vh;
+  padding: 2rem;
 }
 
 .card {
@@ -81,6 +82,7 @@ button {
     background-color: transparent;
     color: $primary-color;
     background-color: $btn-primary-color;
+
     &:hover {
       background-color: $btn-primary-color;
     }

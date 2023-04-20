@@ -1,8 +1,13 @@
 @import "../theme/theme.scss";
 
+
+
 .transaction-history {
   margin: 20px;
-  width: 230px;
+
+  .card-heading {
+    padding: 0;
+  }
 
   .table-container {
     overflow-y: auto;
@@ -14,8 +19,8 @@
     }
 
     table {
-      width: 100%;
-      width: 380px;
+      // width: 100%;
+      // width: 380px;
       border-collapse: collapse;
 
       th {
