@@ -1,0 +1,9 @@
+@import "../theme/theme.scss";
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 2rem;
+  padding: 10px;
+}

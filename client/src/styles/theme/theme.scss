@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import './theme-variable.scss';
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "./theme-variable.scss";
 
 *,
 *::before,
@@ -15,7 +15,7 @@ html {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: $app-backgroud-color;
   max-width: 1800px;
   margin: auto;
@@ -46,6 +46,7 @@ button {
   display: flex;
   justify-content: center;
   height: 100vh;
+  padding: 2rem;
 }
 
 .card {
@@ -54,6 +55,19 @@ button {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   border: solid 1.5px #f1f2f6;
   overflow: hidden; // Hide any overflow content
+}
+
+.card-heading {
+
+  margin-bottom: 1.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid $border-color;
+
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1rem;
+  }
 }
 
 .btn {
@@ -69,6 +83,16 @@ button {
   color: $btn-primary-color;
   border: none;
   transition: all 0.3s ease-in-out;
+
+  &.secondary {
+    background-color: transparent;
+    color: $primary-color;
+    background-color: $btn-primary-color;
+
+    &:hover {
+      background-color: $btn-primary-color;
+    }
+  }
 
   &:hover {
     background-color: #1a76d2;
@@ -100,4 +124,25 @@ button {
 .d-flex-col {
   display: flex;
   flex-direction: column;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    padding: 0.2rem;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid $primary-color;
+  }
+}
+
+.profile-name {
+  p {
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
 }

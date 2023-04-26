@@ -1,30 +1,37 @@
-import React from "react";
-import Wallet from "../components/wallet";
-import PostUpload from "../components/postUpload";
-import Post from "../components/post";
-import Status from "../components/status";
-import TransactionHistory from "../components/transactionHistory";
+import React from 'react'
+import Wallet from '../components/wallet'
+import PostUpload from '../components/postUpload'
+import Post from '../components/post'
+// import Status from '../components/status'
 
-import "../styles/pages/home.scss";
+import '../styles/pages/home.scss'
+import FriendsSuggestions from '../components/friendsSuggestions'
+import Navbar from '../components/navbar'
 
-const home = ({ walletAddress }) => {
+const Home = () => {
+
+  const currentPage = window.location.pathname;
+
   return (
+    <>
+    <Navbar/>
     <div className="page-wrapper">
-      <div className="container d-flex-justify-between">
+      <div className="container ">
         <div className="wallet-container d-flex-col">
-          <Wallet />
-          <TransactionHistory />
+          <Wallet currentPage={currentPage} />
+
         </div>
         <div className="feed-container">
           <PostUpload />
           <Post />
         </div>
         <div className="friends-request-container">
-          <Status />
+          <FriendsSuggestions />
         </div>
       </div>
-    </div>
-  );
-};
+      </div>
+      </>
+  )
+}
 
-export default home;
+export default Home

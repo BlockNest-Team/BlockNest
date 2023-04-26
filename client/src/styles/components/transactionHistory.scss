@@ -1,12 +1,12 @@
-@import '../theme/theme.scss';
+@import "../theme/theme.scss";
+
+
 
 .transaction-history {
   margin: 20px;
-  width: 230px;
 
-  h2 {
-    font-size: 1.7rem;
-    margin-bottom: 10px;
+  .card-heading {
+    padding-left: 0;
   }
 
   .table-container {
@@ -19,14 +19,13 @@
     }
 
     table {
-      width: 100%;
-      width: 380px;
+      // width: 100%;
+      // width: 380px;
       border-collapse: collapse;
 
       th {
         font-weight: 600;
       }
-
 
       th,
       td {
@@ -41,7 +40,6 @@
           }
         }
       }
-
     }
   }
 }
