@@ -6,12 +6,15 @@ import Post from '../components/post'
 
 import '../styles/pages/home.scss'
 import FriendsSuggestions from '../components/friendsSuggestions'
+import Navbar from '../components/navbar'
 
 const Home = () => {
 
   const currentPage = window.location.pathname;
 
   return (
+    <>
+    <Navbar/>
     <div className="page-wrapper">
       <div className="container ">
         <div className="wallet-container d-flex-col">
@@ -26,7 +29,8 @@ const Home = () => {
           <FriendsSuggestions />
         </div>
       </div>
-    </div>
+      </div>
+      </>
   )
 }
 
