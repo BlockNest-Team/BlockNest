@@ -18,11 +18,13 @@
 
       .friend {
         width: 100%;
-        gap: 1.5rem;
-        justify-content: flex-start;
+        // gap: 1.5rem;
+        // justify-content: flex-start;
         padding: 1rem 2rem;
         border-bottom: 1px solid $border-color;
-
+        .d-flex-center {
+          gap: 1.5rem;
+        }
         &:last-child {
           border-bottom: none;
         }
@@ -38,6 +40,14 @@
             font-weight: 400;
             margin-top: 0.2rem;
             color: $steel-blue;
+          }
+        }
+
+        .friend-request {
+          img {
+            width: 4rem;
+            height: 4rem;
+            cursor: pointer;
           }
         }
       }
