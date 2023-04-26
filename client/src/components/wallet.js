@@ -6,12 +6,10 @@ import submitIcon from "../assets/svgs/submit.svg";
 import "../styles/components/wallet.scss";
 import walletData from "./../data/wallet.json";
 import Popup from "./dynamicPopup";
-// import Web3 from "web3";
-// import { Web3Context, Web3Provider } from "../Web3Context";
 
 const Wallet = () => {
-  const [balance, setBalance] = useState(0);
-  const [address, setAddress] = useState(null);
+  const [balance, setBalance] = useState("");
+  const [address, setAddress] = useState("");
   const [showCopiedText, setShowCopiedText] = useState(false);
   const [showSendModal, setShowSendModal] = useState(false);
   const [showReceiveModal, setShowReceiveModal] = useState(false);

@@ -34,21 +34,11 @@ function App() {
   /**************end integration */
 
   return (
-    <Web3Provider>
-      <div className="App">
-        <>
-          {!loggedIn ? (
-            <>
-              <Signup onRegister={handleRegister} />
-              <Login onLogin={handleLogin} />
-            </>
-          ) : (
-            <Home />
-          )}
-        </>
-      </div>
-      {/* <Home /> */}
-    </Web3Provider>
+    <div>
+      {/* <Login /> */}
+      {/* <Signup /> */}
+      <Home />
+    </div>
   );
 }
 
