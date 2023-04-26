@@ -1,26 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/pages/login-signup.scss";
 import Navbar from "../components/navbar.js";
+import { getWeb3, getBlockNestContract } from "../utils/blockNestContract";
 
 const Login = () => {
-  // In this code, the connectToMetaMask function is called when the user clicks the login button,
-  // which first checks if MetaMask is installed and then prompts the user to connect to their wallet using window.ethereum.enable().
-  // If the user grants permissi, the function logs to the console that the user has connected to MetaMask,
-  // and you can then add your own web3 code to interact with the blockchain.
-  // const connectToMetaMask = async () => {
-  //   if (typeof window.ethereum !== "undefined") {
-  //     console.log("User clicked login button");
-  //     try {
-  //       await window.ethereum.enable();
-  //       console.log("User connected to MetaMask");
-  //       // TODO: Add your web3 code here to interact with the blockchain
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   } else {
-  //     console.log("Please install MetaMask to connect to the blockchain");
-  //   }
-  // };
+  // Implementation of Login and conencting it to contract function starts here
+
+  const [status, setStatus] = useState("");
+  const navigate = useNavigate();
+  const navigateToHome = () => {
+    navigate("/home");
+  };
+
+  const login = async () => {
+    try {
+      setStatus("Logging in...");
+      const web3 = await getWeb3();
+      const contract = await getBlockNestContract(web3);
+      const accounts = await web3.eth.getAccounts();
+      const isRegistered = await contract.methods
+        .isRegistered(accounts[0])
+        .call();
+
+      if (isRegistered) {
+        setStatus("Login successful!");
+        navigateToHome();
+        // history.push("/home");
+      } else {
+        setStatus("User does not exist. Please register first.");
+      }
+    } catch (error) {
+      console.error("Error during login:", error.message);
+      setStatus("Login failed.");
+    }
+  };
+
+  // Implementation of Login and conencting it to contract function ends here
 
   return (
     <>
@@ -48,15 +64,13 @@ const Login = () => {
                 </div>
 
                 <div className="btn-container">
-                  <a href="/" className=" login-btn">
-                    <button
-                      className="btn"
-                      onClick={alert("implement login functionality here")}
-                    >
-                      {/* //onClick={connectToMetaMask}           onclick of this button */}
-                      Authorize Login
-                    </button>
-                  </a>
+                  <button
+                    className="btn"
+                    onClick={login} //onclick of this button which is logging in
+                  >
+                    Authorize Login
+                  </button>
+                  <p>status is {status}</p>
                 </div>
                 <div className="redirect">
                   <a href="/signup">Don’t have an account? Register</a>

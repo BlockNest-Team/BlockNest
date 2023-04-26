@@ -72,7 +72,7 @@ const Navbar = () => {
     }
   };
 
-  // done by saim
+  // done by saim end
 
   // doen by ali meta
 
@@ -81,27 +81,27 @@ const Navbar = () => {
   // If the user grants permissi, the function logs to the console that the user has connected to MetaMask,
   // and you can then add your own web3 code to interact with the blockchain.
 
-  const connectToMetaMask = async () => {
-    if (typeof window.ethereum !== "undefined") {
-      console.log("User clicked login button");
-      try {
-        await window.ethereum.enable();
-        console.log("User connected to MetaMask");
-        // TODO: Add your web3 code here to interact with the blockchain
-      } catch (err) {
-        console.error(err);
-      }
-    } else {
-      console.log("Please install MetaMask to connect to the blockchain");
-    }
-  };
+  // const connectToMetaMask = async () => {
+  //   if (typeof window.ethereum !== "undefined") {
+  //     console.log("User clicked login button");
+  //     try {
+  //       await window.ethereum.enable();
+  //       console.log("User connected to MetaMask");
+  //       // TODO: Add your web3 code here to interact with the blockchain
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   } else {
+  //     console.log("Please install MetaMask to connect to the blockchain");
+  //   }
+  // };
   // doen by ali meta
   return (
     <nav className="navbar">
       <div className="navbar__logo">BlockNest</div>
       <ul className={`navbar__links ${mobileMenuOpen ? "open" : ""}`}>
         <li className="navbar__item">
-          <a href="#" className="navbar__link">
+          {/* <a href="#" className="navbar__link">
             Home
           </a>
         </li>
@@ -118,7 +118,7 @@ const Navbar = () => {
         <li className="navbar__item">
           <a href="#" className="navbar__link">
             Messages
-          </a>
+          </a> */}
         </li>
       </ul>
       {/* <button className="navbar__connect-btn" onClick={connectToMetaMask}>
