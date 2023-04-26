@@ -1,0 +1,38 @@
+{
+  "posts": [
+    {
+      "text": "Just finished a great workout at the gym!",
+      "image_url": ""
+    },
+    {
+      "text": "Happy birthday to my best friend!",
+      "image_url": "https://www.w3schools.com/howto/img_avatar.png"
+    },
+    {
+      "text": "",
+ "image_url": "https://www.w3schools.com/howto/img_avatar.png"    },
+    {
+      "text": "Can't believe it's already been a year since I started my new job!",
+      "image_url": ""
+    },
+    {
+      "text": "",
+ "image_url": "https://www.w3schools.com/howto/img_avatar.png"    },
+    {
+      "text": "Excited to announce that I'm starting my own business!",
+ "image_url": "https://www.w3schools.com/howto/img_avatar.png"    },
+    {
+      "text": "",
+ "image_url": "https://www.w3schools.com/howto/img_avatar.png"    },
+    {
+      "text": "Had an amazing time at the concert last night!",
+ "image_url": "https://www.w3schools.com/howto/img_avatar.png"    },
+    {
+      "text": "I can't believe how fast my kids are growing up!",
+      "image_url": ""
+    },
+    {
+      "text": "",
+ "image_url": "https://www.w3schools.com/howto/img_avatar.png"    }
+  ]
+}

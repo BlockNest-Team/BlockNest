@@ -1,0 +1,96 @@
+@import "../theme/theme.scss";
+
+.card {
+  margin: 2rem 0;
+  .post-content {
+    max-width: 500px;
+    // width: 100%;
+    min-height: 175px;
+    max-height: auto;
+
+    .post-content-body {
+      .post-header {
+        padding: 1.5rem;
+
+        .profile-details {
+          gap: 2rem;
+
+          //   .profile-name {
+          //     p {
+          //       font-size: 1.4rem;
+          //     }
+          //   }
+
+          .uploded-time {
+            font-size: 1.2rem;
+            color: $steel-blue;
+          }
+        }
+        .post-options {
+          img {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+
+      .post-text {
+        p {
+          font-size: 1.4rem;
+          padding: 2rem;
+        }
+      }
+
+      .post-image {
+        width: 500px;
+        img {
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .post-content-footer {
+      padding: 1rem 2rem;
+      .post-stats {
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid $border-color;
+        .stats-item {
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          p {
+            font-size: 1.4rem;
+            color: $steel-blue;
+          }
+          img {
+            width: 1.6rem;
+          }
+        }
+        .groups {
+          gap: 1rem;
+          .comments {
+            img {
+              width: 1.4rem;
+            }
+          }
+        }
+      }
+    }
+
+    .post-actions {
+      padding: 1rem 1rem 0 1rem;
+      .action-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        img {
+          width: 1.6rem;
+        }
+        p {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}
