@@ -7,10 +7,7 @@ import copyIcon from "../assets/svgs/copy.svg";
 import sendIcon from "../assets/svgs/send.svg";
 import walletIcon from "../assets/svgs/wallet.svg";
 import submitIcon from "../assets/svgs/submit.svg";
-import friendRequestIcon from "../assets/svgs/friendrequest.svg";
-import cancelfriendRequestIcon from "../assets/svgs/cancelFriendsRequest.svg";
 import "../styles/components/wallet.scss";
-import walletData from "./../data/wallet.json";
 import Popup from "./dynamicPopup";
 
 const Wallet = ({ currentPage }) => {
