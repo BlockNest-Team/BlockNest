@@ -1,0 +1,56 @@
+@import "../theme/theme.scss";
+
+.card {
+  .card-heading {
+    padding-left: 2rem;
+    padding-top: 0rem;
+  }
+
+  .friends-suggestions-container {
+    padding: 2rem 0;
+    max-width: 271px;
+    width: 271px;
+    max-height: calc(100vh - 4rem);
+
+    .friends-suggestions {
+      max-height: 75rem;
+      overflow-x: auto;
+
+      .friend {
+        width: 100%;
+        // gap: 1.5rem;
+        // justify-content: flex-start;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid $border-color;
+        .d-flex-center {
+          gap: 1.5rem;
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .profile-pic {
+          width: 4.5rem;
+          height: 4.5rem;
+        }
+
+        .profile-name {
+          .mutual-friends {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-top: 0.2rem;
+            color: $steel-blue;
+          }
+        }
+
+        .friend-request {
+          img {
+            width: 4rem;
+            height: 4rem;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

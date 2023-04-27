@@ -1,0 +1,24 @@
+{
+  "balance": "123 ETH",
+  "address": "0x1234567890123456789012345678901234567890",
+  "transactions": [
+    {
+      "id": "1",
+      "type": "send",
+      "amount": "10 ETH",
+      "date": "2023-04-14"
+    },
+    {
+      "id": "2",
+      "type": "receive",
+      "amount": "5 ETH",
+      "date": "2023-04-15"
+    },
+    {
+      "id": "3",
+      "type": "send",
+      "amount": "20 ETH",
+      "date": "2023-04-16"
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+@import "../theme/theme.scss";
+
+// src/components/Navbar.scss
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #ffffff;
+
+  &__logo {
+    color: $primary-color;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  &__links {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    @media (max-width: 768px) {
+      position: absolute;
+      top: 5%;
+      left: 0;
+      right: 0;
+      background-color: #ffffff;
+      flex-direction: column;
+      display: none;
+      z-index: 9999;
+    }
+  }
+
+  &__item {
+    @media (max-width: 768px) {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid $border-color;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  &__link {
+    color: $steel-blue;
+    text-decoration: none;
+    padding: 0 1rem;
+    font-size: 1rem;
+
+    &:hover {
+      color: $primary-color;
+    }
+
+    @media (max-width: 768px) {
+      padding: 0.5rem;
+      display: block;
+    }
+  }
+
+  &__connect-btn {
+    background-color: $primary-color;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+  &__hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1.5rem;
+    height: 1.5rem;
+
+    span {
+      display: block;
+      background-color: $steel-blue;
+      height: 2px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      display: flex;
+    }
+  }
+
+  &__links.open {
+    display: flex;
+  }
+
+  //   &__hamburger.open {
+  //     span:nth-child(1) {
+  //       transform: translateY(4px) rotate(45deg);
+  //     }
+
+  //     span:nth-child(2) {
+  //       opacity: 0;
+  //     }
+
+  //     span:nth-child(3) {
+  //       transform: translateY(-4px) rotate(-45deg);
+  //     }
+  //   }
+}

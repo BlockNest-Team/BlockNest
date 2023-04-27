@@ -1,0 +1,80 @@
+{
+  "suggestions": [
+  {
+  "name": "John Smith",
+  "avatar": "https://picsum.photos/200/300/",
+  "mutualFriends": 5
+},
+{
+  "name": "Jane Doe",
+"avatar": "https://picsum.photos/200/300/",
+  "mutualFriends": 3
+},
+{
+  "name": "Bob Johnson",
+ "avatar": "https://picsum.photos/200/300/",
+  "mutualFriends": 2
+},
+{
+  "name": "Mary Davis",
+ "avatar": "https://picsum.photos/200/300/",
+  "mutualFriends": 1
+},
+{
+  "name": "Tom Brown",
+"avatar": "https://picsum.photos/200/300/",
+  "mutualFriends": 4
+},
+{
+  "name": "Samantha Green",
+"avatar": "https://picsum.photos/200/300/",
+  "mutualFriends": 2
+},
+{
+  "name": "David Lee",
+"avatar": "https://picsum.photos/200/300/",
+  "mutualFriends": 3
+},
+{
+  "name": "Amy Chen",
+"avatar": "https://picsum.photos/200/300/",
+  "mutualFriends": 2
+},
+{
+  "name": "Michael Nguyen",
+"avatar": "https://picsum.photos/200/300/",
+  "mutualFriends": 5
+},
+{
+  "name": "Sophie Taylor",
+"avatar": "https://picsum.photos/200/300/",
+  "mutualFriends": 1
+},
+{
+  "name": "Ryan Johnson",
+"avatar": "https://picsum.photos/200/300/",
+  "mutualFriends": 0
+},
+{
+  "name": "Emily Wilson",
+ "avatar": "https://picsum.photos/200/300/",
+  "mutualFriends": 3
+},
+{
+  "name": "Andrew Lee",
+"avatar": "https://picsum.photos/200/300/",
+  "mutualFriends": 2
+},
+{
+  "name": "Jessica Kim",
+"avatar": "https://picsum.photos/200/300/",
+  "mutualFriends": 4
+},
+{
+  "name": "Mark Wilson",
+"avatar": "https://picsum.photos/200/300/",
+  "mutualFriends": 1
+}
+
+  ]
+}
