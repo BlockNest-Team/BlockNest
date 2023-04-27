@@ -1,7 +1,6 @@
 @import "../theme/theme.scss";
 
 .page-wrapper {
-
   .container {
     max-width: 1440px;
     width: 100%;
@@ -12,6 +11,13 @@
 
     .wallet-container {
       gap: 2rem;
+    }
+  }
+
+  .feed-container {
+    justify-content: unset;
+    .post-items {
+      max-width: 500px;
     }
   }
 }
