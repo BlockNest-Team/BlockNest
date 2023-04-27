@@ -42,31 +42,31 @@ const post = () => {
           <div className="post-stats d-flex-justify-between">
             <div className="stats-item">
               <p>1.2k</p>
-              <img src={likeIcon} alt="like-icon" />
+              <img src={likeIcon} alt="like" />
             </div>
             <div className="groups d-flex-align-center ">
               <div className="stats-item comments">
                 <p>140</p>
-                <img src={commentIcon} alt="like-icon" />
+                <img src={commentIcon} alt="comment" />
               </div>
               <div className="stats-item">
                 <p>40</p>
-                <img src={shareIcon} alt="like-icon" />
+                <img src={shareIcon} alt="share" />
               </div>
             </div>
           </div>
           <div className="post-actions d-flex-justify-between">
             <div className="action-item">
-              <img src={likeIcon} alt="like-icon" />
+              <img src={likeIcon} alt="like" />
               {/* <img src={likedIcon} alt="like-icon" /> */}
               <p>Like</p>
             </div>
             <div className="action-item">
-              <img src={commentIcon} alt="like-icon" />
+              <img src={commentIcon} alt="comment" />
               <p>Comment</p>
             </div>
             <div className="action-item">
-              <img src={shareIcon} alt="like-icon" />
+              <img src={shareIcon} alt="share" />
               <p>Share</p>
             </div>
           </div>
