@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/components/post.scss";
-import Comments from "../components/comment";
+import CommentSection from "../components/commentSection";
 import SharePost from "../components/sharePost";
 import Modal from "./modal";
 import testPic from "../assets/pictures/test.png";
@@ -10,18 +10,16 @@ import likedIcon from "../assets/svgs/liked.svg";
 import commentIcon from "../assets/svgs/comment.svg";
 import shareIcon from "../assets/svgs/share.svg";
 import commentsData from '../data/commentData.json'
-import sendIcon from '../assets/svgs/send-btn.svg'
 const Post = () => {
 
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(12);
   const [comments, setComments] = useState([]);
   const [commentInput, setCommentInput] = useState('');
-  const [showComments, setShowComments] = useState(false);
+  const [showCommentSectionection, setshowCommentSectionection] = useState(false);
   const [expandedComments, setExpandedComments] = useState([]);
   const [commentCount, setCommentCount] = useState(140);
   const [shareCount, setShareCount] = useState(40);
-  // const [showShareDialog, setShowShareDialog] = useState(false);
   const [showShareModal, setshowShareModal] = useState(false);
 
   useEffect(() => {
@@ -43,9 +41,10 @@ const Post = () => {
       },
       ...comments,
     ]);
-    setCommentCount(commentCount + 1); // Add this line
-    setCommentInput("");
+    setCommentCount(commentCount + 1);
+    setCommentInput(""); // Add this line
   };
+
 
 
   const toggleExpandedComment = (index) => {
@@ -138,7 +137,7 @@ const Post = () => {
               <img src={liked ? likedIcon : likeIcon} alt="like" onClick={handleLikeClick} className={liked ? 'liked' : ''} />
               <p>Like</p>
             </div>
-            <div className="action-item d-flex-center" onClick={() => setShowComments(!showComments)} >
+            <div className="action-item d-flex-center" onClick={() => setshowCommentSectionection(!showCommentSectionection)} >
               <img src={commentIcon} alt="comment" />
               <p>Comment</p>
             </div>
@@ -148,35 +147,19 @@ const Post = () => {
             </div>
           </div>
         </div>
-        {showComments && (
-          <div className="comment-section">
-            <form onSubmit={handleAddComment} className="comment-form">
-              <input
-                type="text"
-                value={commentInput}
-                onChange={(e) => setCommentInput(e.target.value)}
-                placeholder="Write a comment..."
-              />
-              <span className="add-comment-btn">
-                <img src={sendIcon} alt="add comment" onClick={handleAddComment} />
-              </span>
-            </form>
-
-            <ul>
-              {comments.map((comment, index) => (
-                <Comments
-                  key={index}
-                  userPic={comment.userPic}
-                  userName={comment.userName}
-                  text={comment.text}
-                  isExpanded={expandedComments.includes(index)}
-                  toggleExpanded={() => toggleExpandedComment(index)}
-                />
-              ))}
-            </ul>
-
-          </div>
+        {showCommentSectionection && (
+          <CommentSection
+            comments={comments.map((comment, index) => ({
+              ...comment,
+              isExpanded: expandedComments.includes(index),
+              toggleExpanded: () => toggleExpandedComment(index)
+            }))}
+            handleAddComment={handleAddComment}
+            commentInput={commentInput}
+            setCommentInput={setCommentInput}
+          />
         )}
+
       </div>
       {showShareModal && (
         <Modal
