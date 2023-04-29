@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/components/post.scss";
 import testPic from "../assets/pictures/test.png";
 import threeDotIcon from "../assets/svgs/three-dot.svg";
@@ -6,7 +6,26 @@ import likeIcon from "../assets/svgs/like.svg";
 import likedIcon from "../assets/svgs/liked.svg";
 import commentIcon from "../assets/svgs/comment.svg";
 import shareIcon from "../assets/svgs/share.svg";
-const post = () => {
+const Post = () => {
+
+  const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(12);
+
+  const handleLikeClick = () => {
+    setLiked(!liked);
+    setLikeCount(liked ? likeCount - 1 : likeCount + 1);
+  };
+
+  const formatCount = (count) => {
+    if (count >= 1000000) {
+      return (count / 1000000).toFixed(1) + "M";
+    } else if (count >= 1000) {
+      return (count / 1000).toFixed(1) + "K";
+    } else {
+      return count;
+    }
+  };
+
   return (
     <div className="card">
       <div className="post-content">
@@ -41,7 +60,7 @@ const post = () => {
         <div className="post-content-footer">
           <div className="post-stats d-flex-justify-between">
             <div className="stats-item">
-              <p>1.2k</p>
+              <p>{formatCount(likeCount)}</p>
               <img src={likeIcon} alt="like" />
             </div>
             <div className="groups d-flex-align-center ">
@@ -56,9 +75,8 @@ const post = () => {
             </div>
           </div>
           <div className="post-actions d-flex-justify-between">
-            <div className="action-item">
-              <img src={likeIcon} alt="like" />
-              {/* <img src={likedIcon} alt="like-icon" /> */}
+            <div className="action-item" onClick={handleLikeClick}>
+              <img src={liked ? likedIcon : likeIcon} alt="like" onClick={handleLikeClick} className={liked ? 'liked' : ''} />
               <p>Like</p>
             </div>
             <div className="action-item">
@@ -76,4 +94,4 @@ const post = () => {
   );
 };
 
-export default post;
+export default Post;
