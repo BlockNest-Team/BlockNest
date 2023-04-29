@@ -1,0 +1,22 @@
+[
+  {
+    "userPic": "https://www.w3schools.com/howto/img_avatar.png",
+    "userName": "Jhon Doe",
+    "text": "Nice post!"
+  },
+  {
+    "userPic": "https://www.w3schools.com/howto/img_avatar.png",
+    "userName": "Jane Doe",
+    "text": "Congratulations on your job anniversary!"
+  },
+  {
+    "userPic": "https://www.w3schools.com/howto/img_avatar.png",
+    "userName": "Alice",
+    "text": "Time flies, doesn't it?"
+  },
+  {
+    "userPic": "https://www.w3schools.com/howto/img_avatar.png",
+    "userName": "Bob",
+    "text": "Happy anniversary!"
+  }
+]
