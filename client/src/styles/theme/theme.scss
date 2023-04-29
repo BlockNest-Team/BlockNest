@@ -45,7 +45,7 @@ button {
 .page-wrapper {
   display: flex;
   justify-content: center;
-  height: 100vh;
+  height: 95vh;
   padding: 2rem;
 }
 
@@ -145,4 +145,11 @@ button {
     font-size: 1.6rem;
     font-weight: 500;
   }
+}
+
+.toggle-text-visibility {
+  color: $primary-color;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  font-size: 1.4rem;
 }

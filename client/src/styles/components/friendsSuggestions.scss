@@ -10,7 +10,7 @@
     padding: 2rem 0;
     max-width: 271px;
     width: 271px;
-    max-height: calc(100vh - 4rem);
+    max-height: calc(100vh - 11rem);
 
     .friends-suggestions {
       max-height: 75rem;
@@ -22,9 +22,11 @@
         // justify-content: flex-start;
         padding: 1rem 2rem;
         border-bottom: 1px solid $border-color;
+
         .d-flex-center {
           gap: 1.5rem;
         }
+
         &:last-child {
           border-bottom: none;
         }
