@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../styles/components/post.scss";
 import Comments from "../components/comment";
+import SharePost from "../components/sharePost";
+import Modal from "./modal";
 import testPic from "../assets/pictures/test.png";
 import threeDotIcon from "../assets/svgs/three-dot.svg";
 import likeIcon from "../assets/svgs/like.svg";
@@ -18,7 +20,9 @@ const Post = () => {
   const [showComments, setShowComments] = useState(false);
   const [expandedComments, setExpandedComments] = useState([]);
   const [commentCount, setCommentCount] = useState(140);
-
+  const [shareCount, setShareCount] = useState(40);
+  // const [showShareDialog, setShowShareDialog] = useState(false);
+  const [showShareModal, setshowShareModal] = useState(false);
 
   useEffect(() => {
     setComments(commentsData);
@@ -65,6 +69,21 @@ const Post = () => {
     }
   };
 
+  // const handleShareClick = () => {
+  //   setShowShareDialog(!showShareDialog);
+  // };
+
+  const openSharePostModal = () => {
+    setshowShareModal(true);
+    console.log("Modal Opens");
+  };
+
+  const closeSharePostModal = () => {
+    setshowShareModal(false);
+    console.log("clicked");
+  };
+
+
   return (
     <div className="card">
       <div className="post-content">
@@ -108,7 +127,7 @@ const Post = () => {
                 <img src={commentIcon} alt="comment" />
               </div>
               <div className="stats-item">
-                <p>100</p> {/* Update this line */}
+                <p>{formatCount(shareCount)}</p> {/* Update this line */}
                 <img src={shareIcon} alt="share" />
               </div>
             </div>
@@ -123,7 +142,7 @@ const Post = () => {
               <img src={commentIcon} alt="comment" />
               <p>Comment</p>
             </div>
-            <div className="action-item d-flex-center">
+            <div className="action-item d-flex-center" onClick={openSharePostModal}>
               <img src={shareIcon} alt="share" />
               <p>Share</p>
             </div>
@@ -159,6 +178,19 @@ const Post = () => {
           </div>
         )}
       </div>
+      {showShareModal && (
+        <Modal
+          title="Share Post"
+          onClose={closeSharePostModal}
+          content={
+            <SharePost
+              url="https://example.com"
+            />
+          }
+        />
+      )}
+
+
     </div>
   );
 };
