@@ -1,10 +1,29 @@
 @import "../theme/theme.scss";
 
+.posts-container {
+  max-width: 520px;
+  height: 83vh;
+  padding: 0 2rem;
+  overflow-y: auto;
+  padding-bottom: 1.3rem;
+  // scroll invisibe
+  scrollbar-width: none;
+  // Firefox
+  -ms-overflow-style: none;
+
+  // Chrome
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+
+}
+
 .card {
   margin: 2rem 0;
 
   .post-content {
-    max-width: 500px;
+    // max-width: 500px;
     // width: 100%;
     min-height: 175px;
     max-height: auto;

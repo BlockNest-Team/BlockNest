@@ -9,10 +9,10 @@ import likeIcon from "../assets/svgs/like.svg";
 import likedIcon from "../assets/svgs/liked.svg";
 import commentIcon from "../assets/svgs/comment.svg";
 import shareIcon from "../assets/svgs/share.svg";
-import commentsData from '../data/commentData.json'
-import postTextData from '../data/postData.json'
+// import commentsData from '../data/commentData.json'
+// import postTextData from '../data/postData.json'
 
-const Post = () => {
+const Post = ({ data }) => {
 
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(12);
@@ -26,13 +26,20 @@ const Post = () => {
   const [expandedPostText, setExpandedPostText] = useState(false);
   const [postText, setPostText] = useState("");
 
-  useEffect(() => {
-    setComments(commentsData);
-  }, []);
+  // useEffect(() => {
+  //   setComments(commentsData);
+  // }, []);
+
+  // useEffect(() => {
+  //   setPostText(postTextData.postText);
+  // }, []);
 
   useEffect(() => {
-    setPostText(postTextData.postText);
-  }, []);
+    setPostText(data.postText);
+    setLikeCount(data.likeCount);
+    setShareCount(data.shareCount);
+    setCommentCount(data.commentCount);
+  }, [data]);
 
   const toggleExpandedPostText = () => {
     setExpandedPostText(!expandedPostText);

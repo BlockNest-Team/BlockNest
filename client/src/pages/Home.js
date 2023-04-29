@@ -1,7 +1,7 @@
 import React from "react";
 import Wallet from "../components/wallet";
 import PostUpload from "../components/postUpload";
-import Post from "../components/post";
+import Posts from "../components/posts";
 // import Status from '../components/status'
 
 import "../styles/pages/home.scss";
@@ -22,7 +22,7 @@ const Home = () => {
           <div className="feed-container d-flex-center d-flex-col">
             <div className="post-items">
               <PostUpload />
-              <Post />
+              <Posts />
             </div>
           </div>
           <div className="friends-request-container">
