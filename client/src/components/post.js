@@ -69,9 +69,9 @@ const Post = () => {
     }
   };
 
-  // const handleShareClick = () => {
-  //   setShowShareDialog(!showShareDialog);
-  // };
+  const handleShare = () => {
+    setShareCount(shareCount + 1);
+  };
 
   const openSharePostModal = () => {
     setshowShareModal(true);
@@ -185,6 +185,7 @@ const Post = () => {
           content={
             <SharePost
               url="https://example.com"
+              onShare={handleShare}
             />
           }
         />

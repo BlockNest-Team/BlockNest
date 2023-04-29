@@ -15,6 +15,12 @@ import copyIcon from "../assets/svgs/copy.svg";
 const SharePost = ({ url, onShare }) => {
   const [linkCopied, setLinkCopied] = useState(false);
 
+  const handleShareClick = () => {
+    if (onShare) {
+      onShare();
+    }
+  };
+
   const handleCopyClick = () => {
     navigator.clipboard.writeText(url).then(() => {
       setLinkCopied(true);
@@ -27,23 +33,23 @@ const SharePost = ({ url, onShare }) => {
   return (
     <div className="share-dialog">
       <div className="share-buttons">
-        <FacebookShareButton url={url} quote="Check out this post!">
+        <FacebookShareButton url={url} quote="Check out this post!" onClick={handleShareClick}>
           <img src={facebookIcon} alt="Share on Facebook" />
           <p>Facebook</p>
         </FacebookShareButton>
-        <TwitterShareButton url={url} title="Check out this post!">
+        <TwitterShareButton url={url} title="Check out this post!" onClick={handleShareClick}>
           <img src={twitterIcon} alt="Share on Twitter" />
           <p>Twitter</p>
         </TwitterShareButton>
-        <WhatsappShareButton url={url} title="Check out this post!">
+        <WhatsappShareButton url={url} title="Check out this post!" onClick={handleShareClick}>
           <img src={whatsappIcon} alt="Share on WhatsApp" />
           <p>WhatsApp</p>
         </WhatsappShareButton>
-        <EmailShareButton url={url} subject="Check out this post!">
+        <EmailShareButton url={url} subject="Check out this post!" onClick={handleShareClick}>
           <img src={gmailIcon} alt="Share via Email" />
           <p>Email</p>
         </EmailShareButton>
-        <button onClick={handleCopyClick}>
+        <button onClick={() => { handleCopyClick(); handleShareClick(); }}>
           <img src={copyIcon} alt="Copy link" />
           <p>{linkCopied ? "Copied" : "Copy link"}</p>
         </button>
