@@ -24,21 +24,23 @@ const Posts = () => {
   }, [fetchMoreData]);
 
   return (
-    <div className="posts-container">
+    <div className="posts-wrapper">
       <InfiniteScroll
         dataLength={posts.length}
         next={fetchMoreData}
         hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
+        loader={<h4 className="loading">Hang tight, fetching more awesomeness...</h4>}
         endMessage={
-          <p style={{ textAlign: "center" }}>
+          <p className="posts-end">
             <b>Yay! You have seen it all</b>
           </p>
         }
       >
-        {posts.map((post) => (
-          <Post key={post.id} data={post} />
-        ))}
+        <div className="posts-container">
+          {posts.map((post) => (
+            <Post key={post.id} data={post} />
+          ))}
+        </div>
       </InfiniteScroll>
     </div>
   );
