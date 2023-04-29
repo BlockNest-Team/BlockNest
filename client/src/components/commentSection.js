@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/components/post.scss";
+import "../styles/components/commentSection.scss";
 import Comment from './comment'
 import sendIcon from '../assets/svgs/send-btn.svg'
 

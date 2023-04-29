@@ -10,6 +10,8 @@ import likedIcon from "../assets/svgs/liked.svg";
 import commentIcon from "../assets/svgs/comment.svg";
 import shareIcon from "../assets/svgs/share.svg";
 import commentsData from '../data/commentData.json'
+import postTextData from '../data/postData.json'
+
 const Post = () => {
 
   const [liked, setLiked] = useState(false);
@@ -21,10 +23,47 @@ const Post = () => {
   const [commentCount, setCommentCount] = useState(140);
   const [shareCount, setShareCount] = useState(40);
   const [showShareModal, setshowShareModal] = useState(false);
+  const [expandedPostText, setExpandedPostText] = useState(false);
+  const [postText, setPostText] = useState("");
 
   useEffect(() => {
     setComments(commentsData);
   }, []);
+
+  useEffect(() => {
+    setPostText(postTextData.postText);
+  }, []);
+
+  const toggleExpandedPostText = () => {
+    setExpandedPostText(!expandedPostText);
+  };
+
+  const truncateText = (text, wordLimit) => {
+    const words = text.split(" ");
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(" ") + "...";
+    }
+    return text;
+  };
+
+  const renderPostText = () => {
+    return (
+      <>
+        <p>
+          {expandedPostText
+            ? postText
+            : truncateText(postText, 30)}
+          {postText.split(" ").length > 30 && (
+            <span
+              className="toggle-text-visibility"
+              onClick={toggleExpandedPostText}
+            >{`See ${expandedPostText ? "less" : "more"}`}</span>
+          )}
+        </p>
+
+      </>
+    );
+  };
 
   const handleLikeClick = () => {
     setLiked(!liked);
@@ -105,10 +144,7 @@ const Post = () => {
             </div>
           </div>
           <div className="post-text">
-            <p>
-              Can't believe it's already been a year since I started my new job!
-              Can't believe it's already been a year since I started my new job!
-            </p>
+            {renderPostText()}
           </div>
           <div className="post-image">
             <img src={testPic} alt="three-dot-icon" />

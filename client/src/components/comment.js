@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/components/post.scss";
+import "../styles/components/commentSection.scss";
 
 const Comment = ({ userPic, userName, text, isExpanded, toggleExpanded }) => {
   const words = text.split(" ");
@@ -17,7 +17,7 @@ const Comment = ({ userPic, userName, text, isExpanded, toggleExpanded }) => {
           {displayedText}
           {isLongComment && (
             <span
-              className="toggle-visibility"
+              className="toggle-text-visibility "
               onClick={toggleExpanded}
             >
               {isExpanded ? "See less" : "See more"}
