@@ -5,6 +5,18 @@
   height: 82.5vh;
   overflow-y: auto;
 
+  @media screen and (max-width: 540px) {
+    width: 430px;
+  }
+
+  @media screen and (max-width: 460px) {
+    width: 380px;
+  }
+
+  @media screen and (max-width: 420px) {
+    width: 340px;
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -46,6 +58,7 @@
           .uploded-time {
             font-size: 1.2rem;
             color: $steel-blue;
+
           }
         }
 

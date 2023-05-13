@@ -6,13 +6,28 @@
     padding: 15px;
     cursor: pointer;
     width: 500px;
-    // width: 100%;
+
+    @media screen and (max-width: 540px) {
+      width: 425px;
+    }
+
+    @media screen and (max-width: 460px) {
+      width: 360px;
+    }
+
+    @media screen and (max-width: 420px) {
+      width: 335px;
+    }
 
     .post-upload {
       height: 100%;
 
       @media screen and (max-width: 1024px) {
         gap: 10rem;
+      }
+
+      @media screen and (max-width: 460px) {
+        gap: 0rem;
       }
 
       p {

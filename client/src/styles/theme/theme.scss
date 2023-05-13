@@ -47,6 +47,10 @@ button {
   justify-content: center;
   height: 95vh;
   padding: 2rem;
+
+  @media screen and (max-width: 835px) {
+    padding-top: 0;
+  }
 }
 
 .card {
@@ -124,7 +128,12 @@ button {
 .d-flex-col {
   display: flex;
   flex-direction: column;
+}
 
+.d-flex-col-justify-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .d-flex-col-align-center {

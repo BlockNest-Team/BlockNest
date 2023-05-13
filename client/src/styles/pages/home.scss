@@ -6,13 +6,37 @@
   .container {
     max-width: 1440px;
     width: 100%;
-    padding: 0 20px;
+    // padding: 0 20px;
     gap: 2rem;
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
 
+    @media screen and (max-width: 835px) {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
     .wallet-container {
       gap: 2rem;
+      margin: 0 auto;
+      // max-width: 271px;
+      // width: 100%;
+
+      @media screen and (max-width: 835px) {
+        margin: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .card {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 500px;
+      }
     }
   }
 
@@ -21,6 +45,26 @@
 
     .post-items {
       max-width: 500px;
+
+      @media screen and (max-width: 540px) {
+        width: 430px;
+      }
+
+      @media screen and (max-width: 460px) {
+        width: 380px;
+      }
+
+      @media screen and (max-width: 420px) {
+        width: 340px;
+      }
+
+      .card {
+        margin-top: 0;
+      }
+
+      @media screen and (max-width: 1125px) and (min-width: 1024px) {
+        max-width: 440px;
+      }
     }
   }
 }
