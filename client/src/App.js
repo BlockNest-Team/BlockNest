@@ -4,11 +4,11 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Home from './pages/Home';
-import ViewWallet from './pages/ViewWallet'
-import NotFound from './pages/NotFound';
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Home from "./pages/Home";
+import ViewWallet from "./pages/ViewWallet";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (

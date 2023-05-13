@@ -19,11 +19,9 @@ const Login = () => {
       const web3 = await getWeb3();
       const contract = await getBlockNestContract(web3);
       const accounts = await web3.eth.getAccounts();
-      const isRegistered = await contract.methods
-        .isRegistered(accounts[0])
-        .call();
+      const userExists = await contract.methods.userExists(accounts[0]).call();
 
-      if (isRegistered) {
+      if (userExists) {
         setStatus("Login successful!");
         navigateToHome();
         // history.push("/home");

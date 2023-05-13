@@ -1,56 +1,31 @@
-import Web3 from "web3";
-import detectEthereumProvider from "@metamask/detect-provider";
-// import abi from "./BlockNestABI.json"; // Import ABI from JSON file
-
-const contractAddress = "0xbD4b2B88E05755a7ea9B680268fC33d7ec09f69E"; // Replace with your contract address
-const abi = [
+export const contractAddress = "0x98c734Cc80cB5FC7e7C05Ea5Aa1FD5aF0cdcE333";
+export const contractABI = [
   {
     inputs: [
       {
-        internalType: "string",
-        name: "_name",
-        type: "string",
+        internalType: "address payable",
+        name: "receiver",
+        type: "address",
       },
-    ],
-    name: "addName",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
       {
         internalType: "address",
-        name: "user",
+        name: "sender",
         type: "address",
       },
       {
         internalType: "uint256",
-        name: "_amount",
+        name: "amount",
         type: "uint256",
       },
       {
         internalType: "string",
-        name: "_message",
+        name: "message",
         type: "string",
       },
     ],
-    name: "createRequest",
+    name: "addToBlockchain",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_request",
-        type: "uint256",
-      },
-    ],
-    name: "payRequest",
-    outputs: [],
-    stateMutability: "payable",
     type: "function",
   },
   {
@@ -91,27 +66,41 @@ const abi = [
     type: "event",
   },
   {
+    anonymous: false,
     inputs: [
       {
-        internalType: "address payable",
-        name: "_receiver",
+        indexed: false,
+        internalType: "address",
+        name: "from",
         type: "address",
       },
       {
+        indexed: false,
+        internalType: "address",
+        name: "receiver",
+        type: "address",
+      },
+      {
+        indexed: false,
         internalType: "uint256",
-        name: "_amount",
+        name: "amount",
         type: "uint256",
       },
       {
+        indexed: false,
         internalType: "string",
-        name: "_message",
+        name: "message",
         type: "string",
       },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "timestamp",
+        type: "uint256",
+      },
     ],
-    name: "shareBalance",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
+    name: "Transfer",
+    type: "event",
   },
   {
     inputs: [
@@ -127,6 +116,46 @@ const abi = [
         internalType: "uint256",
         name: "",
         type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getAllTransactions",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "address",
+            name: "sender",
+            type: "address",
+          },
+          {
+            internalType: "address",
+            name: "receiver",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "amount",
+            type: "uint256",
+          },
+          {
+            internalType: "string",
+            name: "message",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "timestamp",
+            type: "uint256",
+          },
+        ],
+        internalType: "struct BlocknestVenmo.TransferStruct[]",
+        name: "",
+        type: "tuple[]",
       },
     ],
     stateMutability: "view",
@@ -151,111 +180,13 @@ const abi = [
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_user",
-        type: "address",
-      },
-    ],
-    name: "getMyHistory",
+    inputs: [],
+    name: "getTransactionCount",
     outputs: [
       {
-        components: [
-          {
-            internalType: "string",
-            name: "action",
-            type: "string",
-          },
-          {
-            internalType: "uint256",
-            name: "amount",
-            type: "uint256",
-          },
-          {
-            internalType: "string",
-            name: "message",
-            type: "string",
-          },
-          {
-            internalType: "address",
-            name: "otherPartyAddress",
-            type: "address",
-          },
-          {
-            internalType: "string",
-            name: "otherPartyName",
-            type: "string",
-          },
-        ],
-        internalType: "struct Blocknest.sendReceive[]",
+        internalType: "uint256",
         name: "",
-        type: "tuple[]",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_user",
-        type: "address",
-      },
-    ],
-    name: "getMyName",
-    outputs: [
-      {
-        components: [
-          {
-            internalType: "string",
-            name: "name",
-            type: "string",
-          },
-          {
-            internalType: "bool",
-            name: "hasName",
-            type: "bool",
-          },
-        ],
-        internalType: "struct Blocknest.userName",
-        name: "",
-        type: "tuple",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_user",
-        type: "address",
-      },
-    ],
-    name: "getMyRequests",
-    outputs: [
-      {
-        internalType: "address[]",
-        name: "",
-        type: "address[]",
-      },
-      {
-        internalType: "uint256[]",
-        name: "",
-        type: "uint256[]",
-      },
-      {
-        internalType: "string[]",
-        name: "",
-        type: "string[]",
-      },
-      {
-        internalType: "string[]",
-        name: "",
-        type: "string[]",
+        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -383,18 +314,3 @@ const abi = [
     type: "function",
   },
 ];
-
-export const getWeb3 = async () => {
-  const provider = await detectEthereumProvider();
-  if (provider) {
-    return new Web3(provider);
-  }
-  throw new Error("Please install MetaMask!");
-};
-
-export const getBlockNestContract = async (web3) => {
-  if (!web3) {
-    web3 = await getWeb3();
-  }
-  return new web3.eth.Contract(abi, contractAddress);
-};

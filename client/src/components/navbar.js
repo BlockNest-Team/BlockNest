@@ -3,6 +3,7 @@
 // import React, { useState } from "react";
 import { useEffect, useState } from "react";
 import "../styles/components/navbar.scss";
+// import { TransactionContext } from "../context/context";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -18,6 +19,7 @@ const Navbar = () => {
   useEffect(() => {
     getCurrentWalletConnected();
     addWalletListener();
+    // add things todo whenaccount is changed
   }, [walletAddress]);
 
   const connectWallet = async () => {

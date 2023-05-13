@@ -10,13 +10,15 @@ const Signup = () => {
     navigate("/home");
   };
 
-  const register = async () => {
+  const registerUser = async () => {
     try {
       setStatus("Registering...");
       const web3 = await getWeb3();
       const contract = await getBlockNestContract(web3);
       const accounts = await web3.eth.getAccounts();
-      await contract.methods.register().send({ from: accounts[0] });
+      await contract.methods
+        .registerUser(accounts[0])
+        .send({ from: accounts[0] });
       setStatus("Registration successful!");
       navigateToHome();
     } catch (error) {
@@ -106,7 +108,7 @@ const Signup = () => {
                     <input
                       className="btn"
                       type="submit"
-                      onClick={register}
+                      onClick={registerUser}
                       value="Proceed"
                     />
                   </div>
