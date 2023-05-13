@@ -51,7 +51,7 @@ const Wallet = ({ currentPage }) => {
 
   const [showCopiedText, setShowCopiedText] = useState(false);
   const [showSendModal, setShowSendModal] = useState(false);
-  const [showReceiveModal, setShowReceiveModal] = useState(false);
+  const [showRequestModal, setshowRequestModal] = useState(false);
   const [sendTransactions, setSendTransactions] = useState([]);
   const [popupStatus, setPopupStatus] = useState("");
   const [showPopup, setShowPopup] = useState(false);
@@ -70,12 +70,12 @@ const Wallet = ({ currentPage }) => {
   };
 
   const openReceiveModal = () => {
-    setShowReceiveModal(true);
+    setshowRequestModal(true);
   };
 
   const closeModal = () => {
     setShowSendModal(false);
-    setShowReceiveModal(false);
+    setshowRequestModal(false);
   };
 
   // implement web3 here
@@ -361,7 +361,7 @@ const Wallet = ({ currentPage }) => {
           }
         />
       )}
-      {showReceiveModal && (
+      {showRequestModal && (
         <Modal
           title="Request"
           onClose={closeModal}
@@ -380,6 +380,15 @@ const Wallet = ({ currentPage }) => {
                 </div>
                 <div className="formgroup">
                   <label htmlFor="receiverAddress">Reciever’s Address</label>
+                  <input
+                    type="text"
+                    name="receiverAddress"
+                    id="receiverAddress"
+                    required
+                  />
+                </div>
+                <div className="formgroup">
+                  <label htmlFor="receiverAddress">Message</label>
                   <input
                     type="text"
                     name="receiverAddress"
