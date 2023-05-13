@@ -22,6 +22,14 @@ const DynamicPopup = ({ status, onClose }) => {
     heading = "Post Failed";
     desc = "We were unable to publish your post. Please try again.";
     buttonLabel = "Try Again";
+  } else if (status === "post deleted") {
+    heading = "Deleted Successfully";
+    desc = "Your post is deleted successfully";
+    buttonLabel = "Ok";
+  } else if (status === "Post Unable to delete") {
+    heading = "Try Again";
+    desc = "Your post is unable to delete";
+    buttonLabel = "Ok";
   }
   const handleClose = () => {
     onClose();

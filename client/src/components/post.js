@@ -9,6 +9,7 @@ import likeIcon from "../assets/svgs/like.svg";
 import likedIcon from "../assets/svgs/liked.svg";
 import commentIcon from "../assets/svgs/comment.svg";
 import shareIcon from "../assets/svgs/share.svg";
+import Popup from './dynamicPopup'
 // import commentsData from '../data/commentData.json'
 // import postTextData from '../data/postData.json'
 
@@ -25,7 +26,8 @@ const Post = ({ data }) => {
   const [showShareModal, setshowShareModal] = useState(false);
   const [expandedPostText, setExpandedPostText] = useState(false);
   const [postText, setPostText] = useState("");
-
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupStatus, setPopupStatus] = useState("");
   // useEffect(() => {
   //   setComments(commentsData);
   // }, []);
@@ -128,6 +130,14 @@ const Post = ({ data }) => {
     console.log("clicked");
   };
 
+  const handleDeletePost = () => {
+    // setPopupStatus("post deleted");
+    setPopupStatus("Post Unable to delete");
+    setShowPopup(true);
+    console.log("delete");
+  };
+
+
 
   return (
     <div className="card">
@@ -151,9 +161,11 @@ const Post = ({ data }) => {
 
               <div className="post-options-content">
                 <div className="card">
-                  <p>Delete</p>
+                  <p onClick={handleDeletePost}>Delete</p>
                 </div>
+
               </div>
+
             </div>
           </div>
           <div className="post-text">
@@ -222,6 +234,10 @@ const Post = ({ data }) => {
           }
         />
       )}
+      {showPopup && (
+        <Popup status={popupStatus} onClose={() => setShowPopup(false)} />
+      )}
+
 
 
     </div>
