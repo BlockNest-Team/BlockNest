@@ -67,7 +67,11 @@
   }
 
   .button-container {
-    gap: 1rem;
+    gap: 1.5rem;
+
+    .btn-group {
+      gap: 1.5rem;
+    }
 
     .btn {
       width: 110px;
@@ -84,6 +88,11 @@
 
       .recieve-icon {
         transform: rotate(180deg);
+      }
+
+      .pay-icon {
+        width: 17px;
+        height: 20px;
       }
 
     }

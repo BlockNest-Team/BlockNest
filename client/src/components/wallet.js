@@ -12,10 +12,9 @@ import copyIcon from "../assets/svgs/copy.svg";
 import sendIcon from "../assets/svgs/send.svg";
 import walletIcon from "../assets/svgs/wallet.svg";
 import submitIcon from "../assets/svgs/submit.svg";
-import friendRequestIcon from "../assets/svgs/friendrequest.svg";
-import cancelfriendRequestIcon from "../assets/svgs/cancelFriendsRequest.svg";
+import payIcon from "../assets/svgs/pay.svg";
 import "../styles/components/wallet.scss";
-import walletData from "./../data/wallet.json";
+// import walletData from "./../data/wallet.json";
 import Popup from "./dynamicPopup";
 
 const { ethereum } = window;
@@ -24,7 +23,13 @@ const Wallet = ({ currentPage }) => {
   // wallet portion implementation start
   const [balance, setBalance] = useState("");
   const [address, setAddress] = useState("");
-
+  const [payRequests, setPayRequests] = useState(2);
+  const [payRequestData, setPayRequestData] = useState({
+    senderAddress: "Dummy Sender Address",
+    receiverAddress: "Dummy Receiver Address",
+    message: "Dummy Message",
+    amount: "100",
+  });
   useEffect(() => {
     const fetchAccountData = async () => {
       try {
@@ -51,7 +56,8 @@ const Wallet = ({ currentPage }) => {
 
   const [showCopiedText, setShowCopiedText] = useState(false);
   const [showSendModal, setShowSendModal] = useState(false);
-  const [showReceiveModal, setShowReceiveModal] = useState(false);
+  const [showRequestModal, setshowRequestModal] = useState(false);
+  const [showPayRequestModal, setshowPayRequestModal] = useState(false);
   const [sendTransactions, setSendTransactions] = useState([]);
   const [popupStatus, setPopupStatus] = useState("");
   const [showPopup, setShowPopup] = useState(false);
@@ -70,12 +76,16 @@ const Wallet = ({ currentPage }) => {
   };
 
   const openReceiveModal = () => {
-    setShowReceiveModal(true);
+    setshowRequestModal(true);
+  };
+  const openPayRequestModal = () => {
+    setshowPayRequestModal(true);
   };
 
   const closeModal = () => {
     setShowSendModal(false);
-    setShowReceiveModal(false);
+    setshowRequestModal(false);
+    setshowPayRequestModal(false);
   };
 
   // implement web3 here
@@ -94,6 +104,7 @@ const Wallet = ({ currentPage }) => {
         .send({
           from: accounts[0],
         })
+
         .then(
           web3.eth.sendTransaction({
             from: accounts[0],
@@ -272,6 +283,32 @@ const Wallet = ({ currentPage }) => {
     // setShowPopup(true);
   };
 
+  const handleRequestFormSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
+
+    setSendTransactions([...sendTransactions, data]);
+
+    // Call send balance here
+    SendRequest(data.receiverAddress, data.amount, "msg");
+
+    // Reset the form
+    event.target.reset();
+
+    // Increment the number of pay requests
+    setPayRequests((prevRequests) => prevRequests + 1);
+
+    // Close the pay request modal
+    setshowPayRequestModal(false);
+
+    if (data.status === "success") {
+      setPopupStatus("payment success");
+    } else {
+      setPopupStatus("payment failed");
+    }
+  };
+
   return (
     <div className="card">
       <div className="wallet-content d-flex-center d-flex-col">
@@ -301,14 +338,21 @@ const Wallet = ({ currentPage }) => {
           )}
           {/* Render Send and Request buttons only when on VIEWWALLET page */}
           {currentPage === "/wallet" && (
-            <div className="button-container d-flex-align-center">
-              <button className="btn d-flex-center" onClick={openSendModal}>
-                <img src={sendIcon} alt="send" />
-                <span>Send</span>
-              </button>
-              <button className="btn d-flex-center" onClick={openReceiveModal}>
-                <img className="recieve-icon" src={sendIcon} alt="receive" />
-                <span>Request</span>
+            <div className="button-container d-flex-col-align-center">
+              <div className="btn-group d-flex-align-center">
+                <button className="btn d-flex-center" onClick={openSendModal}>
+                  <img src={sendIcon} alt="send" />
+                  <span>Send</span>
+                </button>
+                <button className="btn d-flex-center" onClick={openReceiveModal}>
+                  <img className="recieve-icon" src={sendIcon} alt="receive" />
+                  <span>Request</span>
+                </button>
+              </div>
+              <button className="btn d-flex-center" onClick={openPayRequestModal}>
+                <div className="pay-request-circle">{payRequests}</div>
+                <img className="pay-icon" src={payIcon} alt="receive" />
+                <span>Pay</span>
               </button>
             </div>
           )}
@@ -361,13 +405,13 @@ const Wallet = ({ currentPage }) => {
           }
         />
       )}
-      {showReceiveModal && (
+      {showRequestModal && (
         <Modal
           title="Request"
           onClose={closeModal}
           content={
             <div className="request-crypto-content d-flex-center">
-              <form onSubmit={handleSendFormSubmitR}>
+              <form onSubmit={handleRequestFormSubmit}>
                 <div className="formgroup">
                   <label htmlFor="senderAddress">Sender’s Address</label>
                   <input
@@ -388,6 +432,15 @@ const Wallet = ({ currentPage }) => {
                   />
                 </div>
                 <div className="formgroup">
+                  <label htmlFor="message">Message</label>
+                  <input
+                    type="text"
+                    name="message"
+                    id="message"
+                    required
+                  />
+                </div>
+                <div className="formgroup">
                   <label htmlFor="amount">Amount</label>
                   <input
                     type="number"
@@ -400,6 +453,65 @@ const Wallet = ({ currentPage }) => {
                 <div className="btn-container d-flex-center">
                   <button className="btn d-flex-center" type="submit">
                     <span>Request</span>
+                    <img src={submitIcon} alt="submit" />
+                  </button>
+                </div>
+              </form>
+            </div>
+          }
+        />
+      )}
+      {showPayRequestModal && (
+        <Modal
+          title="Pay"
+          onClose={closeModal}
+          content={
+            <div className="request-crypto-content d-flex-center">
+              <form onSubmit={handleSendFormSubmitR}>
+                <div className="formgroup">
+                  <label htmlFor="senderAddress">Sender’s Address</label>
+                  <input
+                    type="text"
+                    name="senderAddress"
+                    id="senderAddress"
+                    value={address}
+                    readOnly
+                  />
+                </div>
+                <div className="formgroup">
+                  <label htmlFor="receiverAddress">Reciever’s Address</label>
+                  <input
+                    type="text"
+                    name="receiverAddress"
+                    id="receiverAddress"
+                    value={payRequestData.receiverAddress}
+                    required
+                  />
+                </div>
+                <div className="formgroup">
+                  <label htmlFor="requestmessage">Message</label>
+                  <input
+                    type="text"
+                    name="requestmessage"
+                    id="requestmessage"
+                    value={payRequestData.message}
+                    required
+                  />
+                </div>
+                <div className="formgroup">
+                  <label htmlFor="amount">Amount</label>
+                  <input
+                    type="number"
+                    name="amount"
+                    step="any"
+                    id="amount"
+                    value={payRequestData.amount}
+                    required
+                  />
+                </div>
+                <div className="btn-container d-flex-center">
+                  <button className="btn d-flex-center" type="submit">
+                    <span>Pay</span>
                     <img src={submitIcon} alt="submit" />
                   </button>
                 </div>

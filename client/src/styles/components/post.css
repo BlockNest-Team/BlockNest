@@ -1,0 +1,284 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #f1f2f6;
+  max-width: 1800px;
+  margin: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+  color: #203758;
+  font-weight: 500;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: #203758;
+}
+
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  height: 95vh;
+  padding: 2rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  border: solid 1.5px #f1f2f6;
+  overflow: hidden;
+}
+
+.card-heading {
+  margin-bottom: 1.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid #ededed;
+}
+.card-heading h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1rem;
+}
+
+.btn {
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  width: 162px;
+  height: 31px;
+  display: block;
+  text-align: center;
+  background-color: #1877f2;
+  color: #f0f7ff;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+.btn.secondary {
+  background-color: transparent;
+  color: #1877f2;
+  background-color: #f0f7ff;
+}
+.btn.secondary:hover {
+  background-color: #f0f7ff;
+}
+.btn:hover {
+  background-color: #1a76d2;
+  box-shadow: 0px 0px 10px rgba(26, 118, 210, 0.5);
+}
+
+.d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.d-flex-justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.d-flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.d-flex-justify-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.d-flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+}
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  padding: 0.2rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #1877f2;
+}
+
+.profile-name p {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.toggle-text-visibility {
+  color: #1877f2;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.posts-wrapper {
+  max-width: 520px;
+  height: 82.5vh;
+  overflow-y: auto;
+}
+.posts-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.posts-wrapper .loading {
+  text-align: center;
+  font-size: 2rem;
+}
+.posts-wrapper .posts-end {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #788292;
+  padding: 0 0 2rem 0;
+}
+.posts-wrapper .posts-container {
+  padding: 0 1rem;
+}
+
+.card {
+  margin: 2rem 0;
+}
+.card .post-content {
+  width: 100%;
+  min-height: 175px;
+  max-height: auto;
+}
+.card .post-content .post-content-body .post-header {
+  padding: 1.5rem;
+}
+.card .post-content .post-content-body .post-header .profile-details {
+  gap: 2rem;
+}
+.card .post-content .post-content-body .post-header .profile-details .uploded-time {
+  font-size: 1.2rem;
+  color: #788292;
+}
+.card .post-content .post-content-body .post-header .post-options {
+  position: relative;
+}
+.card .post-content .post-content-body .post-header .post-options img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.card .post-content .post-content-body .post-header .post-options:hover .post-options-content {
+  display: block;
+}
+.card .post-content .post-content-body .post-header .post-options .post-options-content {
+  display: none;
+  position: absolute;
+  left: -40px;
+  top: -7px;
+  cursor: pointer;
+}
+.card .post-content .post-content-body .post-header .post-options .post-options-content p {
+  padding: 1rem;
+  color: red;
+}
+.card .post-content .post-content-body .post-text {
+  padding: 0 2rem 1.5rem 2rem;
+}
+.card .post-content .post-content-body .post-text p {
+  font-size: 1.4rem;
+}
+.card .post-content .post-content-body .post-image {
+  width: 500px;
+}
+.card .post-content .post-content-body .post-image img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.card .post-content .post-content-footer {
+  padding: 1rem 2rem 0.5rem 2rem;
+}
+.card .post-content .post-content-footer .post-stats {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ededed;
+}
+.card .post-content .post-content-footer .post-stats .stats-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.card .post-content .post-content-footer .post-stats .stats-item p {
+  font-size: 1.4rem;
+  color: #788292;
+}
+.card .post-content .post-content-footer .post-stats .stats-item img {
+  width: 1.6rem;
+}
+.card .post-content .post-content-footer .post-stats .groups {
+  gap: 1rem;
+}
+.card .post-content .post-content-footer .post-stats .groups .comments img {
+  width: 1.4rem;
+}
+.card .post-content .post-actions {
+  padding: 0.5rem 0.5rem 0 0.5rem;
+}
+.card .post-content .post-actions .action-item {
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease-in-out;
+}
+.card .post-content .post-actions .action-item:hover {
+  background-color: #f1f2f6;
+}
+.card .post-content .post-actions .action-item img {
+  width: 2rem;
+}
+.card .post-content .post-actions .action-item img.liked {
+  animation-name: jump;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+@keyframes jump {
+  0% {
+    transform: scale(1) rotate(-50deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(-10deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+.card .post-content .post-actions .action-item p {
+  font-size: 1.4rem;
+}/*# sourceMappingURL=post.css.map */
