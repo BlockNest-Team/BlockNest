@@ -148,6 +148,12 @@ const Post = ({ data }) => {
             </div>
             <div className="post-options">
               <img src={threeDotIcon} alt="three-dot-icon" />
+
+              <div className="post-options-content">
+                <div className="card">
+                  <p>Delete</p>
+                </div>
+              </div>
             </div>
           </div>
           <div className="post-text">

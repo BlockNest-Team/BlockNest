@@ -50,9 +50,32 @@
         }
 
         .post-options {
+          position: relative;
+
+
           img {
             width: 20px;
             height: 20px;
+            cursor: pointer;
+          }
+
+          &:hover {
+            .post-options-content {
+              display: block;
+            }
+          }
+
+          .post-options-content {
+            display: none;
+            position: absolute;
+            left: -40px;
+            top: -7px;
+            cursor: pointer;
+
+            p {
+              padding: 1rem;
+              color: red;
+            }
           }
         }
       }
