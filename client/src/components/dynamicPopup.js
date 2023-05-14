@@ -41,6 +41,11 @@ const DynamicPopup = ({ status, onClose }) => {
     desc = "Your post will be seen by Eveyone";
     buttonLabel = "Ok";
   }
+  else if (status === "Data Sent") {
+    heading = "Feedback Recieved";
+    desc = "Thank Your for your Feedback";
+    buttonLabel = "Ok";
+  }
   const handleClose = () => {
     onClose();
   }
