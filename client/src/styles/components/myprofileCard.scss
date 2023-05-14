@@ -1,0 +1,17 @@
+@import "../theme/theme.scss";
+
+.status {
+  justify-content: space-around;
+
+  .group {
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      color: $steel-blue;
+      font-size: 1.1rem;
+    }
+  }
+}
