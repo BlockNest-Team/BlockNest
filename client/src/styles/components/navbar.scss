@@ -98,6 +98,10 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
 
+    @media screen and (max-width: 535px) {
+      display: none;
+    }
+
     &:hover {
       background-color: darken($primary-color, 10%);
     }
@@ -126,6 +130,14 @@
 
   &__links.open {
     display: flex;
+
+
+    @media screen and (max-width: 768px) {
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      width: 100%;
+      background-color: white !important;
+    }
+
   }
 
   //   &__hamburger.open {
