@@ -328,7 +328,7 @@ const Wallet = ({ currentPage }) => {
         </div>
         <div className="button-container d-flex-align-center">
           {/* Render View Wallet button only when on home page */}
-          {(currentPage === "/home" || currentPage === "/profile") && (
+          {(currentPage === "/home" || currentPage === "/profile" || currentPage === "/myprofile") && (
             <Link to="/wallet">
               <button className="btn d-flex-center">
                 <img className="wallet-icon" src={walletIcon} alt="wallet" />

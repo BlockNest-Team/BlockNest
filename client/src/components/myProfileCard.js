@@ -7,7 +7,7 @@ const profileCard = () => {
   return (
     <div className='card'>
       <div className="profile-content d-flex-col d-flex-justify-between">
-        <div className="d-flex-col d-flex-center profile-data">
+        <div className="d-flex-col d-flex-center profile-data ">
           <div className="profile-pic">
             <img src={testPic} alt="" />
           </div>
@@ -17,7 +17,7 @@ const profileCard = () => {
             </p>
           </div>
         </div>
-        <div className="status btn-container d-flex-center">
+        <div className="status btn-container d-flex-center d-flex-justify-around">
           <div className="group d-flex-col-align-center ">
             <h1>30</h1>
             <p>Posts</p>

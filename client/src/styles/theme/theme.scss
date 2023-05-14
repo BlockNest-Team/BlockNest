@@ -143,6 +143,11 @@ button {
   justify-content: space-between;
 }
 
+.d-flex-justify-around {
+  display: flex;
+  justify-content: space-around;
+}
+
 .d-flex-col {
   display: flex;
   flex-direction: column;
