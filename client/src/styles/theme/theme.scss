@@ -74,6 +74,20 @@ button {
   }
 }
 
+.heading {
+  h1 {
+    margin: 0;
+    line-height: 2;
+    text-align: center;
+    font-size: 4rem;
+    padding-bottom: 1rem;
+
+    @media screen and (max-width: 768px) {
+      font-size: 3rem;
+    }
+  }
+}
+
 .btn {
   border-radius: 5px;
   font-size: 1.2rem;

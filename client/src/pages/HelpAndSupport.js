@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/components/helpAndSupport.scss';
+import '../styles/pages/helpAndSupport.scss';
 import NavBar from '../components/navbar';
 import FaqData from '../data/faqData.json';
 
@@ -15,7 +15,9 @@ const HelpAndSupport = () => {
       <NavBar />
       <div className="page-wrapper">
         <div className="card help-and-support">
-          <h1>Help and Support</h1>
+          <div className="heading">
+            <h1>Help and Support</h1>
+          </div>
           <div className="row">
             <div className="col">
               <div className="tabs">
