@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import "../styles/components/navbar.scss";
 import Spinner from "./spinner"
 import SearchBar from './searchbar'
+import Settings from './settings'
 // import { TransactionContext } from "../context/context";
 
 const Navbar = () => {
@@ -132,28 +133,33 @@ const Navbar = () => {
       {/* <button className="navbar__connect-btn" onClick={connectToMetaMask}>
         Connect Wallet
       </button> */}
-      <SearchBar />
-      <button className="navbar__connect-btn" onClick={connectWallet}>
-        <span className="is-link has-text-weight-bold">
-          {connecting
-            ? <span className="is-link has-text-weight-bold">
-              <Spinner />
-            </span>
-            : <span className="is-link has-text-weight-bold">
-              {walletAddress && walletAddress.length > 0
-                ? `Connected: ${walletAddress.substring(0, 6)}...${walletAddress.substring(38)}`
-                : "Connect Wallet"}
-            </span>}
-        </span>
-      </button>
-      <div
-        className={`navbar__hamburger ${mobileMenuOpen ? "open" : ""}`}
-        onClick={toggleMobileMenu}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
+      <div className="d-flex-center group">
+
+        <SearchBar />
+        <Settings />
+        <button className="navbar__connect-btn" onClick={connectWallet}>
+          <span className="is-link has-text-weight-bold">
+            {connecting
+              ? <span className="is-link has-text-weight-bold">
+                <Spinner />
+              </span>
+              : <span className="is-link has-text-weight-bold">
+                {walletAddress && walletAddress.length > 0
+                  ? `Connected: ${walletAddress.substring(0, 6)}...${walletAddress.substring(38)}`
+                  : "Connect Wallet"}
+              </span>}
+          </span>
+        </button>
+        <div
+          className={`navbar__hamburger ${mobileMenuOpen ? "open" : ""}`}
+          onClick={toggleMobileMenu}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
+
     </nav>
   );
 };

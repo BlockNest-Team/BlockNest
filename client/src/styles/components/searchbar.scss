@@ -12,13 +12,14 @@
 
   .search-bar-wrapper {
     border-radius: 8px;
+    justify-content: flex-end;
 
     input[type="text"] {
       border: none;
       outline: none;
-      padding: 8px;
+      padding: 0 0 5px 0;
       color: #333; // Set your desired text color
-      font-size: 14px; // Set your desired font size
+      font-size: 1.3rem; // Set your desired font size
       border-bottom: 1px solid $border-color;
       transition: width 0.3s ease-in-out;
       width: 0;
@@ -33,12 +34,14 @@
 
       &::placeholder {
         color: #999; // Set your desired placeholder text color
+        font-size: 1.3rem;
       }
     }
 
     img {
-      width: 20px;
-      height: 20px;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
     }
   }
 

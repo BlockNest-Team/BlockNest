@@ -1,0 +1,45 @@
+@import "../theme/theme.scss";
+
+.settings {
+  img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  // when hover on the img the setings-items will be shown
+  &:hover .settings-items {
+    display: block;
+  }
+
+  .settings-items {
+    display: none;
+    position: absolute;
+    top: 1.5%;
+    width: 6%;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid $border-color;
+    border-top: none;
+    z-index: 1000;
+
+    ul {
+
+      li {
+        font-size: 1.2rem;
+        padding: 1rem;
+        border-bottom: 1px solid $border-color;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          background-color: $btn-primary-color;
+          color: $primary-color;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

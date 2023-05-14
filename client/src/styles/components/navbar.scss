@@ -6,7 +6,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 0.8rem;
+  height: 45px;
   background-color: #ffffff;
 
   .spinner {
@@ -30,11 +31,16 @@
     }
   }
 
+  .group {
+    gap: 1rem;
+  }
+
   &__logo {
     color: $primary-color;
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.7rem;
+    font-weight: 500;
     text-decoration: none;
+    cursor: pointer;
   }
 
   &__links {
@@ -42,6 +48,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
+    width: 0;
 
     @media (max-width: 768px) {
       position: absolute;
@@ -70,7 +77,7 @@
     color: $steel-blue;
     text-decoration: none;
     padding: 0 1rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
 
     &:hover {
       color: $primary-color;
