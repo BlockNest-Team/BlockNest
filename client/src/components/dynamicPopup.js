@@ -31,6 +31,16 @@ const DynamicPopup = ({ status, onClose }) => {
     desc = "Your post is unable to delete";
     buttonLabel = "Ok";
   }
+  else if (status === "Friends Selected") {
+    heading = "Friends Selected";
+    desc = "Your post will only be shown to your friends";
+    buttonLabel = "Ok";
+  }
+  else if (status === "Everyone Selected") {
+    heading = "Everyone Selected";
+    desc = "Your post will be seen by Eveyone";
+    buttonLabel = "Ok";
+  }
   const handleClose = () => {
     onClose();
   }

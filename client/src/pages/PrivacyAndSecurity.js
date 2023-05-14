@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
 import '../styles/pages/privacyAndSecurity.scss';
 import Navbar from "../components/navbar";
+import Popup from "../components/dynamicPopup";
 
 const PrivacyAndSecurity = () => {
   const [selectedOption, setSelectedOption] = useState('Friends');
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupStatus, setPopupStatus] = useState("");
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
+    if (option === 'Friends') {
+      setPopupStatus("Friends Selected");
+    } else if (option === 'Everyone') {
+      setPopupStatus("Everyone Selected");
+    }
   };
+
+  const handleDoneClick = () => {
+    setShowPopup(true);
+  }
+
+  console.log(popupStatus); // Log the popupStatus to the console
 
   return (
     <>
@@ -38,12 +52,15 @@ const PrivacyAndSecurity = () => {
               </div>
             </div>
 
-            <button className='btn'>
+            <button className='btn' onClick={handleDoneClick}>
               Done
             </button>
           </div>
         </div>
       </div>
+      {showPopup && (
+        <Popup status={popupStatus} onClose={() => setShowPopup(false)} />
+      )}
     </>
   );
 };
