@@ -7,7 +7,6 @@
     cursor: pointer;
   }
 
-  // when hover on the img the setings-items will be shown
   &:hover .settings-items {
     display: block;
   }
@@ -16,7 +15,7 @@
     display: none;
     position: absolute;
     top: 1.5%;
-    width: 100px;
+    width: 130px;
     overflow-y: auto;
     background-color: #fff;
     border: 1px solid $border-color;
@@ -26,11 +25,11 @@
     ul {
 
       li {
+        border-bottom: 1px solid $border-color;
 
         p {
           font-size: 1.2rem;
           padding: 1rem;
-          border-bottom: 1px solid $border-color;
           color: $steel-blue;
 
           &:last-child {

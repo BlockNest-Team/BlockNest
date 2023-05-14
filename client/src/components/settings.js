@@ -16,9 +16,21 @@ const Settings = () => {
                 Profile</p></Link>
           </li>
           <li>
-            <Link to="/settings">
+            <Link to="/privacy-and-security">
               <p>
-                Settings
+                Privacy & Security
+              </p></Link>
+          </li>
+          <li>
+            <Link to="/help-and-support">
+              <p>
+                Help & Support
+              </p></Link>
+          </li>
+          <li>
+            <Link to="/feedback">
+              <p>
+                Feedback
               </p></Link>
           </li>
           <li>
