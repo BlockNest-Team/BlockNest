@@ -2,6 +2,7 @@
 
 // import React, { useState } from "react";
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import "../styles/components/navbar.scss";
 import Spinner from "./spinner"
 import SearchBar from './searchbar'
@@ -107,21 +108,24 @@ const Navbar = () => {
   // doen by ali meta
   return (
     <nav className="navbar">
-      <div className="navbar__logo">BlockNest</div>
+      <div className="navbar__logo">
+        <Link to="/home" className="navbar__logo">
+          BlockNest
+        </Link></div>
       <ul className={`navbar__links ${mobileMenuOpen ? "open" : ""}`}>
         <li className="navbar__item">
-          <a href="/home" className="navbar__link">
+          <Link to="/home" className="navbar__link">
             Home
-          </a>
+          </Link>
         </li>
         <li className="navbar__item">
-          <a href="/" className="navbar__link">
+          <Link to="/wallet" className="navbar__link">
             Wallet
-          </a>
+          </Link>
         </li>
         <li className="navbar__item">
           <a href="/" className="navbar__link">
-            Friends
+            Stories
           </a>
         </li>
         <li className="navbar__item">

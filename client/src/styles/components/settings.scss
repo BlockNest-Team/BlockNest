@@ -26,18 +26,22 @@
     ul {
 
       li {
-        font-size: 1.2rem;
-        padding: 1rem;
-        border-bottom: 1px solid $border-color;
 
-        &:last-child {
-          border-bottom: none;
-        }
+        p {
+          font-size: 1.2rem;
+          padding: 1rem;
+          border-bottom: 1px solid $border-color;
+          color: $steel-blue;
 
-        &:hover {
-          background-color: $btn-primary-color;
-          color: $primary-color;
-          cursor: pointer;
+          &:last-child {
+            border-bottom: none;
+          }
+
+          &:hover {
+            background-color: $btn-primary-color;
+            color: $primary-color;
+            cursor: pointer;
+          }
         }
       }
     }

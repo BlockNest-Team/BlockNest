@@ -1,20 +1,35 @@
-import React from 'react'
-import settingsIcon from '../assets/svgs/settings.svg'
-import '../styles/components/settings.scss'
+// settings.js
+import React from 'react';
+import { Link } from 'react-router-dom';
+import settingsIcon from '../assets/svgs/settings.svg';
+import '../styles/components/settings.scss';
 
-const settings = () => {
+const Settings = () => {
   return (
-    <div className='settings'>
+    <div className="settings">
       <img src={settingsIcon} alt="" />
       <div className="card settings-items">
         <ul>
-          <li>Profile</li>
-          <li>Settings</li>
-          <li>Log out</li>
+          <li>
+            <Link to="/myprofile">
+              <p>
+                Profile</p></Link>
+          </li>
+          <li>
+            <Link to="/settings">
+              <p>
+                Settings
+              </p></Link>
+          </li>
+          <li>
+            <p>
+              Log out
+            </p>
+          </li>
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default settings
+export default Settings;
