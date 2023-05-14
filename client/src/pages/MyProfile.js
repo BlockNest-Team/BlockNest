@@ -2,8 +2,8 @@ import React from 'react'
 import Wallet from "../components/wallet";
 import Posts from "../components/posts";
 import ProfileCard from '../components/profileCard'
-import About from '../components/about';
-import "../styles/pages/friendprofile.scss";
+
+import "../styles/pages/home.scss";
 import FriendsSuggestions from "../components/friendsSuggestions";
 import Navbar from "../components/navbar";
 const FriendProfile = () => {
@@ -15,16 +15,10 @@ const FriendProfile = () => {
         <div className="friendProfile container ">
           <div className="wallet-container d-flex-col">
             <Wallet currentPage={currentPage} />
-            <div className="about-card-1">
-              <About />
-            </div>
           </div>
           <div className="feed-container d-flex-center d-flex-col">
             <div className="post-items">
               <ProfileCard />
-              <div className="about-card-2">
-                <About />
-              </div>
               <Posts />
             </div>
           </div>

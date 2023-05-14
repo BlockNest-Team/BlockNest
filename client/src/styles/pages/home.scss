@@ -36,6 +36,7 @@
         justify-content: center;
         align-items: center;
         max-width: 500px;
+        margin-bottom: 0;
       }
     }
   }
@@ -58,9 +59,9 @@
         width: 340px;
       }
 
-      .card {
-        margin-top: 0;
-      }
+      // .card {
+      //   margin-top: 0;
+      // }
 
       @media screen and (max-width: 1125px) and (min-width: 1024px) {
         max-width: 440px;
