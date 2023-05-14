@@ -22,6 +22,10 @@
     border-top: none;
     z-index: 1000;
 
+    @media screen and (max-width: 535px) {
+      right: 6%;
+    }
+
     ul {
 
       li {
