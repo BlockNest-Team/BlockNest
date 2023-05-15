@@ -1,0 +1,92 @@
+@import "../theme/theme.scss";
+
+.container-middle {
+  max-width: 920px;
+  min-width: 280px;
+  margin: 0 1rem;
+  position: relative;
+  margin-top: 2rem;
+
+  .arrow {
+    width: 100%;
+    position: absolute;
+    top: 7.5rem;
+    z-index: 20;
+
+    .rightArrow {
+      position: absolute;
+      top: 55px;
+      right: -20px;
+      cursor: pointer;
+    }
+
+    .leftArrow {
+      position: absolute;
+      top: 55px;
+      left: -22px;
+      cursor: pointer;
+    }
+  }
+
+  .stories-container {
+    margin: 0 1rem;
+
+    h2 {
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 21px;
+      color: #203758;
+      margin-bottom: .4rem;
+      margin-left: .3rem;
+    }
+
+    .stories-content {
+      width: 100%;
+      display: flex;
+      overflow: hidden;
+
+      .stories-group {
+        border-radius: .5rem;
+        position: relative;
+        margin: 0 .2rem;
+
+        .stories-img {
+          display: grid;
+          place-items: center;
+          cursor: pointer;
+
+          img {
+            width: 140px;
+            height: 230px;
+            border-radius: .5rem;
+          }
+        }
+
+        .stories-blob {
+          position: absolute;
+          z-index: 360;
+          left: 5px;
+          right: 5px;
+          bottom: 5px;
+          top: 14rem;
+          overflow: hidden;
+          cursor: pointer;
+
+          .mask-stories {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            span {
+              font-weight: 400;
+              font-size: 10px;
+              line-height: 14px;
+              color: #fff;
+              margin: .5rem 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
