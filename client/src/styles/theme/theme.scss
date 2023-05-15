@@ -102,6 +102,17 @@ button {
   border: none;
   transition: all 0.3s ease-in-out;
 
+  &.disabled {
+    cursor: not-allowed;
+    background-color: grey;
+    box-shadow: none;
+
+    &:hover {
+      background-color: grey;
+      box-shadow: none;
+    }
+  }
+
   &.secondary {
     background-color: transparent;
     color: $primary-color;
