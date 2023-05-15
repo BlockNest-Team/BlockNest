@@ -418,8 +418,7 @@ const Wallet = ({ currentPage }) => {
                     type="text"
                     name="senderAddress"
                     id="senderAddress"
-                    value={address}
-                    readOnly
+                    required
                   />
                 </div>
                 <div className="formgroup">
@@ -428,7 +427,8 @@ const Wallet = ({ currentPage }) => {
                     type="text"
                     name="receiverAddress"
                     id="receiverAddress"
-                    required
+                    value={address}
+                    readOnly
                   />
                 </div>
                 <div className="formgroup">
