@@ -389,6 +389,7 @@ const Wallet = ({ currentPage }) => {
                   <input
                     type="number"
                     step="any"
+                    min="0"
                     name="amount"
                     id="amount"
                     required
@@ -446,6 +447,7 @@ const Wallet = ({ currentPage }) => {
                     type="number"
                     name="amount"
                     step="any"
+                    min="0"
                     id="amount"
                     required
                   />
