@@ -1,0 +1,14 @@
+[
+  {
+    "senderAddress": "Dummy Sender Address 1",
+    "receiverAddress": "Dummy Receiver Address 1",
+    "message": "Dummy Message 1",
+    "amount": "100"
+  },
+  {
+    "senderAddress": "Dummy Sender Address 2",
+    "receiverAddress": "Dummy Receiver Address 2",
+    "message": "Dummy Message 2",
+    "amount": "200"
+  }
+]

@@ -16,6 +16,7 @@ import payIcon from "../assets/svgs/pay.svg";
 import "../styles/components/wallet.scss";
 // import walletData from "./../data/wallet.json";
 import Popup from "./dynamicPopup";
+import jsonData from '../data/payRequestData.json'
 
 const { ethereum } = window;
 
@@ -24,12 +25,19 @@ const Wallet = ({ currentPage }) => {
   const [balance, setBalance] = useState("");
   const [address, setAddress] = useState("");
   const [payRequests, setPayRequests] = useState(2);
-  const [payRequestData, setPayRequestData] = useState({
-    senderAddress: "Dummy Sender Address",
-    receiverAddress: "Dummy Receiver Address",
-    message: "Dummy Message",
-    amount: "100",
-  });
+  // const [payRequestData, setPayRequestData] = useState({
+  //   senderAddress: "Dummy Sender Address",
+  //   receiverAddress: "Dummy Receiver Address",
+  //   message: "Dummy Message",
+  //   amount: "100",
+  // });
+
+  const [payRequestData, setPayRequestData] = useState([]);
+
+  useEffect(() => {
+    setPayRequestData(jsonData);
+  }, []);
+
   useEffect(() => {
     const fetchAccountData = async () => {
       try {
@@ -244,7 +252,7 @@ const Wallet = ({ currentPage }) => {
     // setShowPopup(true);
   };
 
-  const handleSendFormSubmitR = (event) => {
+  const handleSendFormSubmitR = (event, index) => {
     // event.preventDefault();
     // const senderAddress = event.target.elements.senderAddress.value;
     // const receiverAddress = event.target.elements.receiverAddress.value;
@@ -281,6 +289,14 @@ const Wallet = ({ currentPage }) => {
     // closeModal();
     // setPopupStatus("payment failed");
     // setShowPopup(true);
+    setPayRequestData(prevState => {
+      let newPayRequestData = [...prevState];
+      newPayRequestData.splice(index, 1);
+      if (newPayRequestData.length === 0) {
+        setshowPayRequestModal(false);
+      }
+      return newPayRequestData;
+    });
   };
 
   const handleRequestFormSubmit = (event) => {
@@ -349,7 +365,7 @@ const Wallet = ({ currentPage }) => {
                   <span>Request</span>
                 </button>
               </div>
-              <button className="btn d-flex-center" onClick={openPayRequestModal}>
+              <button className="btn d-flex-center" onClick={openPayRequestModal} disabled={payRequestData.length === 0}>
                 <div className="pay-request-circle">{payRequests}</div>
                 <img className="pay-icon" src={payIcon} alt="receive" />
                 <span>Pay</span>
@@ -468,60 +484,64 @@ const Wallet = ({ currentPage }) => {
           title="Pay"
           onClose={closeModal}
           content={
-            <div className="request-crypto-content d-flex-center">
-              <form onSubmit={handleSendFormSubmitR}>
-                <div className="formgroup">
-                  <label htmlFor="senderAddress">Sender’s Address</label>
-                  <input
-                    type="text"
-                    name="senderAddress"
-                    id="senderAddress"
-                    value={address}
-                    readOnly
-                  />
-                </div>
-                <div className="formgroup">
-                  <label htmlFor="receiverAddress">Reciever’s Address</label>
-                  <input
-                    type="text"
-                    name="receiverAddress"
-                    id="receiverAddress"
-                    value={payRequestData.receiverAddress}
-                    required
-                  />
-                </div>
-                <div className="formgroup">
-                  <label htmlFor="requestmessage">Message</label>
-                  <input
-                    type="text"
-                    name="requestmessage"
-                    id="requestmessage"
-                    value={payRequestData.message}
-                    required
-                  />
-                </div>
-                <div className="formgroup">
-                  <label htmlFor="amount">Amount</label>
-                  <input
-                    type="number"
-                    name="amount"
-                    step="any"
-                    id="amount"
-                    value={payRequestData.amount}
-                    required
-                  />
-                </div>
-                <div className="btn-container d-flex-center">
-                  <button className="btn d-flex-center" type="submit">
-                    <span>Pay</span>
-                    <img src={submitIcon} alt="submit" />
-                  </button>
-                </div>
-              </form>
+            <div className="request-crypto-content d-flex-col d-flex-center">
+              {payRequestData.map((request, index) => (
+                <form key={index} onSubmit={(e) => handleSendFormSubmitR(e, index)}>
+                  <div className="formgroup">
+                    <label htmlFor={`senderAddress${index}`}>Sender’s Address</label>
+                    <input
+                      type="text"
+                      name={`senderAddress${index}`}
+                      id={`senderAddress${index}`}
+                      value={address}
+                      readOnly
+                    />
+                  </div>
+                  <div className="formgroup">
+                    <label htmlFor={`receiverAddress${index}`}>Reciever’s Address</label>
+                    <input
+                      type="text"
+                      name={`receiverAddress${index}`}
+                      id={`receiverAddress${index}`}
+                      value={request.receiverAddress}
+                      required
+                    />
+                  </div>
+                  <div className="formgroup">
+                    <label htmlFor={`requestmessage${index}`}>Message</label>
+                    <input
+                      type="text"
+                      name={`requestmessage${index}`}
+                      id={`requestmessage${index}`}
+                      value={request.message}
+                      required
+                    />
+                  </div>
+                  <div className="formgroup">
+                    <label htmlFor={`amount${index}`}>Amount</label>
+                    <input
+                      type="number"
+                      name={`amount${index}`}
+                      step="any"
+                      id={`amount${index}`}
+                      value={request.amount}
+                      required
+                    />
+                  </div>
+                  <div className="btn-container d-flex-center">
+                    <button className="btn d-flex-center" type="submit">
+                      <span>Pay</span>
+                      <img src={submitIcon} alt="submit" />
+                    </button>
+                  </div>
+                </form>
+              ))}
             </div>
           }
         />
       )}
+
+
 
       {showPopup && (
         <Popup status={popupStatus} onClose={() => setShowPopup(false)} />
