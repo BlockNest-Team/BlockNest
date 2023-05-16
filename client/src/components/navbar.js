@@ -2,17 +2,16 @@
 
 // import React, { useState } from "react";
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "../styles/components/navbar.scss";
-import Spinner from "./spinner"
-import SearchBar from './searchbar'
-import Settings from './settings'
+import Spinner from "./spinner";
+import SearchBar from "./searchbar";
+import Settings from "./settings";
 // import { TransactionContext } from "../context/context";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [connecting, setConnecting] = useState(false);  // New state
-
+  const [connecting, setConnecting] = useState(false); // New state
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -29,7 +28,7 @@ const Navbar = () => {
   }, [walletAddress]);
 
   const connectWallet = async () => {
-    setConnecting(true);  // Begin connecting
+    setConnecting(true); // Begin connecting
     if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
       try {
         /* MetaMask is installed */
@@ -111,7 +110,8 @@ const Navbar = () => {
       <div className="navbar__logo">
         <Link to="/home" className="navbar__logo">
           BlockNest
-        </Link></div>
+        </Link>
+      </div>
       <ul className={`navbar__links ${mobileMenuOpen ? "open" : ""}`}>
         <li className="navbar__item">
           <Link to="/home" className="navbar__link">
@@ -138,20 +138,24 @@ const Navbar = () => {
         Connect Wallet
       </button> */}
       <div className="d-flex-center group">
-
         <SearchBar />
         <Settings />
         <button className="navbar__connect-btn" onClick={connectWallet}>
           <span className="is-link has-text-weight-bold">
-            {connecting
-              ? <span className="is-link has-text-weight-bold">
+            {connecting ? (
+              <span className="is-link has-text-weight-bold">
                 <Spinner />
               </span>
-              : <span className="is-link has-text-weight-bold">
+            ) : (
+              <span className="is-link has-text-weight-bold">
                 {walletAddress && walletAddress.length > 0
-                  ? `Connected: ${walletAddress.substring(0, 6)}...${walletAddress.substring(38)}`
+                  ? `Connected: ${walletAddress.substring(
+                      0,
+                      6
+                    )}...${walletAddress.substring(38)}`
                   : "Connect Wallet"}
-              </span>}
+              </span>
+            )}
           </span>
         </button>
         <div
@@ -163,15 +167,11 @@ const Navbar = () => {
           <span></span>
         </div>
       </div>
-
     </nav>
   );
 };
 
 export default Navbar;
-
-
-
 
 // Test
 
@@ -289,7 +289,6 @@ export default Navbar;
 
 // export default Navbar;
 
-
 // test 2 (this code is updated with wallet connect animation)
 
 // import { useEffect, useState } from "react";
@@ -299,11 +298,9 @@ export default Navbar;
 //   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 //   const [connecting, setConnecting] = useState(false);  // New state
 
-
 //   const toggleMobileMenu = () => {
 //     setMobileMenuOpen(!mobileMenuOpen);
 //   };
-
 
 //   const [walletAddress, setWalletAddress] = useState("");
 
