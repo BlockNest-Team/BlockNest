@@ -1,7 +1,14 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
-const userSchema = mongoose.Schema(
+const UserSchema = new mongoose.Schema(
   {
+    // username: {
+    //   type: String,
+    //   require: true,
+    //   min: 3,
+    //   max: 20,
+    //   unique: true,
+    // },
     firstName: {
       type: String,
       required: true,
@@ -14,40 +21,68 @@ const userSchema = mongoose.Schema(
       min: 2,
       max: 30,
     },
+    Location: {
+      type: String,
+      max: 50,
+    },
+    occupation: String,
+
+    DateOfBirth: {
+      type: Date,
+    },
+
     email: {
       type: String,
       required: true,
-      max: 255,
+      max: 50,
       unique: true,
     },
-    password: {
-      type: String,
-      required: true,
-      min: 6,
-      max: 1024,
-    },
-
-    // walletAddr: {
+    // password: {
     //   type: String,
     //   required: true,
-    //   unique: true,
+    //   min: 6,
     // },
-    ProfilePicpath: {
+    profilePicture: {
       type: String,
       default: "",
     },
-    friends: {
+    // coverPicture: {
+    //   type: String,
+    //   default: "",
+    // },
+    walletAddr: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+
+    followers: {
       type: Array,
       default: [],
     },
+    followings: {
+      type: Array,
+      default: [],
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    desc: {
+      type: String,
+      max: 50,
+    },
 
-    location: String,
-    occupation: String,
-    viewedProfile: Number,
-    impressions: Number,
+    from: {
+      type: String,
+      max: 50,
+    },
+    relationship: {
+      type: Number,
+      enum: [1, 2, 3],
+    },
   },
   { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
-export default User;
+module.exports = mongoose.model("User", UserSchema);
