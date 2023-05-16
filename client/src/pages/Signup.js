@@ -5,7 +5,7 @@ import { getWeb3, getBlockNestContract } from "../utils/blockNestContract";
 import Navbar from '../components/navbar'
 
 const Signup = () => {
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("Proceed");
   const [allFieldsFilled, setAllFieldsFilled] = useState(false);
 
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const Signup = () => {
       navigateToHome();
     } catch (error) {
       console.error("Error during registration:", error.message);
-      setStatus("Registration failed.");
+      setStatus("Registration failed");
     }
   };
 
@@ -154,11 +154,11 @@ const Signup = () => {
                         className={`btn ${allFieldsFilled ? "" : "disabled"}`}
                         type="submit"
                         onClick={registerUser}
-                        value="Proceed"
+                        value={status}
                         disabled={!allFieldsFilled}
                       />
                     </div>
-                    <p>register status {status}</p>
+                    {/* <p>register status {status}</p> */}
                     <div className="redirect">
                       <a href="/">Have an account? Login</a>
                     </div>
