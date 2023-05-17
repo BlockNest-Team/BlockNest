@@ -5,7 +5,6 @@ import Navbar from "../components/navbar.js";
 import { getWeb3, getBlockNestContract } from "../utils/blockNestContract";
 
 const Login = () => {
-
   const [status, setStatus] = useState("");
   const [walletConnected, setWalletConnected] = useState(false);
   const navigate = useNavigate();
@@ -20,14 +19,13 @@ const Login = () => {
       setWalletConnected(accounts.length > 0);
 
       // Listen for account changes
-      web3.currentProvider.on('accountsChanged', async function (accounts) {
+      web3.currentProvider.on("accountsChanged", async function (accounts) {
         setWalletConnected(accounts.length > 0);
       });
     };
 
     checkWalletConnected();
   }, []);
-
 
   const login = async () => {
     try {
@@ -87,7 +85,7 @@ const Login = () => {
                   </button>
                 </div>
                 <div className="redirect">
-                  <a href="/signup">Don’t have an account? Register</a>
+                  <a href="/register">Don’t have an account? Register</a>
                 </div>
               </div>
             </div>
@@ -99,7 +97,6 @@ const Login = () => {
 };
 
 export default Login;
-
 
 // import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
@@ -194,7 +191,6 @@ export default Login;
 
 // export default Login;
 
-
 // import React, { useState, useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
 // import "../styles/pages/login-signup.scss";
@@ -269,5 +265,3 @@ export default Login;
 // };
 
 // export default Login;
-
-

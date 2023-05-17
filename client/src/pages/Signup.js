@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/pages/login-signup.scss";
 import { getWeb3, getBlockNestContract } from "../utils/blockNestContract";
-import Navbar from '../components/navbar'
+import Navbar from "../components/navbar";
 
-const Signup = () => {
+const Register = () => {
   const [status, setStatus] = useState("Proceed");
   const [allFieldsFilled, setAllFieldsFilled] = useState(false);
 
@@ -68,7 +68,6 @@ const Signup = () => {
     setAllFieldsFilled(filled);
   };
 
-
   const handleSubmit = async (event) => {
     // register(); // This is the function that needs to be called for web3 registration of wallet
 
@@ -83,7 +82,6 @@ const Signup = () => {
     <>
       <Navbar />
       <div className="d-flex-justify-center">
-
         <div className="signup-container ">
           <div className="app-name">
             <h1>BlockNest</h1>
@@ -107,13 +105,23 @@ const Signup = () => {
                     </div>
                     <div className="formgroup">
                       <label htmlFor="lastName">Last Name</label>
-                      <input type="text" name="lastName" id="lastName" required />
+                      <input
+                        type="text"
+                        name="lastName"
+                        id="lastName"
+                        required
+                      />
                     </div>
                   </div>
                   <div className="group">
                     <div className="formgroup">
                       <label htmlFor="location">Location</label>
-                      <input type="text" name="location" id="location" required />
+                      <input
+                        type="text"
+                        name="location"
+                        id="location"
+                        required
+                      />
                     </div>
                     <div className="formgroup">
                       <label htmlFor="occupation">Occupation</label>
@@ -173,4 +181,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Register;

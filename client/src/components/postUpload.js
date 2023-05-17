@@ -4,12 +4,34 @@ import EmojiPicker from "emoji-picker-react";
 import uploadIcon from "../assets/svgs/upload-image.svg";
 import emojiIcon from "../assets/svgs/emoji.svg";
 import "../styles/components/postUpload.scss";
+import {
+  getWeb3,
+  getBlockNestContract,
+} from "../utils/blockNestContractNft.js";
+import { Buffer } from "buffer";
+import { create as ipfsHttpClient } from "ipfs-http-client";
+
+const projectId = "2PsRn0pVgr9ykZxcYkvlXf72liD";
+const projectSecretKey = "ac4c2958bd722f4df62eabb86fd47d3b";
+const auth = `Basic ${Buffer.from(`${projectId}:${projectSecretKey}`).toString(
+  "base64"
+)}`;
+
+const client = ipfsHttpClient({
+  host: "ipfs.infura.io",
+  port: 5001,
+  protocol: "https",
+  headers: {
+    authorization: auth,
+  },
+});
 
 const PostUpload = () => {
   const [showPostUploadModal, setShowPostUploadModal] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [inputEmoji, setInputEmoji] = useState("");
   const [showPicker, setShowPicker] = useState(false);
+  const [fileN, setFileN] = useState(null);
 
   const openPostUploadModal = () => {
     setShowPostUploadModal(true);
@@ -27,6 +49,7 @@ const PostUpload = () => {
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setPreviewImage(reader.result);
+      setFileN(event.target.files[0]);
     };
   };
 
@@ -40,7 +63,32 @@ const PostUpload = () => {
     setShowPicker(false);
   };
 
-  const handleSendFormSubmit = () => { };
+  const handleSendFormSubmit = async (event) => {
+    event.preventDefault();
+    let url;
+    // Upload file to IPFS
+    try {
+      const added = await client.add(fileN, {
+        progress: (prog) => console.log(`received: ${prog}`),
+      });
+      url = `https://ipfs.io/ipfs/${added.path}`;
+      console.log("ipfs url " + url);
+    } catch (error) {
+      console.log("Error uploading file: ", error);
+      return;
+    }
+
+    // Mint NFT
+    const web3 = await getWeb3();
+    const accounts = await web3.eth.getAccounts();
+    const contract = await getBlockNestContract(web3);
+    // setStatus("Sending...");
+    const tx = await contract.methods
+      .mint(url)
+      .send({ from: accounts[0], value: 1000000000000000 });
+    console.log(tx.transactionHash);
+    // setStatus(`Minted successfully! Transaction hash: ${tx.transactionHash}`);
+  };
   return (
     <div className="card">
       <div className="post-upload-container" onClick={openPostUploadModal}>
@@ -103,10 +151,12 @@ const PostUpload = () => {
                     {showPicker && (
                       <EmojiPicker
                         onEmojiClick={onEmojiClick}
-                        height="35%" width="100%"
+                        height="35%"
+                        width="100%"
                         epr-emoji-size={4}
                       />
                     )}
+                    {/* <p>{status}</p> */}
                   </div>
                 </div>
 
