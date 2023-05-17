@@ -63,32 +63,23 @@ const PostUpload = () => {
     setShowPicker(false);
   };
 
-  const handleSendFormSubmit = async (event) => {
-    event.preventDefault();
-    let url;
-    // Upload file to IPFS
-    try {
-      const added = await client.add(fileN, {
-        progress: (prog) => console.log(`received: ${prog}`),
-      });
-      url = `https://ipfs.io/ipfs/${added.path}`;
-      console.log("ipfs url " + url);
-    } catch (error) {
-      console.log("Error uploading file: ", error);
-      return;
-    }
-
-    // Mint NFT
-    const web3 = await getWeb3();
-    const accounts = await web3.eth.getAccounts();
-    const contract = await getBlockNestContract(web3);
-    // setStatus("Sending...");
-    const tx = await contract.methods
-      .mint(url)
-      .send({ from: accounts[0], value: 1000000000000000 });
-    console.log(tx.transactionHash);
-    // setStatus(`Minted successfully! Transaction hash: ${tx.transactionHash}`);
+  const HandleSubmitAsPost = () => {
+    console.log("Post as post");
   };
+  const HandleSubmitPostAsNFT = () => {
+    console.log("Post as NFT");
+  };
+
+  const handleSendFormSubmit = (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    if (event.nativeEvent.submitter.id === "postButton") {
+      HandleSubmitAsPost(); // Call the post function
+    } else if (event.nativeEvent.submitter.id === "nftButton") {
+      HandleSubmitPostAsNFT(); // Call the NFT function
+    }
+  };
+
   return (
     <div className="card">
       <div className="post-upload-container" onClick={openPostUploadModal}>
@@ -161,10 +152,18 @@ const PostUpload = () => {
                 </div>
 
                 <div className="post-upload-footer d-flex-center">
-                  <button type="submit" className="btn secondary">
+                  <button
+                    type="submit"
+                    className="btn secondary"
+                    onClick={HandleSubmitAsPost}
+                  >
                     Post
                   </button>
-                  <button type="submit" className="btn secondary">
+                  <button
+                    type="submit"
+                    className="btn secondary"
+                    onClick={HandleSubmitPostAsNFT}
+                  >
                     Post as NFT
                   </button>
                 </div>
