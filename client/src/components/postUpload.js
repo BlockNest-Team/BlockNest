@@ -66,7 +66,40 @@ const PostUpload = () => {
   const HandleSubmitAsPost = () => {
     console.log("Post as post");
   };
-  const HandleSubmitPostAsNFT = () => {
+  const HandleSubmitPostAsNFT = async (event) => {
+    // event.preventDefault();
+    let url;
+    // Upload file to IPFS
+    try {
+      const added = await client.add(fileN, {
+        progress: (prog) => console.log(`received: ${prog}`),
+      });
+      url = `https://ipfs.io/ipfs/${added.path}`;
+      console.log("ipfs url " + url);
+    } catch (error) {
+      console.log("Error uploading file: ", error);
+      return;
+    }
+
+    // Mint NFT
+    const web3 = await getWeb3();
+    const accounts = await web3.eth.getAccounts();
+    const contract = await getBlockNestContract(web3);
+    // setStatus("Sending...");
+    const tx = await contract.methods
+      .mint(url)
+      .send({ from: accounts[0], value: 1000000000000000 });
+    console.log(tx.transactionHash);
+    alert(
+      "nft minted successfully at" +
+        tx.transactionHash +
+        "\n" +
+        "check it at https://sepolia.etherscan.io/tx/" +
+        tx.transactionHash
+    );
+
+    // setStatus(`Minted successfully! Transaction hash: ${tx.transactionHash}`);
+
     console.log("Post as NFT");
   };
 
