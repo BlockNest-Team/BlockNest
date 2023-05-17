@@ -1,0 +1,17 @@
+@import "../theme/theme.scss";
+
+.about-card-1 {
+  display: none;
+
+  @media screen and (min-width: 835px) {
+    display: block;
+  }
+}
+
+.about-card-2 {
+  display: none;
+
+  @media screen and (max-width: 835px) {
+    display: block;
+  }
+}

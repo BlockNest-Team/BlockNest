@@ -22,6 +22,29 @@ const DynamicPopup = ({ status, onClose }) => {
     heading = "Post Failed";
     desc = "We were unable to publish your post. Please try again.";
     buttonLabel = "Try Again";
+  } else if (status === "post deleted") {
+    heading = "Deleted Successfully";
+    desc = "Your post is deleted successfully";
+    buttonLabel = "Ok";
+  } else if (status === "Post Unable to delete") {
+    heading = "Try Again";
+    desc = "Your post is unable to delete";
+    buttonLabel = "Ok";
+  }
+  else if (status === "Friends Selected") {
+    heading = "Friends Selected";
+    desc = "Your post will only be shown to your friends";
+    buttonLabel = "Ok";
+  }
+  else if (status === "Everyone Selected") {
+    heading = "Everyone Selected";
+    desc = "Your post will be seen by Eveyone";
+    buttonLabel = "Ok";
+  }
+  else if (status === "Data Sent") {
+    heading = "Feedback Recieved";
+    desc = "Thank Your for your Feedback";
+    buttonLabel = "Ok";
   }
   const handleClose = () => {
     onClose();

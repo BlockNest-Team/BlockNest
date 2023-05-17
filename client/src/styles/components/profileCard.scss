@@ -1,0 +1,33 @@
+@import "../theme/theme.scss";
+
+.card {
+  .profile-content {
+    height: 200px;
+    padding: 2rem;
+
+    .profile-data {
+      margin-top: 2%;
+    }
+
+    .btn-container {
+      gap: 2rem;
+      border-top: 2px solid $border-color;
+      border-bottom: 2px solid $border-color;
+      padding: 1rem;
+
+      .border {
+        border-left: 2px solid $border-color;
+        color: white;
+        height: 100%;
+      }
+
+      .btn {
+        background-color: $btn-primary-color;
+        color: $primary-color;
+      }
+
+
+    }
+
+  }
+}

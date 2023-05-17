@@ -1,34 +1,28 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
-const postSchema = mongoose.Schema(
+const PostSchema = new mongoose.Schema(
   {
     userId: {
       type: String,
       required: true,
     },
-    firstName: {
+    desc: {
       type: String,
-      required: true,
+      max: 500,
     },
-    lastName: {
+    img: {
       type: String,
-      required: true,
     },
-    location: String,
-    description: String,
-    picturePath: String,
-    userPicturePath: String,
     likes: {
-      type: Map,
-      of: Boolean,
-    },
-    comments: {
       type: Array,
       default: [],
+    },
+    isNFT: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }
 );
 
-const Post = mongoose.model("Post", postSchema);
-export default Post;
+module.exports = mongoose.model("Post", PostSchema);

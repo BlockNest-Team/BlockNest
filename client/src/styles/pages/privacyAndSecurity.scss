@@ -1,0 +1,42 @@
+@import "../theme/theme.scss";
+
+.privacy-and-security {
+  width: 644.7px;
+  height: 356px;
+  padding: 2rem;
+
+  h1 {
+    margin: 0;
+    line-height: 2;
+    text-align: center;
+    font-size: 4rem;
+    padding-bottom: 1rem;
+  }
+
+  .privacy-container {
+    gap: 4rem;
+    margin-top: 2rem;
+
+    .options-container {
+      gap: 3rem;
+      width: 300px;
+
+      .group {
+        justify-content: space-between;
+        /* Add this property */
+
+        .btn {
+          background-color: $btn-primary-color;
+          color: $primary-color;
+        }
+
+        .option {
+          p {
+            font-size: 1.3rem;
+            /* Remove text-align: left; */
+          }
+        }
+      }
+    }
+  }
+}

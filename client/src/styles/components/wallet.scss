@@ -5,6 +5,10 @@
   width: 271px;
   max-height: 200px;
 
+  @media screen and (max-width: 1125px) and (min-width: 1024px) {
+    width: 250px;
+  }
+
   .balance-container {
     gap: 1rem;
     margin-bottom: 4rem;
@@ -67,7 +71,11 @@
   }
 
   .button-container {
-    gap: 1rem;
+    gap: 1.5rem;
+
+    .btn-group {
+      gap: 1.5rem;
+    }
 
     .btn {
       width: 110px;
@@ -84,6 +92,11 @@
 
       .recieve-icon {
         transform: rotate(180deg);
+      }
+
+      .pay-icon {
+        width: 17px;
+        height: 20px;
       }
 
     }

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "storyImg": "assets/pictures/Mask.png",
+    "profileImg": "pictures/profile1.png",
+    "text": "Lorem ipsum dolor sit amet."
+  },
+  {
+    "id": 2,
+    "storyImg": "assets/pictures/Mask.png",
+    "profileImg": "pictures/profile2.png",
+    "text": "Lorem ipsum dolor sit amet."
+  },
+  {
+    "id": 3,
+    "storyImg": "assets/pictures/Mask.png",
+    "profileImg": "pictures/profile2.png",
+    "text": "Lorem ipsum dolor sit amet."
+  },
+  {
+    "id": 4,
+    "storyImg": "assets/pictures/Mask.png",
+    "profileImg": "pictures/profile2.png",
+    "text": "Lorem ipsum dolor sit amet."
+  }
+]

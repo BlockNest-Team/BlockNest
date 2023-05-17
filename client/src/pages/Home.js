@@ -1,8 +1,9 @@
 import React from "react";
 import Wallet from "../components/wallet";
 import PostUpload from "../components/postUpload";
-import Post from "../components/post";
+import Posts from "../components/posts";
 // import Status from '../components/status'
+import Stories from '../components/stories'
 
 import "../styles/pages/home.scss";
 import FriendsSuggestions from "../components/friendsSuggestions";
@@ -21,8 +22,9 @@ const Home = () => {
           </div>
           <div className="feed-container d-flex-center d-flex-col">
             <div className="post-items">
+              <Stories />
               <PostUpload />
-              <Post />
+              <Posts />
             </div>
           </div>
           <div className="friends-request-container">

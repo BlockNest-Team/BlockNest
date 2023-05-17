@@ -1,0 +1,52 @@
+@import "../theme/theme.scss";
+
+.settings {
+  img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  &:hover .settings-items {
+    display: block;
+  }
+
+  .settings-items {
+    display: none;
+    position: absolute;
+    top: 1.5%;
+    width: 130px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid $border-color;
+    border-top: none;
+    z-index: 1000;
+
+    @media screen and (max-width: 535px) {
+      right: 6%;
+    }
+
+    ul {
+
+      li {
+        border-bottom: 1px solid $border-color;
+
+        p {
+          font-size: 1.2rem;
+          padding: 1rem;
+          color: $steel-blue;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          &:hover {
+            background-color: $btn-primary-color;
+            color: $primary-color;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

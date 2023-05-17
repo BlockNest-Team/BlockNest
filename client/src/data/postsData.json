@@ -1,38 +1,114 @@
-{
-  "posts": [
-    {
-      "text": "Just finished a great workout at the gym!",
-      "image_url": ""
-    },
-    {
-      "text": "Happy birthday to my best friend!",
-      "image_url": "https://www.w3schools.com/howto/img_avatar.png"
-    },
-    {
-      "text": "",
- "image_url": "https://www.w3schools.com/howto/img_avatar.png"    },
-    {
-      "text": "Can't believe it's already been a year since I started my new job!",
-      "image_url": ""
-    },
-    {
-      "text": "",
- "image_url": "https://www.w3schools.com/howto/img_avatar.png"    },
-    {
-      "text": "Excited to announce that I'm starting my own business!",
- "image_url": "https://www.w3schools.com/howto/img_avatar.png"    },
-    {
-      "text": "",
- "image_url": "https://www.w3schools.com/howto/img_avatar.png"    },
-    {
-      "text": "Had an amazing time at the concert last night!",
- "image_url": "https://www.w3schools.com/howto/img_avatar.png"    },
-    {
-      "text": "I can't believe how fast my kids are growing up!",
-      "image_url": ""
-    },
-    {
-      "text": "",
- "image_url": "https://www.w3schools.com/howto/img_avatar.png"    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "postText": "This is an example post...",
+    "image": "https://via.placeholder.com/600x400",
+    "likeCount": 12,
+    "commentCount": 130,
+    "shareCount": 42
+  },
+  {
+    "id": 2,
+    "postText": "This is another example post...",
+    "image": "https://via.placeholder.com/600x400",
+    "likeCount": 34,
+    "commentCount": 140,
+    "shareCount": 20
+  },
+  {
+    "id": 3,
+    "postText": "Hello askdjkasdj asd",
+    "image": "https://via.placeholder.com/600x400",
+    "likeCount": 34,
+    "commentCount": 10,
+    "shareCount": 1
+  },
+  {
+    "id": 4,
+    "postText": "askldhas laskdals dad alsd askdjkasdj asd",
+    "image": "https://via.placeholder.com/600x400",
+    "likeCount": 4,
+    "commentCount": 14,
+    "shareCount": 2
+  },
+  {
+    "id": 5,
+    "postText": "hello my nam ei schninkiasdjaksdjad",
+    "image": "https://via.placeholder.com/600x400",
+    "likeCount": 42,
+    "commentCount": 178,
+    "shareCount": 69
+  },
+  {
+    "id": 6,
+    "postText": "hello my nam ei schninkiasdjaksdjad",
+    "image": "https://via.placeholder.com/600x400",
+    "likeCount": 42,
+    "commentCount": 178,
+    "shareCount": 69
+  },
+  {
+    "id": 7,
+    "postText": "hello my nam ei schninkiasdjaksdjad",
+    "image": "https://via.placeholder.com/600x400",
+    "likeCount": 42,
+    "commentCount": 178,
+    "shareCount": 69
+  },
+  {
+    "id": 8,
+    "postText": "hello my nam ei schninkiasdjaksdjad",
+    "image": "https://via.placeholder.com/600x400",
+    "likeCount": 42,
+    "commentCount": 178,
+    "shareCount": 69
+  },
+  {
+    "id": 9,
+    "postText": "hello my nam ei schninkiasdjaksdjad",
+    "image": "https://via.placeholder.com/600x400",
+    "likeCount": 42,
+    "commentCount": 178,
+    "shareCount": 69
+  },
+  {
+    "id": 10,
+    "postText": "hello my nam ei schninkiasdjaksdjad",
+    "image": "https://via.placeholder.com/600x400",
+    "likeCount": 42,
+    "commentCount": 178,
+    "shareCount": 69
+  },
+  {
+    "id": 11,
+    "postText": "hello my nam ei schninkiasdjaksdjad",
+    "image": "https://via.placeholder.com/600x400",
+    "likeCount": 42,
+    "commentCount": 178,
+    "shareCount": 69
+  },
+  {
+    "id": 12,
+    "postText": "hello my nam ei schninkiasdjaksdjad",
+    "image": "https://via.placeholder.com/600x400",
+    "likeCount": 42,
+    "commentCount": 178,
+    "shareCount": 69
+  },
+  {
+    "id": 13,
+    "postText": "hello my nam ei schninkiasdjaksdjad",
+    "image": "https://via.placeholder.com/600x400",
+    "likeCount": 42,
+    "commentCount": 178,
+    "shareCount": 69
+  },
+  {
+    "id": 14,
+    "postText": "hello my nam ei schninkiasdjaksdjad",
+    "image": "https://via.placeholder.com/600x400",
+    "likeCount": 42,
+    "commentCount": 178,
+    "shareCount": 69
+  }
+]
