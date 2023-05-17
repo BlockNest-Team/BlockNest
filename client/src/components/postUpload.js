@@ -40,7 +40,23 @@ const PostUpload = () => {
     setShowPicker(false);
   };
 
-  const handleSendFormSubmit = () => { };
+  const HandleSubmitAsPost = () => {
+    console.log("Post as post")
+  };
+  const HandleSubmitPostAsNFT = () => {
+    console.log("Post as NFT")
+  };
+
+  const handleSendFormSubmit = (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    if (event.nativeEvent.submitter.id === "postButton") {
+      HandleSubmitAsPost(); // Call the post function
+    } else if (event.nativeEvent.submitter.id === "nftButton") {
+      HandleSubmitPostAsNFT(); // Call the NFT function
+    }
+  };
+
   return (
     <div className="card">
       <div className="post-upload-container" onClick={openPostUploadModal}>
@@ -111,10 +127,10 @@ const PostUpload = () => {
                 </div>
 
                 <div className="post-upload-footer d-flex-center">
-                  <button type="submit" className="btn secondary">
+                  <button type="submit" className="btn secondary" onClick={HandleSubmitAsPost}>
                     Post
                   </button>
-                  <button type="submit" className="btn secondary">
+                  <button type="submit" className="btn secondary" onClick={HandleSubmitPostAsNFT}>
                     Post as NFT
                   </button>
                 </div>

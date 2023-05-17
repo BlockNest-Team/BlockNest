@@ -28,6 +28,7 @@ const Post = ({ data }) => {
   const [postText, setPostText] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [popupStatus, setPopupStatus] = useState("");
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   // useEffect(() => {
   //   setComments(commentsData);
   // }, []);
@@ -147,7 +148,7 @@ const Post = ({ data }) => {
             <div className="profile-details d-flex-align-center">
               <div className="profile-pic">
                 <img
-                  src={"https://www.w3schools.com/howto/img_avatar.png"}
+                  src={"https://www.w3schools.com/howto/img_avatar.png" || PF + "pictures/noAvatar.png"}
                   alt="profile-pic"
                 />
               </div>
