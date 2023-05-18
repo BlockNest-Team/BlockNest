@@ -172,8 +172,9 @@ const Post = ({ data }) => {
                 <img
                   src={
                     user.profilePicture ||
-                    "https://www.w3schools.com/howto/img_avatar.png" ||
-                    PF + "pictures/noAvatar.png"
+                      currentUser.profilePicture
+                      ? PF + currentUser.profilePicture
+                      : PF + "person/noAvatar.png"
                   }
                   alt="profile-pic"
                 />
