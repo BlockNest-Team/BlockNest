@@ -21,14 +21,14 @@ const Post = ({ data }) => {
   const [user, setUser] = useState({});
 
   const [liked, setLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(12);
+  const [likeCount, setLikeCount] = useState(0);
   const [comments, setComments] = useState([]);
   const [commentInput, setCommentInput] = useState("");
   const [showCommentSectionection, setshowCommentSectionection] =
     useState(false);
   const [expandedComments, setExpandedComments] = useState([]);
-  const [commentCount, setCommentCount] = useState(140);
-  const [shareCount, setShareCount] = useState(40);
+  const [commentCount, setCommentCount] = useState(0);
+  const [shareCount, setShareCount] = useState(0);
   const [showShareModal, setshowShareModal] = useState(false);
   const [expandedPostText, setExpandedPostText] = useState(false);
   const [postText, setPostText] = useState("");
