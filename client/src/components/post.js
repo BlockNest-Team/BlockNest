@@ -3,6 +3,7 @@ import "../styles/components/post.scss";
 import CommentSection from "../components/commentSection";
 import SharePost from "../components/sharePost";
 import Modal from "./modal";
+import { format } from "timeago.js";
 import testPic from "../assets/pictures/test.png";
 import threeDotIcon from "../assets/svgs/three-dot.svg";
 import likeIcon from "../assets/svgs/like.svg";
@@ -179,7 +180,7 @@ const Post = ({ data }) => {
               </div>
               <div className="profile-name">
                 <p>{user.firstName + " " + currentUser.lastName}</p>
-                <p className="uploded-time">45 mins ago</p>
+                <p className="uploded-time">{format(data.createdAt)}</p>
               </div>
             </div>
             <div className="post-options">
