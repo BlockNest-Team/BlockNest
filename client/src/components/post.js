@@ -4,22 +4,18 @@ import CommentSection from "../components/commentSection";
 import SharePost from "../components/sharePost";
 import Modal from "./modal";
 import { format } from "timeago.js";
-import testPic from "../assets/pictures/test.png";
 import threeDotIcon from "../assets/svgs/three-dot.svg";
 import likeIcon from "../assets/svgs/like.svg";
 import likedIcon from "../assets/svgs/liked.svg";
 import commentIcon from "../assets/svgs/comment.svg";
 import shareIcon from "../assets/svgs/share.svg";
 import Popup from "./dynamicPopup";
-// import commentsData from '../data/commentData.json'
-// import postTextData from '../data/postData.json'
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 
 const Post = ({ data }) => {
   const { user: currentUser } = useContext(AuthContext);
   const [user, setUser] = useState({});
-
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [comments, setComments] = useState([]);
@@ -30,53 +26,9 @@ const Post = ({ data }) => {
   const [commentCount, setCommentCount] = useState(0);
   const [shareCount, setShareCount] = useState(0);
   const [showShareModal, setshowShareModal] = useState(false);
-  const [expandedPostText, setExpandedPostText] = useState(false);
-  const [postText, setPostText] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [popupStatus, setPopupStatus] = useState("");
-  // const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
-  // const fetchUser = async () => {
-
-  //   const res = await axios.get(`/users/6463ecf98fa74029f8811326`);
-  //   // console.log(res);
-  //   setUser(res.data);
-  //   console.log(res.data);
-  // };
-
-  // useEffect(() => {
-  //   fetchUser();
-
-  //   // setPosts(response.data);
-  // }, []);
-
-  // useEffect(() => {
-  //   setComments(commentsData);
-  // }, []);
-
-  // useEffect(() => {
-  //   setPostText(postTextData.postText);
-  // }, []);
-
-  // useEffect(() => {
-  //   setPostText(data.postText);
-  //   setLikeCount(data.likeCount);
-  //   setShareCount(data.shareCount);
-  //   setCommentCount(data.commentCount);
-  // }, [data]);
-
-  const toggleExpandedPostText = () => {
-    setExpandedPostText(!expandedPostText);
-  };
-
-  // const truncateText = (text, wordLimit) => {
-  //   const words = text.split(" ");
-  //   if (words.length > wordLimit) {
-  //     return words.slice(0, wordLimit).join(" ") + "...";
-  //   }
-  //   return text;
-  // };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -86,26 +38,34 @@ const Post = ({ data }) => {
     fetchUser();
   }, [data.userId]);
 
-  // const renderPostText = () => {
-  //   return (
-  //     <>
-  //       <p>
-  //         {expandedPostText ? postText : truncateText(postText, 30)}
-  //         {postText.split(" ").length > 30 && (
-  //           <span
-  //             className="toggle-text-visibility"
-  //             onClick={toggleExpandedPostText}
-  //           >{`See ${expandedPostText ? "less" : "more"}`}</span>
-  //         )}
-  //       </p>
-  //     </>
-  //   );
-  // };
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`/users?userId=${data.userId}`);
+      setUser(res.data);
+    };
+    fetchUser();
+
+    if (data.likes.includes(currentUser._id)) {
+      setLiked(true);
+      setLikeCount(data.likes.length);
+    }
+  }, [data.userId, data.likes, currentUser._id]);
+
 
   const handleLikeClick = () => {
-    setLiked(!liked);
-    setLikeCount(liked ? likeCount - 1 : likeCount + 1);
+    likePost();
   };
+
+  const likePost = async () => {
+    try {
+      await axios.put(`/posts/${data._id}/like`, { userId: currentUser._id });
+      setLiked(!liked);
+      setLikeCount(liked ? likeCount - 1 : likeCount + 1);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
 
   const handleAddComment = (e) => {
     e.preventDefault();
@@ -156,7 +116,6 @@ const Post = ({ data }) => {
   };
 
   const handleDeletePost = () => {
-    // setPopupStatus("post deleted");
     setPopupStatus("Post Unable to delete");
     setShowPopup(true);
     console.log("delete");
@@ -194,7 +153,6 @@ const Post = ({ data }) => {
               </div>
             </div>
           </div>
-          {/* <div className="post-text">{renderPostText()}</div> */}
           <div className="post-text">{data.desc}</div>
           <div className="post-image">
             <img src={data.img} alt="three-dot-icon" />
