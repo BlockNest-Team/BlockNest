@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-// import { useState, useEffect, useContext } from "react";
 import "../styles/components/profileCard.scss";
 import "../styles/components/myprofileCard.scss";
 import { AuthContext } from "../context/AuthContext";
-//
+
 const ProfileCard = () => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user: currentUser } = useContext(AuthContext);
-  const [user, setUser] = useState({});
   const [userName, setUserName] = useState("");
   const [followers, setFollowers] = useState(0);
   const [following, setFollowing] = useState(0);
@@ -16,7 +14,8 @@ const ProfileCard = () => {
     setUserName(currentUser.firstName + " " + currentUser.lastName);
     setFollowers(currentUser.followers.length);
     setFollowing(currentUser.followings.length);
-  }, []);
+  }, [currentUser.firstName, currentUser.lastName, currentUser.followers.length, currentUser.followings.length]);
+
   return (
     <div className="card">
       <div className="profile-content d-flex-col d-flex-justify-between">
@@ -25,7 +24,7 @@ const ProfileCard = () => {
             <img
               src={
                 currentUser.profilePicture
-                  ? PF + user.profilePicture
+                  ? PF + currentUser.profilePicture
                   : PF + "person/noAvatar.png"
               }
               alt=""
