@@ -18,6 +18,7 @@ const Post = ({ data }) => {
   const [user, setUser] = useState({});
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
+  const [likeClicked, setLikeClicked] = useState(false);
   const [comments, setComments] = useState([]);
   const [commentInput, setCommentInput] = useState("");
   const [showCommentSectionection, setshowCommentSectionection] =
@@ -61,10 +62,12 @@ const Post = ({ data }) => {
       await axios.put(`/posts/${data._id}/like`, { userId: currentUser._id });
       setLiked(!liked);
       setLikeCount(liked ? likeCount - 1 : likeCount + 1);
+      setLikeClicked(true); // Add this line
     } catch (err) {
       console.log(err);
     }
   };
+
 
 
   const handleAddComment = (e) => {
@@ -185,8 +188,9 @@ const Post = ({ data }) => {
                 src={liked ? likedIcon : likeIcon}
                 alt="like"
                 onClick={handleLikeClick}
-                className={liked ? "liked" : ""}
+                className={liked && likeClicked ? "liked" : ""}
               />
+
               <p>Like</p>
             </div>
             <div
