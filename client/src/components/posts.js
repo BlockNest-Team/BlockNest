@@ -1,27 +1,31 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useContext } from "react";
 import Post from "../components/post";
 import "../styles/components/post.scss";
 import postsData from "../data/postsData.json"; //dummydata import
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
-  const fetchMoreData = useCallback(() => {
-    if (posts.length >= postsData.length) {
-      setHasMore(false);
-      return;
-    }
-    setTimeout(() => {
-      setPosts([...posts, ...postsData.slice(posts.length, posts.length + 5)]);
-    }, 1000);
-  }, [posts]);
+  // const [posts, setPosts] = useState([]);
+  const { user } = useContext(AuthContext);
 
-  useEffect(() => {
-    fetchMoreData();
-  }, [fetchMoreData]);
+  // const fetchMoreData = useCallback(() => {
+  //   if (posts.length >= postsData.length) {
+  //     setHasMore(false);
+  //     return;
+  //   }
+  //   setTimeout(() => {
+  //     setPosts([...posts, ...postsData.slice(posts.length, posts.length + 5)]);
+  //   }, 1000);
+  // }, [posts]);
+
+  // useEffect(() => {
+  //   fetchMoreData();
+  // }, [fetchMoreData]);
   // const fetchPost = async () => {
   //   const res = await axios.get("/posts/timeline/6463ecf98fa74029f8811326");
   //   // console.log(res);
@@ -35,10 +39,25 @@ const Posts = () => {
   //   // setPosts(response.data);
   // }, []);
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = user.firstName
+        ? await axios.get("/posts/profile/" + user.firstName)
+        : await axios.get("posts/timeline/" + user._id);
+      setPosts(
+        res.data.sort((p1, p2) => {
+          return new Date(p2.createdAt) - new Date(p1.createdAt);
+          console.log(res.data);
+        })
+      );
+    };
+    fetchPosts();
+  }, [user.firstName, user._id]);
+
   return (
     // infinite scroll start
     <div className="posts-wrapper">
-      <InfiniteScroll
+      {/* <InfiniteScroll
         dataLength={posts.length}
         next={fetchMoreData}
         hasMore={hasMore}
@@ -50,13 +69,13 @@ const Posts = () => {
             <b>Yay! You have seen it all</b>
           </p>
         }
-      >
-        <div className="posts-container">
-          {posts.map((post) => (
-            <Post key={post.id} data={post} />
-          ))}
-        </div>
-      </InfiniteScroll>
+      > */}
+      <div className="posts-container">
+        {posts.map((post) => (
+          <Post key={post.id} data={post} />
+        ))}
+      </div>
+      {/* </InfiniteScroll> */}
     </div>
   );
 };

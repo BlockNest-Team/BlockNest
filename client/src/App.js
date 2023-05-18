@@ -15,7 +15,7 @@ import PrivacyAndSecurity from "./pages/PrivacyAndSecurity";
 import HelpAndSupport from "./pages/HelpAndSupport";
 import Feedback from "./pages/Feedback";
 import NotFound from "./pages/NotFound";
-import { AuthContext } from "./context/AuthContext";
+// import { AuthContext } from "./context/AuthContext";
 
 function App() {
   // const { user } = useContext(AuthContext);
@@ -29,10 +29,11 @@ function App() {
         <Route exact path="/wallet" element={<ViewWallet />} />
         <Route
           exact
-          path="/profile/:walletaddress"
+          path="/otherprofile/:walletaddress"
           element={<FriendProfile />}
         />
-        <Route exact path="/myprofile" element={<MyProfile />} />
+        {/* <Route exact path="/profile/:firstName" element={<MyProfile />} /> */}
+        <Route exact path="/profile" element={<MyProfile />} />
         <Route
           exact
           path="/privacy-and-security"

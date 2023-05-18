@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../styles/components/post.scss";
 import CommentSection from "../components/commentSection";
 import SharePost from "../components/sharePost";
@@ -13,8 +13,12 @@ import Popup from "./dynamicPopup";
 // import commentsData from '../data/commentData.json'
 // import postTextData from '../data/postData.json'
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 
 const Post = ({ data }) => {
+  const { user: currentUser } = useContext(AuthContext);
+  const [user, setUser] = useState({});
+
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(12);
   const [comments, setComments] = useState([]);
@@ -29,10 +33,11 @@ const Post = ({ data }) => {
   const [postText, setPostText] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [popupStatus, setPopupStatus] = useState("");
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   // const fetchUser = async () => {
+
   //   const res = await axios.get(`/users/6463ecf98fa74029f8811326`);
   //   // console.log(res);
   //   setUser(res.data);
@@ -53,40 +58,48 @@ const Post = ({ data }) => {
   //   setPostText(postTextData.postText);
   // }, []);
 
-  useEffect(() => {
-    setPostText(data.postText);
-    setLikeCount(data.likeCount);
-    setShareCount(data.shareCount);
-    setCommentCount(data.commentCount);
-  }, [data]);
+  // useEffect(() => {
+  //   setPostText(data.postText);
+  //   setLikeCount(data.likeCount);
+  //   setShareCount(data.shareCount);
+  //   setCommentCount(data.commentCount);
+  // }, [data]);
 
   const toggleExpandedPostText = () => {
     setExpandedPostText(!expandedPostText);
   };
 
-  const truncateText = (text, wordLimit) => {
-    const words = text.split(" ");
-    if (words.length > wordLimit) {
-      return words.slice(0, wordLimit).join(" ") + "...";
-    }
-    return text;
-  };
+  // const truncateText = (text, wordLimit) => {
+  //   const words = text.split(" ");
+  //   if (words.length > wordLimit) {
+  //     return words.slice(0, wordLimit).join(" ") + "...";
+  //   }
+  //   return text;
+  // };
 
-  const renderPostText = () => {
-    return (
-      <>
-        <p>
-          {expandedPostText ? postText : truncateText(postText, 30)}
-          {postText.split(" ").length > 30 && (
-            <span
-              className="toggle-text-visibility"
-              onClick={toggleExpandedPostText}
-            >{`See ${expandedPostText ? "less" : "more"}`}</span>
-          )}
-        </p>
-      </>
-    );
-  };
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`/users?userId=${data.userId}`);
+      setUser(res.data);
+    };
+    fetchUser();
+  }, [data.userId]);
+
+  // const renderPostText = () => {
+  //   return (
+  //     <>
+  //       <p>
+  //         {expandedPostText ? postText : truncateText(postText, 30)}
+  //         {postText.split(" ").length > 30 && (
+  //           <span
+  //             className="toggle-text-visibility"
+  //             onClick={toggleExpandedPostText}
+  //           >{`See ${expandedPostText ? "less" : "more"}`}</span>
+  //         )}
+  //       </p>
+  //     </>
+  //   );
+  // };
 
   const handleLikeClick = () => {
     setLiked(!liked);
@@ -179,9 +192,10 @@ const Post = ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="post-text">{renderPostText()}</div>
+          {/* <div className="post-text">{renderPostText()}</div> */}
+          <div className="post-text">{data.desc}</div>
           <div className="post-image">
-            <img src={testPic} alt="three-dot-icon" />
+            <img src={data.img} alt="three-dot-icon" />
           </div>
         </div>
         <div className="post-content-footer">

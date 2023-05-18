@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useRef } from "react";
 import Modal from "./modal";
 import EmojiPicker from "emoji-picker-react";
 import uploadIcon from "../assets/svgs/upload-image.svg";
@@ -10,6 +10,8 @@ import {
 } from "../utils/blockNestContractNft.js";
 import { Buffer } from "buffer";
 import { create as ipfsHttpClient } from "ipfs-http-client";
+import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
 
 const projectId = "2PsRn0pVgr9ykZxcYkvlXf72liD";
 const projectSecretKey = "ac4c2958bd722f4df62eabb86fd47d3b";
@@ -32,9 +34,14 @@ const PostUpload = () => {
   const [inputEmoji, setInputEmoji] = useState("");
   const [showPicker, setShowPicker] = useState(false);
   const [fileN, setFileN] = useState(null);
+  const [userName, setUserName] = useState("");
+
+  const { user } = useContext(AuthContext);
 
   const openPostUploadModal = () => {
     setShowPostUploadModal(true);
+    setUserName(user.firstName + " " + user.lastName);
+    console.log(userName);
     console.log("Modal Opens");
   };
 
@@ -62,9 +69,36 @@ const PostUpload = () => {
     setInputEmoji((prevInput) => prevInput + emojiObject.emoji);
     setShowPicker(false);
   };
+  const desc = useRef();
+
+  const postupload = async () => {
+    console.log(user.firstName);
+    const newPost = {
+      userId: user._id,
+      desc: desc.current.value,
+    };
+    if (fileN) {
+      const data = new FormData();
+      const fileName = Date.now() + fileN.name;
+      data.append("name", fileName);
+      data.append("file", fileN);
+      newPost.img = fileName;
+      console.log(newPost);
+      try {
+        await axios.post("/upload", data);
+        console.log("File uploaded successfully " + data);
+      } catch (err) {}
+    }
+    try {
+      await axios.post("/posts", newPost);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const HandleSubmitAsPost = () => {
-    console.log("Post as post");
+    postupload();
   };
   const HandleSubmitPostAsNFT = async (event) => {
     // event.preventDefault();
@@ -97,6 +131,30 @@ const PostUpload = () => {
         "check it at https://sepolia.etherscan.io/tx/" +
         tx.transactionHash
     );
+
+    const newPost = {
+      userId: user._id,
+      desc: " desc.current.value",
+      isNft: true,
+    };
+    if (fileN) {
+      const data = new FormData();
+      const fileName = Date.now() + fileN.name;
+      data.append("name", fileName);
+      data.append("file", fileN);
+      newPost.img = fileName;
+      console.log(newPost);
+      try {
+        await axios.post("/upload", data);
+        console.log("File uploaded successfully " + data);
+      } catch (err) {}
+    }
+    try {
+      await axios.post("/posts", newPost);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
 
     // setStatus(`Minted successfully! Transaction hash: ${tx.transactionHash}`);
 
@@ -138,7 +196,7 @@ const PostUpload = () => {
                   </div>
 
                   <div className="profile-name">
-                    <p>John Doe</p>
+                    <p>{userName}</p>
                   </div>
                 </div>
                 <textarea
@@ -146,6 +204,7 @@ const PostUpload = () => {
                   placeholder="What’s on you mind?"
                   rows="4"
                   value={inputEmoji}
+                  ref={desc}
                   onChange={(e) => setInputEmoji(e.target.value)}
                 />
                 <div>

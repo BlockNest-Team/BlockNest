@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import testPic from '../assets/pictures/test.png';
-import '../styles/components/profileCard.scss';
+import React, { useState } from "react";
+import testPic from "../assets/pictures/test.png";
+import "../styles/components/profileCard.scss";
 
 const ProfileCard = () => {
-  const [friendStatus, setFriendStatus] = useState('not-friend');
+  const [friendStatus, setFriendStatus] = useState("not-friend");
 
   const handleFriendAction = () => {
-    if (friendStatus === 'not-friend') {
-      setFriendStatus('request-sent');
-    } else if (friendStatus === 'request-sent') {
-      setFriendStatus('not-friend');
-    } else if (friendStatus === 'friend') {
-      setFriendStatus('not-friend');
+    if (friendStatus === "not-friend") {
+      setFriendStatus("request-sent");
+    } else if (friendStatus === "request-sent") {
+      setFriendStatus("not-friend");
+    } else if (friendStatus === "friend") {
+      setFriendStatus("not-friend");
     }
   };
 
   let buttonText;
-  if (friendStatus === 'not-friend') {
-    buttonText = 'Add Friend';
-  } else if (friendStatus === 'request-sent') {
-    buttonText = 'Cancel Request';
-  } else if (friendStatus === 'friend') {
-    buttonText = 'Remove Friend';
+  if (friendStatus === "not-friend") {
+    buttonText = "Add Friend";
+  } else if (friendStatus === "request-sent") {
+    buttonText = "Cancel Request";
+  } else if (friendStatus === "friend") {
+    buttonText = "Remove Friend";
   }
 
   return (
