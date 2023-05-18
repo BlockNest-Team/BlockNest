@@ -9,26 +9,27 @@ const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
-  // const fetchMoreData = useCallback(() => {
-  //   if (posts.length >= postsData.length) {
-  //     setHasMore(false);
-  //     return;
-  //   }
+  const fetchMoreData = useCallback(() => {
+    if (posts.length >= postsData.length) {
+      setHasMore(false);
+      return;
+    }
+    setTimeout(() => {
+      setPosts([...posts, ...postsData.slice(posts.length, posts.length + 5)]);
+    }, 1000);
+  }, [posts]);
 
-  //   setTimeout(() => {
-  //     setPosts([...posts, ...postsData.slice(posts.length, posts.length + 5)]);
-  //   }, 1000);
-  // }, [posts]);
+  useEffect(() => {
+    fetchMoreData();
+  }, [fetchMoreData]);
+  // const fetchPost = async () => {
+  //   const res = await axios.get("/posts/timeline/6463ecf98fa74029f8811326");
+  //   // console.log(res);
+  //   setPosts(res.data);
+  //   // console.log(res.data);
+  // };
 
   // useEffect(() => {
-  //   fetchMoreData();
-  // }, [fetchMoreData]);
-
-  // useEffect(async () => {
-  //   const fetchPost = async () => {
-  //     const res = await axios.get("/posts/timeline/6463ecf98fa74029f8811326");
-  //     console.log(res);
-  //   };
   //   fetchPost();
 
   //   // setPosts(response.data);
@@ -37,7 +38,7 @@ const Posts = () => {
   return (
     // infinite scroll start
     <div className="posts-wrapper">
-      {/* <InfiniteScroll
+      <InfiniteScroll
         dataLength={posts.length}
         next={fetchMoreData}
         hasMore={hasMore}
@@ -50,14 +51,12 @@ const Posts = () => {
           </p>
         }
       >
-        
-
         <div className="posts-container">
           {posts.map((post) => (
             <Post key={post.id} data={post} />
           ))}
         </div>
-      </InfiniteScroll> */}
+      </InfiniteScroll>
     </div>
   );
 };

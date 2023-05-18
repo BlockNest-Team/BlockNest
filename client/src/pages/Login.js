@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/pages/login-signup.scss";
 import Navbar from "../components/navbar.js";
 import { getWeb3, getBlockNestContract } from "../utils/blockNestContract";
-
+import { AuthContext } from "../context/AuthContext";
+import { loginCall } from "../apiCalls";
 const Login = () => {
   const [status, setStatus] = useState("");
   const [walletConnected, setWalletConnected] = useState(false);
+  const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const [walletAddra, setWalletAddra] = useState("");
+  // const walletAddress = useRef();
   const navigate = useNavigate();
   const navigateToHome = () => {
     navigate("/home");
@@ -33,13 +37,17 @@ const Login = () => {
       const web3 = await getWeb3();
       const contract = await getBlockNestContract(web3);
       const accounts = await web3.eth.getAccounts();
+      setWalletAddra("12r");
+      // console.log(walletAddra);
+
       const userExists = await contract.methods.userExists(accounts[0]).call();
 
       if (userExists) {
         setStatus("Login successful!");
+        await loginCall({ walletAddr: accounts[0] }, dispatch); //resolve error as if not registered then server crashes
         navigateToHome();
       } else {
-        // setStatus("User does not exist. Please register first.");
+        setStatus("User does not exist. Please register first.");
         alert("User does not exist. Please register first.");
       }
     } catch (error) {
@@ -47,7 +55,7 @@ const Login = () => {
       setStatus("Login failed");
     }
   };
-
+  console.log(user);
   return (
     <>
       <Navbar />

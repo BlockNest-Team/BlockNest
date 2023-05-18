@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/pages/login-signup.scss";
 import { getWeb3, getBlockNestContract } from "../utils/blockNestContract";
 import Navbar from "../components/navbar";
+import axios from "axios";
 
 const Register = () => {
   const [status, setStatus] = useState("Proceed");
   const [allFieldsFilled, setAllFieldsFilled] = useState(false);
+
+  const firstName = useRef();
+  const lastName = useRef();
+  const location = useRef();
+  const occupation = useRef();
+  const dob = useRef();
+  const email = useRef();
+  // const profilepic = useRef();
+  const walletAddr = useRef();
 
   const navigate = useNavigate();
   const navigateToHome = () => {
@@ -22,6 +32,23 @@ const Register = () => {
       await contract.methods
         .registerUser(accounts[0])
         .send({ from: accounts[0] });
+
+      const user = {
+        firstName: firstName.current.value,
+        lastName: lastName.current.value,
+        location: location.current.value,
+        occupation: occupation.current.value,
+        dob: dob.current.value,
+        email: email.current.value,
+        // profilepic: profilepic.current.value,
+        walletAddr: accounts[0],
+      };
+      try {
+        const res = await axios.post("/auth/register", user);
+        console.log("user regiestered" + res);
+      } catch (err) {
+        console.log(err);
+      }
       setStatus("Registration successful!");
       navigateToHome();
     } catch (error) {
@@ -69,11 +96,11 @@ const Register = () => {
   };
 
   const handleSubmit = async (event) => {
-    // register(); // This is the function that needs to be called for web3 registration of wallet
-
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
+
+    registerUser(); // This is the function that needs to be called for web3 registration of wallet
 
     console.log(data);
   };
@@ -100,6 +127,7 @@ const Register = () => {
                         type="text"
                         name="firstName"
                         id="firstName"
+                        ref={firstName}
                         required
                       />
                     </div>
@@ -109,6 +137,7 @@ const Register = () => {
                         type="text"
                         name="lastName"
                         id="lastName"
+                        ref={lastName}
                         required
                       />
                     </div>
@@ -120,6 +149,7 @@ const Register = () => {
                         type="text"
                         name="location"
                         id="location"
+                        ref={location}
                         required
                       />
                     </div>
@@ -129,6 +159,7 @@ const Register = () => {
                         type="text"
                         name="occupation"
                         id="occupation"
+                        ref={occupation}
                         required
                       />
                     </div>
@@ -136,11 +167,23 @@ const Register = () => {
                   <div className="group">
                     <div className="formgroup">
                       <label htmlFor="dob">Date of Birth</label>
-                      <input type="date" name="dob" id="dob" required />
+                      <input
+                        type="date"
+                        name="dob"
+                        id="dob"
+                        ref={dob}
+                        required
+                      />
                     </div>
                     <div className="formgroup">
                       <label htmlFor="email">Email Address</label>
-                      <input type="email" name="email" id="email" required />
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        ref={email}
+                        required
+                      />
                     </div>
                   </div>
 
@@ -151,6 +194,7 @@ const Register = () => {
                         type="file"
                         name="fileUpload"
                         id="fileUpload"
+                        // ref={firstname}
                         required
                         accept="image/png, image/jpg, image/gif, image/jpeg"
                       />

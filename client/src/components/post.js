@@ -9,17 +9,18 @@ import likeIcon from "../assets/svgs/like.svg";
 import likedIcon from "../assets/svgs/liked.svg";
 import commentIcon from "../assets/svgs/comment.svg";
 import shareIcon from "../assets/svgs/share.svg";
-import Popup from './dynamicPopup'
+import Popup from "./dynamicPopup";
 // import commentsData from '../data/commentData.json'
 // import postTextData from '../data/postData.json'
+import axios from "axios";
 
 const Post = ({ data }) => {
-
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(12);
   const [comments, setComments] = useState([]);
-  const [commentInput, setCommentInput] = useState('');
-  const [showCommentSectionection, setshowCommentSectionection] = useState(false);
+  const [commentInput, setCommentInput] = useState("");
+  const [showCommentSectionection, setshowCommentSectionection] =
+    useState(false);
   const [expandedComments, setExpandedComments] = useState([]);
   const [commentCount, setCommentCount] = useState(140);
   const [shareCount, setShareCount] = useState(40);
@@ -28,7 +29,22 @@ const Post = ({ data }) => {
   const [postText, setPostText] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [popupStatus, setPopupStatus] = useState("");
+  const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  // const fetchUser = async () => {
+  //   const res = await axios.get(`/users/6463ecf98fa74029f8811326`);
+  //   // console.log(res);
+  //   setUser(res.data);
+  //   console.log(res.data);
+  // };
+
+  // useEffect(() => {
+  //   fetchUser();
+
+  //   // setPosts(response.data);
+  // }, []);
+
   // useEffect(() => {
   //   setComments(commentsData);
   // }, []);
@@ -60,9 +76,7 @@ const Post = ({ data }) => {
     return (
       <>
         <p>
-          {expandedPostText
-            ? postText
-            : truncateText(postText, 30)}
+          {expandedPostText ? postText : truncateText(postText, 30)}
           {postText.split(" ").length > 30 && (
             <span
               className="toggle-text-visibility"
@@ -70,7 +84,6 @@ const Post = ({ data }) => {
             >{`See ${expandedPostText ? "less" : "more"}`}</span>
           )}
         </p>
-
       </>
     );
   };
@@ -94,8 +107,6 @@ const Post = ({ data }) => {
     setCommentInput(""); // Add this line
   };
 
-
-
   const toggleExpandedComment = (index) => {
     const newExpandedComments = [...expandedComments];
     if (newExpandedComments.includes(index)) {
@@ -105,7 +116,6 @@ const Post = ({ data }) => {
     }
     setExpandedComments(newExpandedComments);
   };
-
 
   const formatCount = (count) => {
     if (count >= 1000000) {
@@ -138,8 +148,6 @@ const Post = ({ data }) => {
     console.log("delete");
   };
 
-
-
   return (
     <div className="card">
       <div className="post-content">
@@ -148,12 +156,16 @@ const Post = ({ data }) => {
             <div className="profile-details d-flex-align-center">
               <div className="profile-pic">
                 <img
-                  src={"https://www.w3schools.com/howto/img_avatar.png" || PF + "pictures/noAvatar.png"}
+                  src={
+                    user.profilePicture ||
+                    "https://www.w3schools.com/howto/img_avatar.png" ||
+                    PF + "pictures/noAvatar.png"
+                  }
                   alt="profile-pic"
                 />
               </div>
               <div className="profile-name">
-                <p>Jhon Doe</p>
+                <p>{user.firstName}</p>
                 <p className="uploded-time">45 mins ago</p>
               </div>
             </div>
@@ -164,14 +176,10 @@ const Post = ({ data }) => {
                 <div className="card">
                   <p onClick={handleDeletePost}>Delete</p>
                 </div>
-
               </div>
-
             </div>
           </div>
-          <div className="post-text">
-            {renderPostText()}
-          </div>
+          <div className="post-text">{renderPostText()}</div>
           <div className="post-image">
             <img src={testPic} alt="three-dot-icon" />
           </div>
@@ -195,15 +203,31 @@ const Post = ({ data }) => {
           </div>
 
           <div className="post-actions d-flex-justify-between">
-            <div className="action-item d-flex-center" onClick={handleLikeClick}>
-              <img src={liked ? likedIcon : likeIcon} alt="like" onClick={handleLikeClick} className={liked ? 'liked' : ''} />
+            <div
+              className="action-item d-flex-center"
+              onClick={handleLikeClick}
+            >
+              <img
+                src={liked ? likedIcon : likeIcon}
+                alt="like"
+                onClick={handleLikeClick}
+                className={liked ? "liked" : ""}
+              />
               <p>Like</p>
             </div>
-            <div className="action-item d-flex-center" onClick={() => setshowCommentSectionection(!showCommentSectionection)} >
+            <div
+              className="action-item d-flex-center"
+              onClick={() =>
+                setshowCommentSectionection(!showCommentSectionection)
+              }
+            >
               <img src={commentIcon} alt="comment" />
               <p>Comment</p>
             </div>
-            <div className="action-item d-flex-center" onClick={openSharePostModal}>
+            <div
+              className="action-item d-flex-center"
+              onClick={openSharePostModal}
+            >
               <img src={shareIcon} alt="share" />
               <p>Share</p>
             </div>
@@ -214,33 +238,26 @@ const Post = ({ data }) => {
             comments={comments.map((comment, index) => ({
               ...comment,
               isExpanded: expandedComments.includes(index),
-              toggleExpanded: () => toggleExpandedComment(index)
+              toggleExpanded: () => toggleExpandedComment(index),
             }))}
             handleAddComment={handleAddComment}
             commentInput={commentInput}
             setCommentInput={setCommentInput}
           />
         )}
-
       </div>
       {showShareModal && (
         <Modal
           title="Share Post"
           onClose={closeSharePostModal}
           content={
-            <SharePost
-              url="https://example.com"
-              onShare={handleShare}
-            />
+            <SharePost url="https://example.com" onShare={handleShare} />
           }
         />
       )}
       {showPopup && (
         <Popup status={popupStatus} onClose={() => setShowPopup(false)} />
       )}
-
-
-
     </div>
   );
 };

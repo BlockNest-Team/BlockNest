@@ -4,6 +4,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+import { useContext } from "react";
 import Login from "./pages/Login";
 import Register from "./pages/Signup";
 import Home from "./pages/Home";
@@ -14,8 +15,11 @@ import PrivacyAndSecurity from "./pages/PrivacyAndSecurity";
 import HelpAndSupport from "./pages/HelpAndSupport";
 import Feedback from "./pages/Feedback";
 import NotFound from "./pages/NotFound";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
+  // const { user } = useContext(AuthContext);
+
   return (
     <Router>
       <Routes>
