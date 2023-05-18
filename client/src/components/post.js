@@ -178,7 +178,7 @@ const Post = ({ data }) => {
                 />
               </div>
               <div className="profile-name">
-                <p>{user.firstName}</p>
+                <p>{user.firstName + " " + currentUser.lastName}</p>
                 <p className="uploded-time">45 mins ago</p>
               </div>
             </div>
