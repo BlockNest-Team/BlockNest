@@ -1,10 +1,14 @@
-import React from 'react'
-import '../styles/components/about.scss'
+import React, { useState, useContext } from "react";
+import "../styles/components/about.scss";
 
-const about = () => {
+import { AuthContext } from "../context/AuthContext";
+
+const About = () => {
+  const { user: currentUser } = useContext(AuthContext);
+  const [user, setUser] = useState({});
+  console.log(currentUser.email);
   return (
     <div className="card about">
-
       <div className="about-content">
         <div className="card-heading">
           <h1>About</h1>
@@ -16,21 +20,20 @@ const about = () => {
           </div>
           <div className="group d-flex-align-center">
             <h1>Occupation:</h1>
-            <p>Software Developer</p>
+            <p>{currentUser.occupation}</p>
           </div>
-          <div className="group d-flex-align-center">
+          {/* <div className="group d-flex-align-center">
             <h1>Date of Birth:</h1>
-            <p>12th May 2023</p>
-          </div>
+            <p>{currentUser.DateOfBirth}</p>
+          </div> */}
           <div className="group d-flex-align-center">
             <h1>Email:</h1>
-            <p>test@gmail.com</p>
+            <p>{currentUser.email}</p>
           </div>
         </div>
-
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default about
+export default About;
