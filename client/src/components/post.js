@@ -158,7 +158,7 @@ const Post = ({ data }) => {
           </div>
           <div className="post-text">{data.desc}</div>
           <div className="post-image">
-            <img src={data.img} alt="three-dot-icon" />
+            <img src={PF + data.img} alt="three-dot-icon" />
           </div>
         </div>
         <div className="post-content-footer">
