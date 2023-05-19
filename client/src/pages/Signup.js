@@ -20,7 +20,7 @@ const Register = () => {
 
   const navigate = useNavigate();
   const navigateToHome = () => {
-    navigate("/home");
+    navigate("/");
   };
 
   const registerUser = async () => {
