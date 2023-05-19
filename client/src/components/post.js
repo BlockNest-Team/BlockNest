@@ -157,9 +157,11 @@ const Post = ({ data }) => {
             </div>
           </div>
           <div className="post-text">{data.desc}</div>
-          <div className="post-image">
-            <img src={PF + data.img} alt="three-dot-icon" />
-          </div>
+          {data.img && (
+            <div className="post-image">
+              <img src={PF + data.img} alt="post-image" />
+            </div>
+          )}
         </div>
         <div className="post-content-footer">
           <div className="post-stats d-flex-justify-between">
