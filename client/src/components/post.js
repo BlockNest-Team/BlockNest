@@ -46,11 +46,13 @@ const Post = ({ data }) => {
     };
     fetchUser();
 
+    setLikeCount(data.likes.length); // Update the initial like count
+
     if (data.likes.includes(currentUser._id)) {
       setLiked(true);
-      setLikeCount(data.likes.length);
     }
   }, [data.userId, data.likes, currentUser._id]);
+
 
 
   const handleLikeClick = () => {
