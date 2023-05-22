@@ -15,6 +15,7 @@ import PrivacyAndSecurity from "./pages/PrivacyAndSecurity";
 import HelpAndSupport from "./pages/HelpAndSupport";
 import Feedback from "./pages/Feedback";
 import NotFound from "./pages/NotFound";
+import StableDiffusion from "./pages/StableDiffusion";
 // import { AuthContext } from "./context/AuthContext";
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
         />
         <Route exact path="/help-and-support" element={<HelpAndSupport />} />
         <Route exact path="/feedback" element={<Feedback />} />
+        <Route exact path="/s" element={<StableDiffusion />} />
         <Route exact path="/not-found" element={<NotFound />} />
         <Route path="*" element={<Navigate replace to="/not-found" />} />
       </Routes>
