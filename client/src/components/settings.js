@@ -38,7 +38,9 @@ const Settings = () => {
             </Link>
           </li>
           <li>
-            <p>Log out</p>
+            <Link to="/">
+              <p>Log out</p>
+            </Link>
           </li>
         </ul>
       </div>

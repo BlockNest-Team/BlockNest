@@ -2,6 +2,7 @@
 
 # dependencies
 node_modules
+contract
 /.pnp
 .pnp.js
 
@@ -23,3 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 ./node_modules
+./contract

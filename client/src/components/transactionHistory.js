@@ -13,7 +13,7 @@ const TransactionHistory = () => {
       const contract = await getBlockNestContract(web3);
       const accounts = await web3.eth.getAccounts();
       const Transactions = await contract.methods
-        .getMyRequests(accounts[0])
+        .getMyHistory(accounts[0])
         .call();
 
       // Transform the structure of arrays into an array of objects
