@@ -23,7 +23,7 @@ const Navbar = () => {
 
   useEffect(() => {
     getCurrentWalletConnected();
-    // addWalletListener();
+    addWalletListener();
     // add things todo whenaccount is changed
   }, [walletAddress]);
 

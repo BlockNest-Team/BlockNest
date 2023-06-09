@@ -21,12 +21,14 @@ import axios from "axios";
 
 const { ethereum } = window;
 
-const Wallet = ({ currentPage }) => {
+const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
   // wallet portion implementation start
   // const [balance, setBalance] = useState("");
   const [balance, setBalance] = useState("...");
   const [address, setAddress] = useState("");
   const [payRequests, setPayRequests] = useState(2);
+
+  // requests["0"].length
 
   // function disconnectAndSetNull() {
   //   // disconnect();
@@ -330,7 +332,8 @@ const Wallet = ({ currentPage }) => {
     event.target.reset();
 
     // Increment the number of pay requests
-    setPayRequests((prevRequests) => prevRequests + 1);
+    // setPayRequests(requests["0"].length);
+    setPayRequests(payRequests + 1);
 
     // Close the pay request modal
     setshowPayRequestModal(false);
