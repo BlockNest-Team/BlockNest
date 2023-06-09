@@ -1,0 +1,30 @@
+@import "../theme/theme.scss";
+
+.not-found-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+
+  .content {
+    text-align: center;
+
+    .title {
+      font-size: 6rem;
+      color: #6c757d;
+    }
+
+    .subtitle {
+      font-size: 2rem;
+      color: #6c757d;
+      padding-bottom: 2rem;
+    }
+
+    .home-link {
+      color: #ffffff;
+
+
+    }
+  }
+}

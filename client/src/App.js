@@ -16,33 +16,33 @@ import HelpAndSupport from "./pages/HelpAndSupport";
 import Feedback from "./pages/Feedback";
 import NotFound from "./pages/NotFound";
 import StableDiffusion from "./pages/StableDiffusion";
-// import { AuthContext } from "./context/AuthContext";
+import { AuthContext } from "./context/AuthContext";
+
 
 function App() {
-  // const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return (
     <Router>
       <Routes>
-        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/home" element={user ? <Home /> : <Login />} />
         <Route exact path="/" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
-        <Route exact path="/wallet" element={<ViewWallet />} />
+        <Route exact path="/wallet" element={user ? <ViewWallet /> : <Login />} />
         <Route
           exact
           path="/otherprofile/:walletaddress"
-          element={<FriendProfile />}
+          element={user ? <FriendProfile /> : <Login />}
         />
-        {/* <Route exact path="/profile/:firstName" element={<MyProfile />} /> */}
-        <Route exact path="/profile" element={<MyProfile />} />
+        <Route exact path="/profile" element={user ? <MyProfile /> : <Login />} />
         <Route
           exact
           path="/privacy-and-security"
-          element={<PrivacyAndSecurity />}
+          element={user ? <PrivacyAndSecurity /> : <Login />}
         />
-        <Route exact path="/help-and-support" element={<HelpAndSupport />} />
-        <Route exact path="/feedback" element={<Feedback />} />
-        <Route exact path="/s" element={<StableDiffusion />} />
+        <Route exact path="/help-and-support" element={user ? <HelpAndSupport /> : <Login />} />
+        <Route exact path="/feedback" element={user ? <Feedback /> : <Login />} />
+        <Route exact path="/s" element={user ? <StableDiffusion /> : <Login />} />
         <Route exact path="/not-found" element={<NotFound />} />
         <Route path="*" element={<Navigate replace to="/not-found" />} />
       </Routes>
