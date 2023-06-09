@@ -87,7 +87,7 @@ const PostUpload = () => {
       try {
         await axios.post("/upload", data);
         console.log("File uploaded successfully " + data);
-      } catch (err) { }
+      } catch (err) {}
     }
     try {
       await axios.post("/posts", newPost);
@@ -126,10 +126,10 @@ const PostUpload = () => {
     console.log(tx.transactionHash);
     alert(
       "nft minted successfully at" +
-      tx.transactionHash +
-      "\n" +
-      "check it at https://sepolia.etherscan.io/tx/" +
-      tx.transactionHash
+        tx.transactionHash +
+        "\n" +
+        "check it at https://sepolia.etherscan.io/tx/" +
+        tx.transactionHash
     );
 
     const newPost = {
@@ -147,7 +147,7 @@ const PostUpload = () => {
       try {
         await axios.post("/upload", data);
         console.log("File uploaded successfully " + data);
-      } catch (err) { }
+      } catch (err) {}
     }
     try {
       await axios.post("/posts", newPost);
