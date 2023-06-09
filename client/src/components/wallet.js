@@ -26,7 +26,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
   // const [balance, setBalance] = useState("");
   const [balance, setBalance] = useState("...");
   const [address, setAddress] = useState("");
-  const [payRequests, setPayRequests] = useState(2);
+  const [payRequests, setPayRequests] = useState([]);
 
   // requests["0"].length
 
@@ -107,6 +107,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
   };
   const openPayRequestModal = () => {
     setshowPayRequestModal(true);
+    console.log("pay request modal", requests)
   };
 
   const closeModal = () => {
@@ -317,6 +318,10 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
       return newPayRequestData;
     });
   };
+  useEffect(() => {
+    // Update the payRequests state based on the length of requests array
+    setPayRequests(Object.keys(requests).length);
+  }, [requests]);
 
   const handleRequestFormSubmit = (event) => {
     event.preventDefault();
@@ -332,8 +337,9 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
     event.target.reset();
 
     // Increment the number of pay requests
-    // setPayRequests(requests["0"].length);
-    setPayRequests(payRequests + 1);
+    // setPayRequests(requests.length);
+    // setPayRequests(requests + 1);
+
 
     // Close the pay request modal
     setshowPayRequestModal(false);
@@ -367,13 +373,13 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
           {(currentPage === "/home" ||
             currentPage === "/profile" ||
             currentPage === "/myprofile") && (
-            <Link to="/wallet">
-              <button className="btn d-flex-center">
-                <img className="wallet-icon" src={walletIcon} alt="wallet" />
-                <span>View Wallet</span>
-              </button>
-            </Link>
-          )}
+              <Link to="/wallet">
+                <button className="btn d-flex-center">
+                  <img className="wallet-icon" src={walletIcon} alt="wallet" />
+                  <span>View Wallet</span>
+                </button>
+              </Link>
+            )}
           {/* Render Send and Request buttons only when on VIEWWALLET page */}
           {currentPage === "/wallet" && (
             <div className="button-container d-flex-col-align-center">
@@ -475,7 +481,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
                     type="text"
                     name="receiverAddress"
                     id="receiverAddress"
-                    // readOnly
+                  // readOnly
                   />
                 </div>
                 <div className="formgroup">

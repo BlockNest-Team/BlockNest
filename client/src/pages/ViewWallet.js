@@ -41,7 +41,7 @@ const ViewWallet = () => {
 
   async function getNameAndBalance() {
     console.log("moralis address " + address);
-
+    console.log("no. of request", requests);
     const res = await axios.get(`http://localhost:8800/getNameAndBalance`, {
       params: { userAddress: address },
     });
@@ -73,7 +73,10 @@ const ViewWallet = () => {
       <div className="page-wrapper">
         <div className="grid-container">
           <div className="grid-left">
-            <Wallet currentPage={currentPage} />
+            <Wallet currentPage={currentPage}
+              requests={requests}
+              getNameAndBalance={getNameAndBalance}
+            />
           </div>
           <div className="grid-left">
             <TransactionHistory history={history} />
