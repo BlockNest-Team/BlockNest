@@ -16,15 +16,49 @@ import payIcon from "../assets/svgs/pay.svg";
 import "../styles/components/wallet.scss";
 // import walletData from "./../data/wallet.json";
 import Popup from "./dynamicPopup";
-import jsonData from '../data/payRequestData.json'
+import jsonData from "../data/payRequestData.json";
+import axios from "axios";
 
 const { ethereum } = window;
 
 const Wallet = ({ currentPage }) => {
   // wallet portion implementation start
-  const [balance, setBalance] = useState("");
+  // const [balance, setBalance] = useState("");
+  const [balance, setBalance] = useState("...");
   const [address, setAddress] = useState("");
   const [payRequests, setPayRequests] = useState(2);
+
+  // function disconnectAndSetNull() {
+  //   // disconnect();
+  //   setName("...");
+  //   setBalance("...");
+  //   // setDollars("...");
+  //   setHistory(null);
+  //   setRequests({ 1: [0], 0: [] });
+  // }
+
+  useEffect(() => {
+    const fetchAccountData = async () => {
+      try {
+        const web3 = await getWeb3();
+        const accounts = await web3.eth.getAccounts();
+        const userAddress = accounts[0];
+        const userBalance = await web3.eth.getBalance(userAddress);
+        setAddress(userAddress);
+        setBalance(web3.utils.fromWei(userBalance, "ether"));
+      } catch (error) {
+        console.error("Error fetching account data:", error.message);
+      }
+    };
+
+    fetchAccountData();
+  }, []);
+
+  // call it on page load
+  // useEffect(() => {
+  //   getNameAndBalance();
+  // }, []);
+
   // const [payRequestData, setPayRequestData] = useState({
   //   senderAddress: "Dummy Sender Address",
   //   receiverAddress: "Dummy Receiver Address",
@@ -38,23 +72,6 @@ const Wallet = ({ currentPage }) => {
     setPayRequestData(jsonData);
   }, []);
 
-  useEffect(() => {
-    const fetchAccountData = async () => {
-      try {
-        const web3 = await getWeb3();
-        const accounts = await web3.eth.getAccounts();
-        const userAddress = accounts[0];
-        const userBalance = await web3.eth.getBalance(userAddress);
-
-        setAddress(userAddress);
-        setBalance(web3.utils.fromWei(userBalance, "ether"));
-      } catch (error) {
-        console.error("Error fetching account data:", error.message);
-      }
-    };
-
-    fetchAccountData();
-  }, []);
   //****************** */ web3 stuff start  *************8888
 
   //****************** */ web3 stuff end  ******************
@@ -289,7 +306,7 @@ const Wallet = ({ currentPage }) => {
     // closeModal();
     // setPopupStatus("payment failed");
     // setShowPopup(true);
-    setPayRequestData(prevState => {
+    setPayRequestData((prevState) => {
       let newPayRequestData = [...prevState];
       newPayRequestData.splice(index, 1);
       if (newPayRequestData.length === 0) {
@@ -344,7 +361,9 @@ const Wallet = ({ currentPage }) => {
         </div>
         <div className="button-container d-flex-align-center">
           {/* Render View Wallet button only when on home page */}
-          {(currentPage === "/home" || currentPage === "/profile" || currentPage === "/myprofile") && (
+          {(currentPage === "/home" ||
+            currentPage === "/profile" ||
+            currentPage === "/myprofile") && (
             <Link to="/wallet">
               <button className="btn d-flex-center">
                 <img className="wallet-icon" src={walletIcon} alt="wallet" />
@@ -360,12 +379,20 @@ const Wallet = ({ currentPage }) => {
                   <img src={sendIcon} alt="send" />
                   <span>Send</span>
                 </button>
-                <button className="btn d-flex-center" onClick={openReceiveModal}>
+                <button
+                  className="btn d-flex-center"
+                  onClick={openReceiveModal}
+                >
                   <img className="recieve-icon" src={sendIcon} alt="receive" />
                   <span>Request</span>
                 </button>
+                ِ
               </div>
-              <button className="btn d-flex-center" onClick={openPayRequestModal} disabled={payRequestData.length === 0}>
+              <button
+                className="btn d-flex-center"
+                onClick={openPayRequestModal}
+                disabled={payRequestData.length === 0}
+              >
                 <div className="pay-request-circle">{payRequests}</div>
                 <img className="pay-icon" src={payIcon} alt="receive" />
                 <span>Pay</span>
@@ -430,32 +457,27 @@ const Wallet = ({ currentPage }) => {
             <div className="request-crypto-content d-flex-center">
               <form onSubmit={handleRequestFormSubmit}>
                 <div className="formgroup">
-                  <label htmlFor="senderAddress">Sender’s Address</label>
+                  <label htmlFor="senderAddress">Requester Address</label>
                   <input
                     type="text"
                     name="senderAddress"
                     id="senderAddress"
+                    value={address}
                     required
                   />
                 </div>
                 <div className="formgroup">
-                  <label htmlFor="receiverAddress">Reciever’s Address</label>
+                  <label htmlFor="receiverAddress">Payer Address</label>
                   <input
                     type="text"
                     name="receiverAddress"
                     id="receiverAddress"
-                    value={address}
-                    readOnly
+                    // readOnly
                   />
                 </div>
                 <div className="formgroup">
                   <label htmlFor="message">Message</label>
-                  <input
-                    type="text"
-                    name="message"
-                    id="message"
-                    required
-                  />
+                  <input type="text" name="message" id="message" required />
                 </div>
                 <div className="formgroup">
                   <label htmlFor="amount">Amount</label>
@@ -486,9 +508,14 @@ const Wallet = ({ currentPage }) => {
           content={
             <div className="request-crypto-content d-flex-col d-flex-center">
               {payRequestData.map((request, index) => (
-                <form key={index} onSubmit={(e) => handleSendFormSubmitR(e, index)}>
+                <form
+                  key={index}
+                  onSubmit={(e) => handleSendFormSubmitR(e, index)}
+                >
                   <div className="formgroup">
-                    <label htmlFor={`senderAddress${index}`}>Sender’s Address</label>
+                    <label htmlFor={`senderAddress${index}`}>
+                      Payer Address
+                    </label>
                     <input
                       type="text"
                       name={`senderAddress${index}`}
@@ -498,7 +525,9 @@ const Wallet = ({ currentPage }) => {
                     />
                   </div>
                   <div className="formgroup">
-                    <label htmlFor={`receiverAddress${index}`}>Reciever’s Address</label>
+                    <label htmlFor={`receiverAddress${index}`}>
+                      Requester Address
+                    </label>
                     <input
                       type="text"
                       name={`receiverAddress${index}`}
@@ -540,8 +569,6 @@ const Wallet = ({ currentPage }) => {
           }
         />
       )}
-
-
 
       {showPopup && (
         <Popup status={popupStatus} onClose={() => setShowPopup(false)} />

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import "../styles/components/transactionHistory.scss";
 import transactionHistoryData from "../data/transactionHistory.json";
 import { getWeb3, getBlockNestContract } from "../utils/blockNestContract.js";
+import { Card, Table } from "antd";
 
-const TransactionHistory = () => {
+const TransactionHistory = ({ history }) => {
   const [transactions, setTransactions] = useState([]);
 
   const getTransactions = async () => {
@@ -15,16 +16,6 @@ const TransactionHistory = () => {
       const Transactions = await contract.methods
         .getMyRequests(accounts[0])
         .call();
-
-      // Transform the structure of arrays into an array of objects
-      const transformedTransactions = Transactions[0].map((_, index) => ({
-        requestor: Transactions[0][index],
-        amount: Transactions[1][index],
-        message: Transactions[2][index],
-        name: Transactions[3][index],
-      }));
-      console.log("Transformed Transactions", transformedTransactions);
-      setTransactions(transformedTransactions);
 
       // .then(function (response_, error) {
       //   if (error) {
@@ -76,40 +67,87 @@ const TransactionHistory = () => {
   //   // setTransactions(data.transactions);
   // }, []);
 
-  console.log(transactions); // make sure the transactions are being set correctly
+  // console.log(transactions); // make sure the transactions are being set correctly
+
+  // morali way
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "subject",
+      key: "subject",
+    },
+    {
+      title: "Type",
+      dataIndex: "type",
+      key: "type",
+    },
+    {
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
+    },
+
+    {
+      title: "Message",
+      dataIndex: "message",
+      key: "message",
+    },
+    {
+      title: "Amount",
+      key: "amount",
+      render: (_, record) => (
+        <div
+          style={record.type === "Send" ? { color: "red" } : { color: "green" }}
+        >
+          {record.type === "Send" ? "-" : "+"}
+          {record.amount} ETH
+        </div>
+      ),
+    },
+  ];
 
   return (
-    <div className="card">
-      <div className="transaction-history">
-        <div className="card-heading">
-          <h1>Transaction History</h1>
-        </div>
-        <div className="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Amount</th>
-                <th>Type</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {transactions.map((transaction, index) => (
-                <tr key={index}>
-                  <td>{transaction.requestor}</td>
-                  <td>{transaction.amount}</td>
-                  <td>{transaction.message}</td>
-                  <td>{transaction.name}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    // <div className="card">
+    //   <div className="transaction-history">
+    //     <div className="card-heading">
+    //       <h1>Transaction History</h1>
+    //     </div>
+    //     <div className="table-container">
+    //       <table>
+    //         <thead>
+    //           <tr>
+    //             <th>Date</th>
+    //             <th>Date</th>
+    //             <th>Time</th>
+    //             <th>Amount</th>
+    //             <th>Type</th>
+    //             <th>Status</th>
+    //           </tr>
+    //         </thead>
+    //         <tbody>
+    //           {transactions.map((transaction, index) => (
+    //             <tr key={index}>
+    //               <td>{transaction.requestor}</td>
+    //               <td>{transaction.amount}</td>
+    //               <td>{transaction.message}</td>
+    //               <td>{transaction.name}</td>
+    //             </tr>
+    //           ))}
+    //         </tbody>
+    //       </table>
+    //     </div>
+    //   </div>
+    // </div>
+
+    <Card title="Recent Activity" style={{ width: "100%", minHeight: "663px" }}>
+      {history && (
+        <Table
+          dataSource={history}
+          columns={columns}
+          pagination={{ position: ["bottomCenter"], pageSize: 8 }}
+        />
+      )}
+    </Card>
   );
 };
 

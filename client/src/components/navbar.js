@@ -23,7 +23,7 @@ const Navbar = () => {
 
   useEffect(() => {
     getCurrentWalletConnected();
-    addWalletListener();
+    // addWalletListener();
     // add things todo whenaccount is changed
   }, [walletAddress]);
 
@@ -72,7 +72,7 @@ const Navbar = () => {
     if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
       window.ethereum.on("accountsChanged", (accounts) => {
         setWalletAddress(accounts[0]);
-        console.log(accounts[0]);
+        // console.log(accounts[0]);
       });
     } else {
       /* MetaMask is not installed */

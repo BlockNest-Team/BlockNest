@@ -11,6 +11,7 @@ const postRoute = require("./Routes/posts");
 const router = express.Router();
 const path = require("path");
 const Moralis = require("moralis").default;
+const cors = require("cors");
 // const ABI = require("./abi.json");
 
 const ABI = [
@@ -409,6 +410,7 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+app.use(cors());
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
