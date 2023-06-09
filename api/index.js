@@ -432,6 +432,22 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 
+// Moralis
+
+// convert object to array
+function convertArrayToObjects(arr) {
+  const dataArray = arr.map((transaction, index) => ({
+    key: (arr.length + 1 - index).toString(),
+    type: transaction[0],
+    amount: transaction[1],
+    message: transaction[2],
+    address: `${transaction[3].slice(0, 4)}...${transaction[3].slice(0, 4)}`,
+    subject: transaction[4],
+  }));
+
+  return dataArray.reverse();
+}
+
 app.get("/getNameAndBalance", async (req, res) => {
   const { userAddress } = req.query;
 
@@ -444,12 +460,55 @@ app.get("/getNameAndBalance", async (req, res) => {
   });
 
   const jsonResponseName = response.raw;
+
+  const secResponse = await Moralis.EvmApi.balance.getNativeBalance({
+    chain: "0xaa36a7",
+    address: userAddress,
+  });
+
+  const jsonResponseBal = (secResponse.raw.balance / 1e18).toFixed(2);
+
+  // const thirResponse = await Moralis.EvmApi.token.getTokenPrice({
+  //   address: "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
+  // });
+
+  // const jsonResponseDollars = (
+  //   thirResponse.raw.usdPrice * jsonResponseBal
+  // ).toFixed(2);
+
+  // user history
+  const fourResponse = await Moralis.EvmApi.utils.runContractFunction({
+    chain: "0xaa36a7",
+    address: "0xbD4b2B88E05755a7ea9B680268fC33d7ec09f69E",
+    functionName: "getMyHistory",
+    abi: ABI,
+    params: { _user: userAddress },
+  });
+
+  const jsonResponseHistory = convertArrayToObjects(fourResponse.raw); // conversion toa rray for the table
+
+  const fiveResponse = await Moralis.EvmApi.utils.runContractFunction({
+    chain: "0xaa36a7",
+    address: "0xbD4b2B88E05755a7ea9B680268fC33d7ec09f69E",
+    functionName: "getMyRequests",
+    abi: ABI,
+    params: { _user: userAddress },
+  });
+
+  const jsonResponseRequests = fiveResponse.raw;
+
   const jsonResponse = {
     name: jsonResponseName,
+    balance: jsonResponseBal,
+    // dollars: jsonResponseDollars,
+    history: jsonResponseHistory,
+    requests: jsonResponseRequests,
   };
   return res.status(200).json(jsonResponse);
   // return res.json(jsonResponse);
 });
+
+// Moralis ends
 
 Moralis.start({
   apiKey: "I5XGTR3zGtU6d7wWZdlua9BxVCQOrMAg13kUYvk0A8mVYBoFkVXqQilGMdApoRFb",
