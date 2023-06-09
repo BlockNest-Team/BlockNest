@@ -107,7 +107,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
   };
   const openPayRequestModal = () => {
     setshowPayRequestModal(true);
-    console.log("pay request modal", requests)
+    console.log("pay request modal", requests);
   };
 
   const closeModal = () => {
@@ -320,7 +320,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
   };
   useEffect(() => {
     // Update the payRequests state based on the length of requests array
-    setPayRequests(Object.keys(requests).length);
+    // setPayRequests(Object.keys(requests[0]).length);
   }, [requests]);
 
   const handleRequestFormSubmit = (event) => {
@@ -339,7 +339,6 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
     // Increment the number of pay requests
     // setPayRequests(requests.length);
     // setPayRequests(requests + 1);
-
 
     // Close the pay request modal
     setshowPayRequestModal(false);
@@ -373,13 +372,13 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
           {(currentPage === "/home" ||
             currentPage === "/profile" ||
             currentPage === "/myprofile") && (
-              <Link to="/wallet">
-                <button className="btn d-flex-center">
-                  <img className="wallet-icon" src={walletIcon} alt="wallet" />
-                  <span>View Wallet</span>
-                </button>
-              </Link>
-            )}
+            <Link to="/wallet">
+              <button className="btn d-flex-center">
+                <img className="wallet-icon" src={walletIcon} alt="wallet" />
+                <span>View Wallet</span>
+              </button>
+            </Link>
+          )}
           {/* Render Send and Request buttons only when on VIEWWALLET page */}
           {currentPage === "/wallet" && (
             <div className="button-container d-flex-col-align-center">
@@ -481,7 +480,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
                     type="text"
                     name="receiverAddress"
                     id="receiverAddress"
-                  // readOnly
+                    // readOnly
                   />
                 </div>
                 <div className="formgroup">
