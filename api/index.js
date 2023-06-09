@@ -447,7 +447,9 @@ function convertArrayToObjects(arr) {
 
   return dataArray.reverse();
 }
-
+//
+// move this route to another file
+//
 app.get("/getNameAndBalance", async (req, res) => {
   const { userAddress } = req.query;
 
@@ -511,7 +513,7 @@ app.get("/getNameAndBalance", async (req, res) => {
 // Moralis ends
 
 Moralis.start({
-  apiKey: "I5XGTR3zGtU6d7wWZdlua9BxVCQOrMAg13kUYvk0A8mVYBoFkVXqQilGMdApoRFb",
+  apiKey: "I5XGTR3zGtU6d7wWZdlua9BxVCQOrMAg13kUYvk0A8mVYBoFkVXqQilGMdApoRFb", // add this in env file
 }).then(() => {
   app.listen(8800, () => {
     console.log(
