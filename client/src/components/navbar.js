@@ -199,6 +199,8 @@ const Navbar = () => {
 
   useEffect(() => {
     getCurrentWalletConnected();
+    addWalletListener();
+    // add things todo whenaccount is changed
   }, [walletAddress]);
 
   const connectWallet = async () => {
