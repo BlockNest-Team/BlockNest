@@ -2,7 +2,7 @@ import Web3 from "web3";
 import detectEthereumProvider from "@metamask/detect-provider";
 // import abi from "./BlockNestABI.json"; // Import ABI from JSON file
 
-const contractAddress = "0xbD4b2B88E05755a7ea9B680268fC33d7ec09f69E"; // Replace with your contract address
+const contractAddress = "0xbD4b2B88E05755a7ea9B680268fC33d7ec09f69E"; //contract address
 const abi = [
   {
     inputs: [
