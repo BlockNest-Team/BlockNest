@@ -533,6 +533,7 @@ app.get("/getNameAndBalance", async (req, res) => {
 app.post("/generate", async (req, res) => {
   const prompt = req.body.params.prompt;
   const guidaSCalendar = req.body.params.guidanceScale;
+  const nega = req.body.params.negativePrompt;
   // console.log(prompt);
 
   const replicate = new Replicate({
@@ -543,10 +544,11 @@ app.post("/generate", async (req, res) => {
   const model =
     "stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf";
   // console.log("prompt", prompt);
-  console.log("guidanceScale", guidaSCalendar);
+  console.log("guidanceScale", guidaSCalendar, nega);
   const input = {
     prompt: prompt,
     guidanceScale: guidaSCalendar,
+    negative_prompt: nega,
   };
 
   try {

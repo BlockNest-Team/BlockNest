@@ -57,50 +57,23 @@ const StableDiffusion = () => {
 
     // const data = Object.fromEntries(formData.entries());
     const formData = new FormData(e.target);
-    const { prompt, guidanceScale, seed } = Object.fromEntries(
+    const { prompt, guidanceScale, negativePrompt, seed } = Object.fromEntries(
       formData.entries()
     );
 
     console.log("values for:  " + prompt, guidanceScale, seed);
 
     const res = await axios.post(`http://localhost:8800/generate`, {
-      params: { prompt: prompt, guidanceScale: guidanceScale },
+      params: {
+        prompt: prompt,
+        guidanceScale: guidanceScale,
+        negativePrompt: negativePrompt,
+      },
     });
 
     const response = res.data.output[0];
     console.log(response);
     setSrsAddress(response);
-
-    // as {prompt: String, guidanceScale: String, seed: String};
-    //   const response = await fetch("/api/predictions", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       prompt,
-    //       guidance_scale: parseInt(guidanceScale),
-    //       seed: parseInt(seed),
-    //     }),
-    //   });
-    //   let prediction = await response.json();
-
-    //   if (response.status !== 201) {
-    //     setError(prediction.detail);
-    //     return;
-    //   }
-    //   setPrediction(prediction);
-    //   const timer = setInterval(async () => {
-    //     const response = await fetch("/api/predictions" + prediction.id);
-    //     let prediction = await response.json();
-    //     if (response.status !== 200) {
-    //       setError(prediction.detail);
-    //       return;
-    //     }
-    //     if (prediction.status === "succeeded") {
-    //       clearInterval(timer);
-    //     }
-    //   }, 1000);
   };
 
   const handleReset = () => {
@@ -110,7 +83,7 @@ const StableDiffusion = () => {
       negativePrompt: "",
       numOutputs: 1,
       numInferenceSteps: 1,
-      guidanceScale: 1,
+      guidanceScale: 10,
       scheduler: "",
       seed: "",
     });
@@ -145,7 +118,7 @@ const StableDiffusion = () => {
           {/* Add options for image dimensions */}
           {/* </select> */}
           {/* </div> */}
-          {/* <div className="form-group">
+          <div className="form-group">
             <label htmlFor="negativePrompt">Negative Prompt</label>
             <input
               type="text"
@@ -156,7 +129,7 @@ const StableDiffusion = () => {
               required
             />
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="numOutputs">Number of Outputs</label>
             <input
               type="range"
@@ -169,8 +142,8 @@ const StableDiffusion = () => {
               required
             />
             <span>{formData.numOutputs}</span>
-          </div>
-          <div className="form-group">
+          </div> */}
+          {/* <div className="form-group">
             <label htmlFor="numInferenceSteps">Number of Inference Steps</label>
             <input
               type="range"
