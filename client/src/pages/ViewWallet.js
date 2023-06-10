@@ -73,7 +73,8 @@ const ViewWallet = () => {
       <div className="page-wrapper">
         <div className="grid-container">
           <div className="grid-left">
-            <Wallet currentPage={currentPage}
+            <Wallet
+              currentPage={currentPage}
               requests={requests}
               getNameAndBalance={getNameAndBalance}
             />

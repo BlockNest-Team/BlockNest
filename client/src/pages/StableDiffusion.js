@@ -5,6 +5,7 @@ import axios from "axios";
 
 import Replicate from "replicate";
 import fetch from "cross-fetch";
+import Navbar from "../components/navbar";
 
 const StableDiffusion = () => {
   const [prediction, setPrediction] = useState(null);
@@ -90,22 +91,24 @@ const StableDiffusion = () => {
   };
 
   return (
-    <div className="responsive-page">
-      <div className="form-container">
-        <form className="input-form" onSubmit={handleSubmit}>
-          <h2 className="input-heading">Input</h2>
-          <div className="form-group">
-            <label htmlFor="prompt">Prompt</label>
-            <input
-              type="text"
-              id="prompt"
-              name="prompt"
-              value={formData.prompt}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          {/* <div className="form-group">
+    <>
+      <Navbar />
+      <div className="responsive-page">
+        <div className="form-container">
+          <form className="input-form" onSubmit={handleSubmit}>
+            <h2 className="input-heading">Input</h2>
+            <div className="form-group">
+              <label htmlFor="prompt">Prompt</label>
+              <input
+                type="text"
+                id="prompt"
+                name="prompt"
+                value={formData.prompt}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            {/* <div className="form-group">
             <label htmlFor="imageDimensions">Image Dimensions</label>
             <select
               id="imageDimensions"
@@ -115,21 +118,21 @@ const StableDiffusion = () => {
               required
             >
               <option value="">-- Select --</option> */}
-          {/* Add options for image dimensions */}
-          {/* </select> */}
-          {/* </div> */}
-          <div className="form-group">
-            <label htmlFor="negativePrompt">Negative Prompt</label>
-            <input
-              type="text"
-              id="negativePrompt"
-              name="negativePrompt"
-              value={formData.negativePrompt}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          {/* <div className="form-group">
+            {/* Add options for image dimensions */}
+            {/* </select> */}
+            {/* </div> */}
+            <div className="form-group">
+              <label htmlFor="negativePrompt">Negative Prompt</label>
+              <input
+                type="text"
+                id="negativePrompt"
+                name="negativePrompt"
+                value={formData.negativePrompt}
+                onChange={handleChange}
+                // required
+              />
+            </div>
+            {/* <div className="form-group">
             <label htmlFor="numOutputs">Number of Outputs</label>
             <input
               type="range"
@@ -143,7 +146,7 @@ const StableDiffusion = () => {
             />
             <span>{formData.numOutputs}</span>
           </div> */}
-          {/* <div className="form-group">
+            {/* <div className="form-group">
             <label htmlFor="numInferenceSteps">Number of Inference Steps</label>
             <input
               type="range"
@@ -157,21 +160,21 @@ const StableDiffusion = () => {
             />
             <span>{formData.numInferenceSteps}</span>
           </div> */}
-          <div className="form-group">
-            <label htmlFor="guidanceScale">Guidance Scale</label>
-            <input
-              type="range"
-              id="guidanceScale"
-              name="guidanceScale"
-              min={1}
-              max={20}
-              value={formData.guidanceScale}
-              onChange={handleChange}
-              required
-            />
-            <span>{formData.guidanceScale}</span>
-          </div>
-          {/* <div className="form-group">
+            <div className="form-group">
+              <label htmlFor="guidanceScale">Guidance Scale</label>
+              <input
+                type="range"
+                id="guidanceScale"
+                name="guidanceScale"
+                min={1}
+                max={20}
+                value={formData.guidanceScale}
+                onChange={handleChange}
+                // required
+              />
+              <span>{formData.guidanceScale}</span>
+            </div>
+            {/* <div className="form-group">
             <label htmlFor="scheduler">Scheduler</label>
             <select
               id="scheduler"
@@ -181,54 +184,55 @@ const StableDiffusion = () => {
               required
             >
               <option value="">-- Select --</option> */}
-          {/* Add options for scheduler */}
-          {/* </select>
+            {/* Add options for scheduler */}
+            {/* </select>
           </div> */}
-          <div className="form-group">
-            <label htmlFor="seed">Seed</label>
-            <input
-              type="number"
-              id="seed"
-              name="seed"
-              value={formData.seed}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-actions">
-            <button type="submit">Submit</button>
-            <button type="button" onClick={handleReset}>
-              Reset
-            </button>
-          </div>
-        </form>
-        {/* <div className="output-container"> */}
-        {/* <img
+            <div className="form-group">
+              <label htmlFor="seed">Seed</label>
+              <input
+                type="number"
+                id="seed"
+                name="seed"
+                value={formData.seed}
+                onChange={handleChange}
+                // required
+              />
+            </div>
+            <div className="form-actions">
+              <button type="submit">Submit</button>
+              <button type="button" onClick={handleReset}>
+                Reset
+              </button>
+            </div>
+          </form>
+          {/* <div className="output-container"> */}
+          {/* <img
           // src={prediction.output[0]}
           src={srsAddress}
           alt="output"
           width={512}
           height={512}
         /> */}
-        {/* <p>url : {srsAddress}</p> */}
-        {/* </div> */}
-      </div>
-      <div className="output-container">
-        <div className="output-section">
-          <h2 className="output-heading">Output</h2>
-          <img
-            // src={prediction.output[0]}
-            src={srsAddress}
-            alt="output"
-            width={512}
-            height={512}
-          />
-          <p>url : {srsAddress}</p>
+          {/* <p>url : {srsAddress}</p> */}
+          {/* </div> */}
+        </div>
+        <div className="output-container">
+          <div className="output-section">
+            <h2 className="output-heading">Output</h2>
+            <img
+              // src={prediction.output[0]}
+              src={srsAddress}
+              alt="output"
+              width={512}
+              height={512}
+            />
+            <p>url : {srsAddress}</p>
 
-          {/* Display the image and its heading here */}
+            {/* Display the image and its heading here */}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
