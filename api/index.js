@@ -12,6 +12,8 @@ const router = express.Router();
 const path = require("path");
 const Moralis = require("moralis").default;
 const cors = require("cors");
+const Replicate = require("replicate");
+const fetch = require("cross-fetch");
 // const ABI = require("./abi.json");
 
 const ABI = [
@@ -435,6 +437,20 @@ app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 
 // Moralis
+// const replicate = new Replicate({
+//   auth: "r8_2n8unrY0V9ZG8eSDNKV0YBnIUodk8Jo0eWrZJ",
+//   fetch: fetch,
+// });
+
+// const model =
+//   "stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf";
+// const input = {
+//   prompt: "an eagle, hd, dramatic lighting, detailed",
+// };
+// replicate.run(model, { input }).then((output) => {
+//   console.log(output);
+//   // ['https://replicate.com/api/models/stability-ai/stable-diffusion/files/50fcac81-865d-499e-81ac-49de0cb79264/out-0.png']
+// });
 
 // convert object to array
 function convertArrayToObjects(arr) {
@@ -513,6 +529,29 @@ app.get("/getNameAndBalance", async (req, res) => {
 });
 
 // Moralis ends
+
+app.post("/generate", async (req, res) => {
+  const { prompt } = req.body;
+
+  const replicate = new Replicate({
+    auth: "r8_2n8unrY0V9ZG8eSDNKV0YBnIUodk8Jo0eWrZJ",
+    fetch: fetch,
+  });
+
+  const model =
+    "stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf";
+  const input = { prompt };
+
+  try {
+    const output = await replicate.run(model, { input });
+    res.json({ output });
+  } catch (error) {
+    console.error("Error generating output:", error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while generating the output." });
+  }
+});
 
 Moralis.start({
   apiKey: "I5XGTR3zGtU6d7wWZdlua9BxVCQOrMAg13kUYvk0A8mVYBoFkVXqQilGMdApoRFb", // add this in env file

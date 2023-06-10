@@ -1,28 +1,14 @@
 import React, { useState } from "react";
 import "../styles/pages/s.scss";
+import axios from "axios";
 // import  from "dotenv";
 
 import Replicate from "replicate";
-// import fetch from "node-fetch";
-
-// const replicate = new Replicate({
-//   auth: process.env.REPLICATE_API_TOKEN,
-// });
-// const StableDiffusions = async () => {
-//   const output = await replicate.run(
-//     "stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf",
-//     {
-//       input: {
-//         prompt: "a vision of paradise. unreal engine",
-//       },
-//     }
-//   );
-
-//   return output;
-// };
+import fetch from "cross-fetch";
 
 const StableDiffusion = () => {
   const [prediction, setPrediction] = useState(null);
+  const [srsAddress, setSrsAddress] = useState("");
   const [error, setError] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -36,19 +22,26 @@ const StableDiffusion = () => {
     seed: "",
   });
 
-  console.log("api key" + process.env.REPLICATE_API_TOKEN);
+  const StableDiffusions = async () => {
+    console.log("running");
+    const replicate = new Replicate({
+      auth: process.env.REPLICATE_API_TOKEN,
+      fetch: fetch,
+    });
+    const output = await replicate.run(
+      "stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf",
+      {
+        input: {
+          prompt: "a vision of paradise. unreal engine",
+        },
+      }
+    );
+    console.log("output");
 
-  // const StableDiffusions = async () => {
-  //   const output = await replicate.run(
-  //     "stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf",
-  //     {
-  //       input: {
-  //         prompt: "a vision of paradise. unreal engine",
-  //       },
-  //     }
-  //   );
+    console.log(output);
+    setSrsAddress(output);
+  };
 
-  //   return output;
   // };
 
   const handleChange = (e) => {
@@ -58,6 +51,8 @@ const StableDiffusion = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("submitting");
+    // StableDiffusions();
     // Handle form submission logic here
 
     // const data = Object.fromEntries(formData.entries());
@@ -68,36 +63,44 @@ const StableDiffusion = () => {
 
     console.log("values for:  " + prompt, guidanceScale, seed);
 
-    // as {prompt: String, guidanceScale: String, seed: String};
-    const response = await fetch("/api/predictions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt,
-        guidance_scale: parseInt(guidanceScale),
-        seed: parseInt(seed),
-      }),
+    const res = await axios.post(`http://localhost:8800/generate`, {
+      params: { prompt: prompt },
     });
-    let prediction = await response.json();
 
-    if (response.status !== 201) {
-      setError(prediction.detail);
-      return;
-    }
-    setPrediction(prediction);
-    const timer = setInterval(async () => {
-      const response = await fetch("/api/predictions" + prediction.id);
-      let prediction = await response.json();
-      if (response.status !== 200) {
-        setError(prediction.detail);
-        return;
-      }
-      if (prediction.status === "succeeded") {
-        clearInterval(timer);
-      }
-    }, 1000);
+    const response = res.data.output[0];
+    console.log(response);
+    setSrsAddress(response);
+
+    // as {prompt: String, guidanceScale: String, seed: String};
+    //   const response = await fetch("/api/predictions", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       prompt,
+    //       guidance_scale: parseInt(guidanceScale),
+    //       seed: parseInt(seed),
+    //     }),
+    //   });
+    //   let prediction = await response.json();
+
+    //   if (response.status !== 201) {
+    //     setError(prediction.detail);
+    //     return;
+    //   }
+    //   setPrediction(prediction);
+    //   const timer = setInterval(async () => {
+    //     const response = await fetch("/api/predictions" + prediction.id);
+    //     let prediction = await response.json();
+    //     if (response.status !== 200) {
+    //       setError(prediction.detail);
+    //       return;
+    //     }
+    //     if (prediction.status === "succeeded") {
+    //       clearInterval(timer);
+    //     }
+    //   }, 1000);
   };
 
   const handleReset = () => {
@@ -226,22 +229,29 @@ const StableDiffusion = () => {
             </button>
           </div>
         </form>
-
-        {prediction && (
-          <div className="output-container">
-            <img
-              src={prediction.output[0]}
-              alt="output"
-              width={512}
-              height={512}
-            />
-            <p>Status : {prediction.status}</p>
-          </div>
-        )}
+        {/* <div className="output-container"> */}
+        {/* <img
+          // src={prediction.output[0]}
+          src={srsAddress}
+          alt="output"
+          width={512}
+          height={512}
+        /> */}
+        {/* <p>url : {srsAddress}</p> */}
+        {/* </div> */}
       </div>
       <div className="output-container">
         <div className="output-section">
           <h2 className="output-heading">Output</h2>
+          <img
+            // src={prediction.output[0]}
+            src={srsAddress}
+            alt="output"
+            width={512}
+            height={512}
+          />
+          <p>url : {srsAddress}</p>
+
           {/* Display the image and its heading here */}
         </div>
       </div>
