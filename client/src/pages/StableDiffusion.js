@@ -64,7 +64,7 @@ const StableDiffusion = () => {
     console.log("values for:  " + prompt, guidanceScale, seed);
 
     const res = await axios.post(`http://localhost:8800/generate`, {
-      params: { prompt: prompt },
+      params: { prompt: prompt, guidanceScale: guidanceScale },
     });
 
     const response = res.data.output[0];
