@@ -28,6 +28,11 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
   const [address, setAddress] = useState("");
   const [payRequests, setPayRequests] = useState([]);
 
+  const [payRequesterAddress, setPayRequesterAddress] = useState("");
+  const [payRequesterName, setPayRequesterName] = useState("");
+  const [payRequesterAmount, setPayRequesterAmount] = useState("");
+  const [payRequesterMessage, setPayRequesterMessage] = useState("");
+
   // requests["0"].length
 
   // function disconnectAndSetNull() {
@@ -107,7 +112,13 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
   };
   const openPayRequestModal = () => {
     setshowPayRequestModal(true);
+
     console.log("pay request modal", requests);
+    // setPayRequests(requests);
+    setPayRequesterAddress(requests[0]);
+    setPayRequesterName(requests[3]);
+    setPayRequesterAmount(requests[1]);
+    setPayRequesterMessage(requests[2]);
   };
 
   const closeModal = () => {
@@ -232,6 +243,31 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
   };
   // implement web3 here endforshare
 
+  const payRequest = async (
+    // senderAddress,
+    payRequesterAddress,
+    payRequesterAmount,
+    payRequesterMessage
+  ) => {
+    try {
+      // setStatus("Logging in...");
+      const web3 = await getWeb3();
+      const contract = await getBlockNestContract(web3);
+      const accounts = await web3.eth.getAccounts();
+      const weiAmount = web3.utils.toWei(payRequesterAmount, "ether");
+      console.log("weiAmount", weiAmount);
+      console.log("RequesterAddress", payRequesterAddress);
+      const payRequest = await contract.methods.payRequest(requests).send({
+        from: accounts[0],
+        value: weiAmount,
+      });
+    } catch (error) {
+      console.error("Error during sentpayment:", error.message);
+      // setStatus("Login failed.");
+    }
+  };
+  // implement web3 here endforshare
+
   const handleSendFormSubmit = (event) => {
     // event.preventDefault();
     // const senderAddress = event.target.elements.senderAddress.value;
@@ -295,6 +331,12 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
 
     setSendTransactions([...sendTransactions, data]);
 
+    payRequest(
+      // senderAddress,
+      payRequesterAddress,
+      payRequesterAmount,
+      payRequesterMessage
+    );
     // call send balance here
     SendRequest(data.receiverAddress, data.amount, "msg");
 
@@ -540,7 +582,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
                       type="text"
                       name={`receiverAddress${index}`}
                       id={`receiverAddress${index}`}
-                      value={request.receiverAddress}
+                      value={payRequesterAddress}
                       required
                     />
                   </div>
@@ -550,7 +592,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
                       type="text"
                       name={`requestmessage${index}`}
                       id={`requestmessage${index}`}
-                      value={request.message}
+                      value={payRequesterMessage}
                       required
                     />
                   </div>
@@ -561,7 +603,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
                       name={`amount${index}`}
                       step="any"
                       id={`amount${index}`}
-                      value={request.amount}
+                      value={payRequesterAmount / 1000000000000000000}
                       required
                     />
                   </div>

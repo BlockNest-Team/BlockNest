@@ -100,7 +100,7 @@ const TransactionHistory = ({ history }) => {
           style={record.type === "Send" ? { color: "red" } : { color: "green" }}
         >
           {record.type === "Send" ? "-" : "+"}
-          {record.amount} ETH
+          {record.amount / 1000000000000000000} ETH
         </div>
       ),
     },
