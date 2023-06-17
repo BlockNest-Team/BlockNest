@@ -43,6 +43,67 @@ const StableDiffusion = () => {
     setSrsAddress(output);
   };
 
+  const MintingNFT = async (event) => {
+    // event.preventDefault();
+    let url;
+    // Upload file to IPFS
+    try {
+      const added = await client.add(fileN, {
+        progress: (prog) => console.log(`received: ${prog}`),
+      });
+      url = `https://ipfs.io/ipfs/${added.path}`;
+      console.log("ipfs url " + url);
+    } catch (error) {
+      console.log("Error uploading file: ", error);
+      return;
+    }
+
+    // Mint NFT
+    const web3 = await getWeb3();
+    const accounts = await web3.eth.getAccounts();
+    const contract = await getBlockNestContract(web3);
+    // setStatus("Sending...");
+    const tx = await contract.methods
+      .mint(url)
+      .send({ from: accounts[0], value: 1000000000000000 });
+    console.log(tx.transactionHash);
+    alert(
+      "nft minted successfully at" +
+        tx.transactionHash +
+        "\n" +
+        "check it at https://sepolia.etherscan.io/tx/" +
+        tx.transactionHash
+    );
+
+    const newPost = {
+      userId: user._id,
+      desc: desc.current.value,
+      isNft: true,
+    };
+    if (fileN) {
+      const data = new FormData();
+      const fileName = Date.now() + fileN.name;
+      data.append("name", fileName);
+      data.append("file", fileN);
+      newPost.img = fileName;
+      console.log(newPost);
+      try {
+        await axios.post("/upload", data);
+        console.log("File uploaded successfully " + data);
+      } catch (err) {}
+    }
+    try {
+      await axios.post("/posts", newPost);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+
+    // setStatus(`Minted successfully! Transaction hash: ${tx.transactionHash}`);
+
+    console.log("Post as NFT");
+  };
+
   // };
 
   const handleChange = (e) => {

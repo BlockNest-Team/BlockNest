@@ -40,9 +40,10 @@ router.delete("/:id", async (req, res) => {
   }
 });
 //get a user
-router.get("/:id", async (req, res) => {
-  const userId = req.query.userId;
-  const walletAddr = req.query.walletAddr;
+router.get("/:walletAddr", async (req, res) => {
+  const userId = req.params.id;
+  const walletAddr = req.params.walletAddr;
+  console.log("userId", userId);
   try {
     const user = userId
       ? await User.findById(userId)
@@ -55,19 +56,19 @@ router.get("/:id", async (req, res) => {
 });
 
 //get a user
-router.get("/", async (req, res) => {
-  const userId = req.query.userId;
-  const walletAddr = req.query.walletAddr;
-  try {
-    const user = userId
-      ? await User.findById(userId)
-      : await User.findOne({ walletAddr: walletAddr });
-    const { password, updatedAt, ...other } = user._doc; // add properties u want to not show when  querried by this api
-    res.status(200).json(other);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// router.get("/", async (req, res) => {
+//   const userId = req.query.userId;
+//   const walletAddr = req.query.walletAddr;
+//   try {
+//     const user = userId
+//       ? await User.findById(userId)
+//       : await User.findOne({ walletAddr: walletAddr });
+//     const { password, updatedAt, ...other } = user._doc; // add properties u want to not show when  querried by this api
+//     res.status(200).json(other);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 //get friends
 router.get("/friends/:userId", async (req, res) => {

@@ -195,7 +195,7 @@ const Register = () => {
                         name="fileUpload"
                         id="fileUpload"
                         // ref={firstname}
-                        required
+                        // required
                         accept="image/png, image/jpg, image/gif, image/jpeg"
                       />
                     </label>
