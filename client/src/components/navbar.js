@@ -173,7 +173,6 @@
 
 // export default Navbar;
 
-
 // test
 
 // src/components/Navbar.js
@@ -270,6 +269,12 @@ const Navbar = () => {
               Wallet
             </Link>
           </li>
+
+          <li className="navbar__item">
+            <Link to="/s" className="navbar__link">
+              Ai
+            </Link>
+          </li>
           <li className="navbar__item">
             <a href="/" className="navbar__link">
               Stories
@@ -299,9 +304,9 @@ const Navbar = () => {
               <span className="is-link has-text-weight-bold">
                 {walletAddress && walletAddress.length > 0
                   ? `Connected: ${walletAddress.substring(
-                    0,
-                    6
-                  )}...${walletAddress.substring(38)}`
+                      0,
+                      6
+                    )}...${walletAddress.substring(38)}`
                   : "Connect Wallet"}
               </span>
             )}
