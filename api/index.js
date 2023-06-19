@@ -567,7 +567,7 @@ Moralis.start({
 }).then(() => {
   app.listen(8800, () => {
     console.log(
-      "Backend server listening for api call  is running at port:" + 8800
+      "Backend server listening for api call  is running at ports:" + 8800
     );
   });
 });

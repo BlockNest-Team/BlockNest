@@ -1,13 +1,18 @@
-import React from 'react'
+import React from "react";
 import Wallet from "../components/wallet";
 import Posts from "../components/posts";
-import ProfileCard from '../components/profileCard'
-import About from '../components/about';
+import ProfileCard from "../components/profileCard";
+import About from "../components/about";
 import "../styles/pages/friendprofile.scss";
 import FriendsSuggestions from "../components/friendsSuggestions";
 import Navbar from "../components/navbar";
+import { useLocation } from "react-router-dom";
 const FriendProfile = () => {
   const currentPage = window.location.pathname;
+  // console.log("userDetail", userDetail);
+  // console.log(userDetail);
+  const location = useLocation();
+  console.log("asas", location.state);
   return (
     <>
       <Navbar />
@@ -25,7 +30,7 @@ const FriendProfile = () => {
               <div className="about-card-2">
                 <About />
               </div>
-              <Posts />
+              {/* <Posts /> */}
             </div>
           </div>
           <div className="friends-request-container">
@@ -34,7 +39,7 @@ const FriendProfile = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default FriendProfile
+export default FriendProfile;

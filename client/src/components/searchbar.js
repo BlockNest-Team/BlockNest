@@ -12,9 +12,6 @@ const SearchBar = () => {
   const [userProfile, setUserProfile] = useState({});
   const navbarRef = useRef(null);
   const navigate = useNavigate();
-  const navigateTfrind = (a) => {
-    navigate("/otherprofile", { userDetail: { a } });
-  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -35,42 +32,49 @@ const SearchBar = () => {
     };
   }, [inputVisible]);
 
-  useEffect(() => {
-    if (searchTerm !== "") {
-      const fetchPosts = async () => {
-        const res = await axios.get("users/" + searchTerm);
-        console.log(res.data.firstName);
-        console.log(res.data.lastName);
-        console.log(res.data.profilePicture);
-        // console.log(res.data);
+  useEffect(() => {}, [searchTerm]);
 
-        setUserProfile(res.data);
-        console.log("aa");
-        console.log(userProfile);
-        setResults([
-          {
-            name: `${res.data.firstName} ${res.data.lastName}`,
-            pic: res.data.profilePicture,
-          },
-        ]);
-      };
-      fetchPosts();
-    } else {
-      setResults(
-        data.filter((item) =>
-          item.name.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-      );
-    }
-  }, [searchTerm]);
+  const fetchPosts = async () => {
+    const res = await axios.get("users/" + searchTerm);
+    console.log(res.data.firstName);
+    console.log(res.data.lastName);
+    console.log(res.data.profilePicture);
+    // console.log(res.data);
+
+    setUserProfile(res.data);
+
+    setResults([
+      {
+        name: `${res.data.firstName} ${res.data.lastName}`,
+        pic: res.data.profilePicture,
+      },
+    ]);
+  };
+  // fetchPosts();
+  // } else {
+  // setResults(
+  //   data.filter((item) =>
+  //     item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  //   )
+  // );
+  // }
 
   const handleOnprofileClick = () => {
-    // redirect to freinds profile page
-    // navigateTfrind(userProfile);
+    //redirect to freinds profile page
+
+    // console.log("aa");
+    // console.log(userProfile);
+    // alert("asd");
+    const navigateTfrind = () => {
+      navigate("/otherprofile", { state: { userProfile: userProfile } });
+    };
+    navigateTfrind();
   };
 
   return (
     <div className="search-bar" ref={navbarRef}>
+      <p onClick={fetchPosts}>A</p>
+      <p onClick={handleOnprofileClick}>b</p>
       <div className="search-bar-wrapper d-flex-center">
         <input
           type="text"
@@ -92,11 +96,7 @@ const SearchBar = () => {
       {results.length > 0 && (
         <div className="search-results card">
           {results.map((result, index) => (
-            <div
-              className="search-item d-flex-align-center"
-              key={index}
-              onClick={handleOnprofileClick()}
-            >
+            <div className="search-item d-flex-align-center" key={index}>
               <div className="profile-pic">
                 <img src={result.pic} alt="" />
               </div>
