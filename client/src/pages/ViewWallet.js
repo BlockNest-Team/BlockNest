@@ -123,13 +123,13 @@ const ViewWallet = () => {
               getNameAndBalance={getNameAndBalance}
             />
           </div>
-          <div className="grid-left">
-            <TransactionHistory history={history} />
+          <div className="mt-1">
+            <TransactionHistory history={history} className="mt-1" />
           </div>
 
-          <div className="grid-left">
+          {/* <div>
             <AccountDetails address={address} name={name} balance={balance} />
-          </div>
+          </div> */}
         </div>
       </div>
     </>
