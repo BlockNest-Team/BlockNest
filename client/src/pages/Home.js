@@ -22,7 +22,7 @@ const Home = () => {
           </div>
           <div className="feed-container d-flex-center d-flex-col">
             <div className="post-items">
-              <Stories />
+              {/* <Stories /> */}
               <PostUpload />
               <Posts />
             </div>
