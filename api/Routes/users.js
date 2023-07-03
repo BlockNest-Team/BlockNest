@@ -39,21 +39,44 @@ router.delete("/:id", async (req, res) => {
     return res.status(403).json("You can delete only your account!");
   }
 });
-//get a user
-router.get("/:walletAddr", async (req, res) => {
-  const userId = req.params.id;
-  const walletAddr = req.params.walletAddr;
-  console.log("userId", userId);
+//get a user with wallet address
+// router.get("/:walletAddr", async (req, res) => {
+//   const userId = req.params.id;
+//   const walletAddr = req.params.walletAddr;
+//   console.log("userId", userId);
+//   try {
+//     const user = userId
+//       ? await User.findById(userId)
+//       : await User.findOne({ walletAddr: walletAddr });
+//     const { password, updatedAt, ...other } = user._doc; // add properties u want to not show when  querried by this api
+//     res.status(200).json(other);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+//get a user with wallet address as well as name
+router.get("/search", async (req, res) => {
+  const searchTerm = req.query.term;
   try {
-    const user = userId
-      ? await User.findById(userId)
-      : await User.findOne({ walletAddr: walletAddr });
-    const { password, updatedAt, ...other } = user._doc; // add properties u want to not show when  querried by this api
-    res.status(200).json(other);
+    // Searching in firstName, lastName, and walletAddr
+    const users = await User.find({
+      $or: [
+        { firstName: new RegExp(searchTerm, 'i') },
+        { lastName: new RegExp(searchTerm, 'i') },
+        { walletAddr: new RegExp(searchTerm, 'i') }
+      ]
+    });
+    const results = users.map(user => {
+      const { password, updatedAt, ...other } = user._doc;
+      return other;
+    });
+    res.status(200).json(results);
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 
 //get a user
 // router.get("/", async (req, res) => {

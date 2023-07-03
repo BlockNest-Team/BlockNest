@@ -31,16 +31,16 @@ const SearchBar = () => {
     };
   }, [inputVisible]);
 
+
+  // Search with wallet address as well as name
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get("users/" + searchTerm);
-      setResults([
-        {
-          name: `${res.data.firstName} ${res.data.lastName}`,
-          pic: res.data.profilePicture,
-          userProfile: res.data,
-        },
-      ]);
+      const res = await axios.get(`users/search?term=${searchTerm}`);
+      setResults(res.data.map(user => ({
+        name: `${user.firstName} ${user.lastName}`,
+        pic: user.profilePicture,
+        userProfile: user,
+      })));
     };
 
     if (searchTerm !== "") {
@@ -48,7 +48,28 @@ const SearchBar = () => {
     }
   }, [searchTerm]);
 
+  // Search with wallet address
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     const res = await axios.get("users/" + searchTerm);
+  //     setResults([
+  //       {
+  //         name: `${res.data.firstName} ${res.data.lastName}`,
+  //         pic: res.data.profilePicture,
+  //         userProfile: res.data,
+  //       },
+  //     ]);
+  //   };
+
+  //   if (searchTerm !== "") {
+  //     fetchPosts();
+  //   }
+  // }, [searchTerm]);
+  // 
+
+
   const handleOnprofileClick = (userProfile) => {
+    setResults([]);
     navigate("/otherprofile", { state: { userProfile: userProfile } });
   };
 
