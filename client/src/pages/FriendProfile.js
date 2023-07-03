@@ -32,7 +32,7 @@ const FriendProfile = () => {
               <div className="about-card-2">
                 <About />
               </div>
-              <Posts />
+              {/* <Posts /> */}
             </div>
           </div>
           <div className="friends-request-container">
