@@ -11,7 +11,9 @@ import {
 import { Buffer } from "buffer";
 import { create as ipfsHttpClient } from "ipfs-http-client";
 import { AuthContext } from "../context/AuthContext";
+import PostLoader from "./postLoaders";
 import axios from "axios";
+
 
 const projectId = "2PsRn0pVgr9ykZxcYkvlXf72liD";
 const projectSecretKey = "ac4c2958bd722f4df62eabb86fd47d3b";
@@ -35,6 +37,9 @@ const PostUpload = () => {
   const [showPicker, setShowPicker] = useState(false);
   const [fileN, setFileN] = useState(null);
   const [userName, setUserName] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
+  const [isNFTUploading, setIsNFTUploading] = useState(false);
+
 
   const { user } = useContext(AuthContext);
 
@@ -72,6 +77,7 @@ const PostUpload = () => {
   const desc = useRef();
 
   const postupload = async () => {
+    setIsUploading(true);
     console.log(user.firstName);
     const newPost = {
       userId: user._id,
@@ -87,7 +93,7 @@ const PostUpload = () => {
       try {
         await axios.post("/upload", data);
         console.log("File uploaded successfully " + data);
-      } catch (err) {}
+      } catch (err) { }
     }
     try {
       await axios.post("/posts", newPost);
@@ -95,6 +101,7 @@ const PostUpload = () => {
     } catch (err) {
       console.log(err);
     }
+    setIsUploading(false);
   };
 
   const HandleSubmitAsPost = () => {
@@ -102,6 +109,7 @@ const PostUpload = () => {
   };
   const HandleSubmitPostAsNFT = async (event) => {
     // event.preventDefault();
+    setIsNFTUploading(true);
     let url;
     // Upload file to IPFS
     try {
@@ -124,13 +132,13 @@ const PostUpload = () => {
       .mint(url)
       .send({ from: accounts[0], value: 1000000000000000 });
     console.log(tx.transactionHash);
-    alert(
-      "nft minted successfully at" +
-        tx.transactionHash +
-        "\n" +
-        "check it at https://sepolia.etherscan.io/tx/" +
-        tx.transactionHash
-    );
+    // alert(
+    //   "nft minted successfully at" +
+    //   tx.transactionHash +
+    //   "\n" +
+    //   "check it at https://sepolia.etherscan.io/tx/" +
+    //   tx.transactionHash
+    // );
 
     const newPost = {
       userId: user._id,
@@ -147,7 +155,7 @@ const PostUpload = () => {
       try {
         await axios.post("/upload", data);
         console.log("File uploaded successfully " + data);
-      } catch (err) {}
+      } catch (err) { }
     }
     try {
       await axios.post("/posts", newPost);
@@ -159,6 +167,7 @@ const PostUpload = () => {
     // setStatus(`Minted successfully! Transaction hash: ${tx.transactionHash}`);
 
     console.log("Post as NFT");
+    setIsNFTUploading(false);
   };
 
   const handleSendFormSubmit = (event) => {
@@ -249,14 +258,14 @@ const PostUpload = () => {
                     className="btn secondary"
                     onClick={HandleSubmitAsPost}
                   >
-                    Post
+                    {isUploading ? <PostLoader /> : "Post"}
                   </button>
                   <button
                     type="submit"
                     className="btn secondary"
                     onClick={HandleSubmitPostAsNFT}
                   >
-                    Post as NFT
+                    {isNFTUploading ? <PostLoader /> : "Post as NFT"}
                   </button>
                 </div>
               </form>
