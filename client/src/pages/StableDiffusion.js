@@ -163,6 +163,24 @@ const StableDiffusion = () => {
     });
   };
 
+  const downloadImage = async () => {
+    try {
+      const response = await fetch(srsAddress);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = 'image.png'; // you can choose a different filename if you wish
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading the image:', error);
+    }
+  };
+
+
   return (
     <>
       <Navbar />
@@ -172,7 +190,7 @@ const StableDiffusion = () => {
             <h2 className="input-heading">Input</h2>
             <div className="formgroup">
               <label htmlFor="prompt">Prompt</label>
-              <input
+              <textarea
                 type="text"
                 id="prompt"
                 name="prompt"
@@ -218,7 +236,7 @@ const StableDiffusion = () => {
               <span>{formData.guidanceScale}</span>
             </div>
 
-            <div className="form-actions g-1">
+            <div className="form-actions">
               <button className="btn" type="submit">Submit</button>
               <button className="btn" type="button" onClick={handleReset}>
                 Reset
@@ -237,11 +255,16 @@ const StableDiffusion = () => {
                   <img
                     src={srsAddress}
                     alt="output"
-                    width={512}
-                    height={512}
+                    width={480}
+                    height={480}
                     onLoad={() => setIsLoading(false)}
                   />
-                  <p>url : {srsAddress}</p>
+                  <div className="action-buttons d-flex-center g-1">
+
+                    <button className="btn" type="button" onClick={downloadImage}>Download</button>
+
+                    <button className="btn" type="submit">Post as NFT</button>
+                  </div>
                 </>
               )
             ) : null}
