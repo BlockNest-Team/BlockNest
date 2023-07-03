@@ -537,7 +537,7 @@ app.post("/generate", async (req, res) => {
   // console.log(prompt);
 
   const replicate = new Replicate({
-    auth: "r8_2n8unrY0V9ZG8eSDNKV0YBnIUodk8Jo0eWrZJ",
+    auth: "r8_1mW8kUcthNJDbLIqCg8BYm4Noe0dKbE2worxU",
     fetch: fetch,
   });
 
