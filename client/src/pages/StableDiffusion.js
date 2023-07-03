@@ -1,5 +1,8 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import "../styles/pages/s.scss";
+import "../styles/theme/theme.scss";
 import axios from "axios";
 // import  from "dotenv";
 
@@ -8,9 +11,10 @@ import fetch from "cross-fetch";
 import Navbar from "../components/navbar";
 
 const StableDiffusion = () => {
-  const [prediction, setPrediction] = useState(null);
+  // const [prediction, setPrediction] = useState(null);
   const [srsAddress, setSrsAddress] = useState("");
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
+
 
   const [formData, setFormData] = useState({
     prompt: "",
@@ -69,10 +73,10 @@ const StableDiffusion = () => {
     console.log(tx.transactionHash);
     alert(
       "nft minted successfully at" +
-        tx.transactionHash +
-        "\n" +
-        "check it at https://sepolia.etherscan.io/tx/" +
-        tx.transactionHash
+      tx.transactionHash +
+      "\n" +
+      "check it at https://sepolia.etherscan.io/tx/" +
+      tx.transactionHash
     );
 
     const newPost = {
@@ -90,7 +94,7 @@ const StableDiffusion = () => {
       try {
         await axios.post("/upload", data);
         console.log("File uploaded successfully " + data);
-      } catch (err) {}
+      } catch (err) { }
     }
     try {
       await axios.post("/posts", newPost);
@@ -145,7 +149,7 @@ const StableDiffusion = () => {
       negativePrompt: "",
       numOutputs: 1,
       numInferenceSteps: 1,
-      guidanceScale: 10,
+      guidanceScale: 1,
       scheduler: "",
       seed: "",
     });
@@ -158,7 +162,7 @@ const StableDiffusion = () => {
         <div className="form-container">
           <form className="input-form" onSubmit={handleSubmit}>
             <h2 className="input-heading">Input</h2>
-            <div className="form-group">
+            <div className="formgroup">
               <label htmlFor="prompt">Prompt</label>
               <input
                 type="text"
@@ -169,20 +173,7 @@ const StableDiffusion = () => {
                 required
               />
             </div>
-            {/* <div className="form-group">
-            <label htmlFor="imageDimensions">Image Dimensions</label>
-            <select
-              id="imageDimensions"
-              name="imageDimensions"
-              value={formData.imageDimensions}
-              onChange={handleChange}
-              required
-            >
-              <option value="">-- Select --</option> */}
-            {/* Add options for image dimensions */}
-            {/* </select> */}
-            {/* </div> */}
-            <div className="form-group">
+            <div className="formgroup">
               <label htmlFor="negativePrompt">Negative Prompt</label>
               <input
                 type="text"
@@ -190,65 +181,10 @@ const StableDiffusion = () => {
                 name="negativePrompt"
                 value={formData.negativePrompt}
                 onChange={handleChange}
-                // required
+              // required
               />
             </div>
-            {/* <div className="form-group">
-            <label htmlFor="numOutputs">Number of Outputs</label>
-            <input
-              type="range"
-              id="numOutputs"
-              name="numOutputs"
-              min={1}
-              max={4}
-              value={formData.numOutputs}
-              onChange={handleChange}
-              required
-            />
-            <span>{formData.numOutputs}</span>
-          </div> */}
-            {/* <div className="form-group">
-            <label htmlFor="numInferenceSteps">Number of Inference Steps</label>
-            <input
-              type="range"
-              id="numInferenceSteps"
-              name="numInferenceSteps"
-              min={1}
-              max={500}
-              value={formData.numInferenceSteps}
-              onChange={handleChange}
-              required
-            />
-            <span>{formData.numInferenceSteps}</span>
-          </div> */}
-            <div className="form-group">
-              <label htmlFor="guidanceScale">Guidance Scale</label>
-              <input
-                type="range"
-                id="guidanceScale"
-                name="guidanceScale"
-                min={1}
-                max={20}
-                value={formData.guidanceScale}
-                onChange={handleChange}
-                // required
-              />
-              <span>{formData.guidanceScale}</span>
-            </div>
-            {/* <div className="form-group">
-            <label htmlFor="scheduler">Scheduler</label>
-            <select
-              id="scheduler"
-              name="scheduler"
-              value={formData.scheduler}
-              onChange={handleChange}
-              required
-            >
-              <option value="">-- Select --</option> */}
-            {/* Add options for scheduler */}
-            {/* </select>
-          </div> */}
-            <div className="form-group">
+            <div className="formgroup">
               <label htmlFor="seed">Seed</label>
               <input
                 type="number"
@@ -256,26 +192,31 @@ const StableDiffusion = () => {
                 name="seed"
                 value={formData.seed}
                 onChange={handleChange}
-                // required
+              // required
               />
             </div>
-            <div className="form-actions">
-              <button type="submit">Submit</button>
-              <button type="button" onClick={handleReset}>
+            <div className="formgroup">
+              <label htmlFor="guidanceScale">Guidance Scale</label>
+              <input
+                className="slider"
+                type="range"
+                id="guidanceScale"
+                name="guidanceScale"
+                min={1}
+                max={20}
+                value={formData.guidanceScale}
+                onChange={handleChange}
+              />
+              <span>{formData.guidanceScale}</span>
+            </div>
+
+            <div className="form-actions g-1">
+              <button className="btn" type="submit">Submit</button>
+              <button className="btn" type="button" onClick={handleReset}>
                 Reset
               </button>
             </div>
           </form>
-          {/* <div className="output-container"> */}
-          {/* <img
-          // src={prediction.output[0]}
-          src={srsAddress}
-          alt="output"
-          width={512}
-          height={512}
-        /> */}
-          {/* <p>url : {srsAddress}</p> */}
-          {/* </div> */}
         </div>
         <div className="output-container">
           <div className="output-section">
@@ -288,11 +229,10 @@ const StableDiffusion = () => {
               height={512}
             />
             <p>url : {srsAddress}</p>
-
-            {/* Display the image and its heading here */}
           </div>
         </div>
       </div>
+
     </>
   );
 };
