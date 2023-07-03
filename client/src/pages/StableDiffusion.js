@@ -180,6 +180,10 @@ const StableDiffusion = () => {
     }
   };
 
+  const PostAsNft = () => {
+    console.log("Post as NFT");
+  }
+
 
   return (
     <>
@@ -263,7 +267,7 @@ const StableDiffusion = () => {
 
                     <button className="btn" type="button" onClick={downloadImage}>Download</button>
 
-                    <button className="btn" type="submit">Post as NFT</button>
+                    <button className="btn" type="submit" onClick={PostAsNft}>Post as NFT</button>
                   </div>
                 </>
               )
