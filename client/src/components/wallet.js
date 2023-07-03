@@ -414,13 +414,13 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
           {(currentPage === "/home" ||
             currentPage === "/profile" ||
             currentPage === "/myprofile") && (
-            <Link to="/wallet">
-              <button className="btn d-flex-center">
-                <img className="wallet-icon" src={walletIcon} alt="wallet" />
-                <span>View Wallet</span>
-              </button>
-            </Link>
-          )}
+              <Link to="/wallet">
+                <button className="btn d-flex-center">
+                  <img className="wallet-icon" src={walletIcon} alt="wallet" />
+                  <span>View Wallet</span>
+                </button>
+              </Link>
+            )}
           {/* Render Send and Request buttons only when on VIEWWALLET page */}
           {currentPage === "/wallet" && (
             <div className="button-container d-flex-col-align-center">
@@ -522,7 +522,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
                     type="text"
                     name="receiverAddress"
                     id="receiverAddress"
-                    // readOnly
+                  // readOnly
                   />
                 </div>
                 <div className="formgroup">
@@ -566,46 +566,50 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
                     <label htmlFor={`senderAddress${index}`}>
                       Payer Address
                     </label>
-                    <input
+                    {/* <input
                       type="text"
                       name={`senderAddress${index}`}
                       id={`senderAddress${index}`}
                       value={address}
                       readOnly
-                    />
+                    /> */}
+                    <p>senderAddress${index}</p>
                   </div>
                   <div className="formgroup">
                     <label htmlFor={`receiverAddress${index}`}>
                       Requester Address
                     </label>
-                    <input
+                    {/* <input
                       type="text"
                       name={`receiverAddress${index}`}
                       id={`receiverAddress${index}`}
                       value={payRequesterAddress}
                       required
-                    />
+                    /> */}
+                    <p>receiverAddress${index}</p>
                   </div>
                   <div className="formgroup">
                     <label htmlFor={`requestmessage${index}`}>Message</label>
-                    <input
+                    {/* <input
                       type="text"
                       name={`requestmessage${index}`}
                       id={`requestmessage${index}`}
                       value={payRequesterMessage}
                       required
-                    />
+                    /> */}
+                    <p>requestmessage${index}</p>
                   </div>
                   <div className="formgroup">
                     <label htmlFor={`amount${index}`}>Amount</label>
-                    <input
+                    {/* <input
                       type="number"
                       name={`amount${index}`}
                       step="any"
                       id={`amount${index}`}
                       value={payRequesterAmount / 1000000000000000000}
                       required
-                    />
+                    /> */}
+                    <p>amount${index}</p>
                   </div>
                   <div className="btn-container d-flex-center">
                     <button className="btn d-flex-center" type="submit">
