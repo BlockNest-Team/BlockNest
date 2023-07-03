@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import testPic from "../assets/pictures/test.png";
 import "../styles/components/profileCard.scss";
 
-const ProfileCard = () => {
+const ProfileCard = ({ userProfile }) => {
   const [friendStatus, setFriendStatus] = useState("not-friend");
 
   const handleFriendAction = () => {
@@ -29,10 +29,10 @@ const ProfileCard = () => {
       <div className="profile-content d-flex-col d-flex-justify-between">
         <div className="d-flex-col d-flex-center profile-data">
           <div className="profile-pic">
-            <img src={testPic} alt="" />
+            <img src={userProfile.pic} alt="" />
           </div>
           <div className="profile-name">
-            <p>Muhammad Ali</p>
+            <p>{`${userProfile.firstName} ${userProfile.lastName}`}</p>
           </div>
         </div>
         <div className="btn-container d-flex-center">

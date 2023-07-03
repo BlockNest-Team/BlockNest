@@ -12,7 +12,9 @@ const FriendProfile = () => {
   // console.log("userDetail", userDetail);
   // console.log(userDetail);
   const location = useLocation();
-  console.log("asas", location.state);
+  const userProfile = location.state.userProfile;
+
+  // console.log("asas", location.state);
   return (
     <>
       <Navbar />
@@ -26,11 +28,11 @@ const FriendProfile = () => {
           </div>
           <div className="feed-container d-flex-center d-flex-col">
             <div className="post-items">
-              <ProfileCard />
+              <ProfileCard userProfile={userProfile} />
               <div className="about-card-2">
                 <About />
               </div>
-              {/* <Posts /> */}
+              <Posts />
             </div>
           </div>
           <div className="friends-request-container">
