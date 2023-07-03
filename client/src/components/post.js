@@ -53,8 +53,6 @@ const Post = ({ data }) => {
     }
   }, [data.userId, data.likes, currentUser._id]);
 
-
-
   const handleLikeClick = () => {
     likePost();
   };
@@ -69,8 +67,6 @@ const Post = ({ data }) => {
       console.log(err);
     }
   };
-
-
 
   const handleAddComment = (e) => {
     e.preventDefault();
@@ -135,8 +131,7 @@ const Post = ({ data }) => {
               <div className="profile-pic">
                 <img
                   src={
-                    user.profilePicture ||
-                      currentUser.profilePicture
+                    user.profilePicture || currentUser.profilePicture
                       ? PF + currentUser.profilePicture
                       : PF + "person/noAvatar.png"
                   }
@@ -144,7 +139,7 @@ const Post = ({ data }) => {
                 />
               </div>
               <div className="profile-name">
-                <p>{user.firstName + " " + currentUser.lastName}</p>
+                <p>{currentUser.firstName + " " + currentUser.lastName}</p>
                 <p className="uploded-time">{format(data.createdAt)}</p>
               </div>
             </div>
