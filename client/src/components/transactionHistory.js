@@ -3,9 +3,11 @@ import "../styles/components/transactionHistory.scss";
 import transactionHistoryData from "../data/transactionHistory.json";
 import { getWeb3, getBlockNestContract } from "../utils/blockNestContract.js";
 import { Card, Table } from "antd";
+import Loader from "./loader"
 
 const TransactionHistory = ({ history }) => {
   const [transactions, setTransactions] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getTransactions = async () => {
     try {
@@ -16,6 +18,7 @@ const TransactionHistory = ({ history }) => {
       const Transactions = await contract.methods
         .getMyRequests(accounts[0])
         .call();
+      setLoading(false);
 
       // .then(function (response_, error) {
       //   if (error) {
@@ -39,6 +42,7 @@ const TransactionHistory = ({ history }) => {
       // }
     } catch (error) {
       console.error("Error during geting transactions:", error.message);
+      setLoading(false);
       // setStatus("Login failed.");
     }
   };
@@ -139,10 +143,14 @@ const TransactionHistory = ({ history }) => {
     //   </div>
     // </div>
 
-    <Card title="Recent Activity" style={{ width: "100%", minHeight: "663px" }}>
-      {history && (
+    <Card title="Recent Activity" style={{ width: "100%", minHeight: "500px" }}>
+      {loading ? (
+        <div className="d-flex-center">
+          <Loader />
+        </div>
+      ) : (
         <Table
-          dataSource={history}
+          dataSource={transactions}
           columns={columns}
           pagination={{ position: ["bottomCenter"], pageSize: 8 }}
         />

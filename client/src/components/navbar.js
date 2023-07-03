@@ -275,11 +275,11 @@ const Navbar = () => {
               Ai
             </Link>
           </li>
-          <li className="navbar__item">
+          {/* <li className="navbar__item">
             <a href="/" className="navbar__link">
               Stories
             </a>
-          </li>
+          </li> */}
           <li className="navbar__item">
             <a href="/" className="navbar__link">
               Messages
@@ -304,9 +304,9 @@ const Navbar = () => {
               <span className="is-link has-text-weight-bold">
                 {walletAddress && walletAddress.length > 0
                   ? `Connected: ${walletAddress.substring(
-                      0,
-                      6
-                    )}...${walletAddress.substring(38)}`
+                    0,
+                    6
+                  )}...${walletAddress.substring(38)}`
                   : "Connect Wallet"}
               </span>
             )}
