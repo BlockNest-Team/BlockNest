@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import "../styles/pages/s.scss";
 import "../styles/theme/theme.scss";
 import axios from "axios";
+import Loader from "../components/loader";
 // import  from "dotenv";
 
 import Replicate from "replicate";
@@ -14,6 +15,9 @@ const StableDiffusion = () => {
   // const [prediction, setPrediction] = useState(null);
   const [srsAddress, setSrsAddress] = useState("");
   // const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
 
 
   const [formData, setFormData] = useState({
@@ -118,6 +122,8 @@ const StableDiffusion = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("submitting");
+    setIsSubmitted(true);
+    setIsLoading(true); // start loading
     // StableDiffusions();
     // Handle form submission logic here
 
@@ -140,6 +146,8 @@ const StableDiffusion = () => {
     const response = res.data.output[0];
     console.log(response);
     setSrsAddress(response);
+    setIsLoading(false); // stop loading
+
   };
 
   const handleReset = () => {
@@ -221,16 +229,25 @@ const StableDiffusion = () => {
         <div className="output-container">
           <div className="output-section">
             <h2 className="output-heading">Output</h2>
-            <img
-              // src={prediction.output[0]}
-              src={srsAddress}
-              alt="output"
-              width={512}
-              height={512}
-            />
-            <p>url : {srsAddress}</p>
+            {isSubmitted ? (
+              isLoading ? (
+                <Loader />
+              ) : (
+                <>
+                  <img
+                    src={srsAddress}
+                    alt="output"
+                    width={512}
+                    height={512}
+                    onLoad={() => setIsLoading(false)}
+                  />
+                  <p>url : {srsAddress}</p>
+                </>
+              )
+            ) : null}
           </div>
         </div>
+
       </div>
 
     </>
