@@ -131,7 +131,9 @@ const ViewWallet = () => {
           </div>
           <div className="mt-1">
             {loading ? (
-              <Loader />
+              <div className="d-flex-center">
+                <Loader />
+              </div>
             ) : (
               <TransactionHistory history={history} className="mt-1" />
             )}
