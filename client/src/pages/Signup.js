@@ -11,6 +11,7 @@ const Register = () => {
   const [allFieldsFilled, setAllFieldsFilled] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [popupStatus, setPopupStatus] = useState("");
+  const [fileN, setFileN] = useState(null);
 
   const firstName = useRef();
   const lastName = useRef();
@@ -18,12 +19,21 @@ const Register = () => {
   const occupation = useRef();
   const dob = useRef();
   const email = useRef();
-  // const profilepic = useRef();
+  const profilepic = useRef();
   const walletAddr = useRef();
 
   const navigate = useNavigate();
   const navigateToHome = () => {
     navigate("/");
+  };
+
+  const handleFileInputChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setFileN(event.target.files[0]);
+    };
   };
 
   const registerUser = async () => {
@@ -43,7 +53,7 @@ const Register = () => {
         occupation: occupation.current.value,
         dob: dob.current.value,
         email: email.current.value,
-        // profilepic: profilepic.current.value,
+        profilepic: fileN,
         walletAddr: accounts[0],
       };
       try {
@@ -187,8 +197,10 @@ const Register = () => {
                       <p> Upload Picture</p>
                       <input
                         type="file"
-                        name="fileUpload"
+                        name="profilepic"
+                        onChange={handleFileInputChange}
                         id="fileUpload"
+                        ref={profilepic}
                         accept="image/png, image/jpg, image/gif, image/jpeg"
                       />
                     </label>
