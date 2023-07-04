@@ -302,7 +302,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
     setSendTransactions([...sendTransactions, data]);
 
     // call send balance here
-    sendBalance(data.receiverAddress, data.amount, "msg here add msg input");
+    sendBalance(data.receiverAddress, data.amount, data.message);
     // SendRequest(data.receiverAddress, data.amount, "msg here add msg input");
 
     console.log("Submitted data:", data);
@@ -347,7 +347,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
     // payRequesterAmount,
     // payRequesterMessage
     // call send balance here
-    SendRequest(data.receiverAddress, data.amount, "msg");
+    SendRequest(data.receiverAddress, data.amount, "");
 
     console.log("Submitted data:", data);
 
@@ -382,7 +382,8 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
     setSendTransactions([...sendTransactions, data]);
 
     // Call send balance here
-    SendRequest(data.receiverAddress, data.amount, "msg");
+    SendRequest(data.receiverAddress, data.amount, data.message);
+    console.log("Submitted data:", data);
 
     // Reset the form
     event.target.reset();
