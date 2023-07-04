@@ -18,6 +18,11 @@ import "../styles/components/wallet.scss";
 import Popup from "./dynamicPopup";
 import jsonData from "../data/payRequestData.json";
 import axios from "axios";
+// import {
+//   usePrepareContractWrite,
+//   useContractWrite,
+//   useWaitForTransaction,
+// } from "wagmi";
 
 const { ethereum } = window;
 
@@ -30,7 +35,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
 
   const [payRequesterAddress, setPayRequesterAddress] = useState("");
   const [payRequesterName, setPayRequesterName] = useState("");
-  const [payRequesterAmount, setPayRequesterAmount] = useState("");
+  const [payRequesterAmount, setPayRequesterAmount] = useState(0);
   const [payRequesterMessage, setPayRequesterMessage] = useState("");
 
   // requests["0"].length
@@ -115,10 +120,13 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
 
     console.log("pay request modal", requests);
     // setPayRequests(requests);
-    setPayRequesterAddress(requests[0]);
-    setPayRequesterName(requests[3]);
-    setPayRequesterAmount(requests[1]);
-    setPayRequesterMessage(requests[2]);
+    // console.log("pay request amount", requests[1][0]);
+    setPayRequesterAddress(requests[0][0]);
+    setPayRequesterName(requests[3][0]);
+    const am = requests[1][0] / 1000000000000000000;
+
+    setPayRequesterAmount(String(am));
+    setPayRequesterMessage(requests[2][0]);
   };
 
   const closeModal = () => {
@@ -243,29 +251,31 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
   };
   // implement web3 here endforshare
 
-  const payRequest = async (
+  const payRequestssss = async () =>
     // senderAddress,
-    payRequesterAddress,
-    payRequesterAmount,
-    payRequesterMessage
-  ) => {
-    try {
-      // setStatus("Logging in...");
-      const web3 = await getWeb3();
-      const contract = await getBlockNestContract(web3);
-      const accounts = await web3.eth.getAccounts();
-      const weiAmount = web3.utils.toWei(payRequesterAmount, "ether");
-      console.log("weiAmount", weiAmount);
-      console.log("RequesterAddress", payRequesterAddress);
-      const payRequest = await contract.methods.payRequest(requests).send({
-        from: accounts[0],
-        value: weiAmount,
-      });
-    } catch (error) {
-      console.error("Error during sentpayment:", error.message);
-      // setStatus("Login failed.");
-    }
-  };
+    // payRequesterAddress,
+    // payRequesterAmount,
+    // payRequesterMessage
+    {
+      try {
+        // setStatus("Logging in...");
+        const web3 = await getWeb3();
+        const contract = await getBlockNestContract(web3);
+        const accounts = await web3.eth.getAccounts();
+        const weiAmount = web3.utils.toWei(payRequesterAmount, "ether");
+        console.log("weiAmount", weiAmount);
+        console.log("RequesterAddress", payRequesterAddress);
+        const payRequest = await contract.methods
+          .payRequest(requests[0][0])
+          .send({
+            from: accounts[0],
+            value: weiAmount,
+          });
+      } catch (error) {
+        console.error("Error during sentpayment:", error.message);
+        // setStatus("Login failed.");
+      }
+    };
   // implement web3 here endforshare
 
   const handleSendFormSubmit = (event) => {
@@ -331,12 +341,11 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
 
     setSendTransactions([...sendTransactions, data]);
 
-    payRequest(
-      // senderAddress,
-      payRequesterAddress,
-      payRequesterAmount,
-      payRequesterMessage
-    );
+    // payRequest();
+    // senderAddress,
+    // payRequesterAddress,
+    // payRequesterAmount,
+    // payRequesterMessage
     // call send balance here
     SendRequest(data.receiverAddress, data.amount, "msg");
 
@@ -414,13 +423,13 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
           {(currentPage === "/home" ||
             currentPage === "/profile" ||
             currentPage === "/myprofile") && (
-              <Link to="/wallet">
-                <button className="btn d-flex-center">
-                  <img className="wallet-icon" src={walletIcon} alt="wallet" />
-                  <span>View Wallet</span>
-                </button>
-              </Link>
-            )}
+            <Link to="/wallet">
+              <button className="btn d-flex-center">
+                <img className="wallet-icon" src={walletIcon} alt="wallet" />
+                <span>View Wallet</span>
+              </button>
+            </Link>
+          )}
           {/* Render Send and Request buttons only when on VIEWWALLET page */}
           {currentPage === "/wallet" && (
             <div className="button-container d-flex-col-align-center">
@@ -522,7 +531,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
                     type="text"
                     name="receiverAddress"
                     id="receiverAddress"
-                  // readOnly
+                    // readOnly
                   />
                 </div>
                 <div className="formgroup">
@@ -557,18 +566,22 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
           onClose={closeModal}
           content={
             <div className="request-crypto-content d-flex-col d-flex-center">
-              {requests && requests["0"].length > 0 && (
+              {requests && requests[0].length > 0 && (
                 <>
-                  <h2>Sending payment to {requests["3"][0]}</h2>
-                  <h3>Value: {requests["1"][0]} Matic</h3>
-                  <p>"{requests["2"][0]}"</p>
-                  <button className="btn d-flex-center" >
+                  <h2>Sending payment to {payRequesterAddress}</h2>
+                  <h3>Value: {payRequesterAmount} ETH</h3>
+                  <p>
+                    msg
+                    {payRequesterMessage}
+                  </p>
+                  <button
+                    className="btn d-flex-center"
+                    onClick={payRequestssss}
+                  >
                     <span>Pay</span>
                     <img src={submitIcon} alt="submit" />
                   </button>
-
                 </>
-
               )}
             </div>
           }
