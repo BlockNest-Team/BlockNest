@@ -122,6 +122,25 @@
   width: 100%;
   padding: 2rem;
 
+  .group {
+    margin: 0.5rem 0;
+
+    h2 {
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    p {
+      font-size: 1.3rem;
+    }
+  }
+
+  .btn {
+    background-color: $btn-primary-color;
+    color: $primary-color;
+    gap: 1rem;
+  }
+
   form {
     width: 100%;
 
