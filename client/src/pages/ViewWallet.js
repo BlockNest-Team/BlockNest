@@ -6,10 +6,12 @@ import Navbar from "../components/navbar";
 import AccountDetails from "../components/accountDetails";
 import { getWeb3, getBlockNestContract } from "../utils/blockNestContract"; //getBlockNestContract is used when a contract method is called
 import { useState, useEffect } from "react";
+import Loader from "../components/loader";
 import axios from "axios";
 
 const ViewWallet = () => {
   const currentPage = window.location.pathname;
+  const [loading, setLoading] = useState(true);
 
   const [address, setAddress] = useState("");
   // moralis stuff start
@@ -103,6 +105,7 @@ const ViewWallet = () => {
     console.log("requests", requests);
     console.log("name", name);
     console.log("balance", balance);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -127,7 +130,12 @@ const ViewWallet = () => {
             />
           </div>
           <div className="mt-1">
-            <TransactionHistory history={history} className="mt-1" />
+            {loading ? (
+              <Loader />
+            ) : (
+              <TransactionHistory history={history} className="mt-1" />
+            )}
+
           </div>
 
           {/* <div>
