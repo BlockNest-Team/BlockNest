@@ -70,7 +70,6 @@ router.put("/:id/comment", async (req, res) => {
       $push: {
         comments: {
           userId: req.body.userId,
-          userName: req.body.userName,
           comment: req.body.comment,
         },
       },

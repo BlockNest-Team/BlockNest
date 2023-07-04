@@ -1,6 +1,6 @@
 import React from "react";
 import Wallet from "../components/wallet";
-import Posts from "../components/posts";
+import Posts from "../components/friendsPosts";
 import ProfileCard from "../components/profileCard";
 import About from "../components/about";
 import "../styles/pages/friendprofile.scss";
@@ -32,7 +32,7 @@ const FriendProfile = () => {
               <div className="about-card-2">
                 <About />
               </div>
-              {/* <Posts /> */}
+              <Posts userProfile={userProfile} />
             </div>
           </div>
           <div className="friends-request-container">

@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/components/commentSection.scss";
 
 const Comment = ({ userPic, userName, text, isExpanded, toggleExpanded }) => {
+  console.log(text);
   // const words = text;
   // const isLongComment = words.length > 50;
   // const displayedText = isLongComment && !isExpanded

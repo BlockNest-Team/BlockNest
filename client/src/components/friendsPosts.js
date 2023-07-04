@@ -1,12 +1,12 @@
 import React, { useState, useCallback, useEffect, useContext } from "react";
-import Post from "../components/post";
+import Post from "./post";
 import "../styles/components/post.scss";
 import postsData from "../data/postsData.json"; //dummydata import
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 
-const Posts = () => {
+const FriendsPosts = ({ userProfile }) => {
   const [posts, setPosts] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
@@ -41,11 +41,12 @@ const Posts = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get("posts/timeline/" + user._id);
-      // const res =
-      // user.firstName
-      // ?
-      // await axios.get("/posts/profile/" + user.firstName);
+      const res =
+        // await axios.get("posts/timeline/" + user._id);
+        // const res =
+        // user.firstName
+        // ?
+        await axios.get("/posts/profile/" + userProfile.firstName);
       // : await axios.get("posts/timeline/" + user._id);
       setPosts(
         res.data.sort((p1, p2) => {
@@ -83,4 +84,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default FriendsPosts;

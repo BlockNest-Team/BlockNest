@@ -30,6 +30,7 @@ const Post = ({ data }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupStatus, setPopupStatus] = useState("");
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const [poster, setPoster] = useState("");
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -37,6 +38,7 @@ const Post = ({ data }) => {
       setUser(res.data);
     };
     fetchUser();
+    // fetchPoster();
   }, [data.userId]);
 
   useEffect(() => {
@@ -56,6 +58,12 @@ const Post = ({ data }) => {
 
   const handleLikeClick = () => {
     likePost();
+  };
+
+  // fetching name of the user who posted the post
+  const fetchPoster = async () => {
+    const res = await axios.get(`/users?userId=${data.userId}`);
+    setPoster(res.data.firstName + " " + res.data.lastName);
   };
 
   const likePost = async () => {
@@ -92,7 +100,6 @@ const Post = ({ data }) => {
     setCommentCount(commentCount + 1);
     setCommentInput("");
   };
-
 
   const toggleExpandedComment = (index) => {
     const newExpandedComments = [...expandedComments];
@@ -164,6 +171,7 @@ const Post = ({ data }) => {
               </div>
               <div className="profile-name">
                 <p>{currentUser.firstName + " " + currentUser.lastName}</p>
+
                 <p className="uploded-time">{format(data.createdAt)}</p>
               </div>
             </div>
@@ -222,10 +230,8 @@ const Post = ({ data }) => {
               onClick={() => {
                 setshowCommentSectionection(!showCommentSectionection);
                 getComments();
-              }
-              }
+              }}
             >
-
               <img src={commentIcon} alt="comment" />
               <p>Comment</p>
               {/* <button onClick={getComments}>Get Comments</button> */}
