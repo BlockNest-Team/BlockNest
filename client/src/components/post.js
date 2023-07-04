@@ -75,6 +75,7 @@ const Post = ({ data }) => {
     try {
       axios.put(`/posts/${data._id}/comment`, {
         userId: currentUser._id,
+        userName: currentUser.firstName + " " + currentUser.lastName,
         comment: commentInput,
       });
     } catch (err) { }

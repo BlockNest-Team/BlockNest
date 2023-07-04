@@ -25,7 +25,7 @@ const CommentSection = ({ comments, handleAddComment, commentInput, setCommentIn
           <Comment
             key={index}
             userPic={comment.userPic}
-            userName={comment.userId}
+            userName={comment.userName}
             text={comment.comment}
             isExpanded={comment.isExpanded}
             toggleExpanded={comment.toggleExpanded}
