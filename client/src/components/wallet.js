@@ -414,13 +414,13 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
           {(currentPage === "/home" ||
             currentPage === "/profile" ||
             currentPage === "/myprofile") && (
-            <Link to="/wallet">
-              <button className="btn d-flex-center">
-                <img className="wallet-icon" src={walletIcon} alt="wallet" />
-                <span>View Wallet</span>
-              </button>
-            </Link>
-          )}
+              <Link to="/wallet">
+                <button className="btn d-flex-center">
+                  <img className="wallet-icon" src={walletIcon} alt="wallet" />
+                  <span>View Wallet</span>
+                </button>
+              </Link>
+            )}
           {/* Render Send and Request buttons only when on VIEWWALLET page */}
           {currentPage === "/wallet" && (
             <div className="button-container d-flex-col-align-center">
@@ -522,7 +522,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
                     type="text"
                     name="receiverAddress"
                     id="receiverAddress"
-                    // readOnly
+                  // readOnly
                   />
                 </div>
                 <div className="formgroup">
@@ -557,68 +557,19 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
           onClose={closeModal}
           content={
             <div className="request-crypto-content d-flex-col d-flex-center">
-              {payRequestData.map((request, index) => (
-                <form
-                  key={index}
-                  onSubmit={(e) => handleSendFormSubmitR(e, index)}
-                >
-                  {/* <div className="formgroup"> */}
-                  {/* <label htmlFor={`senderAddress${index}`}> */}
-                  {/* Payer Address
-                    </label> */}
-                  {/* <input
-                      type="text"
-                      name={`senderAddress${index}`}
-                      id={`senderAddress${index}`}
-                      value={address}
-                      readOnly
-                    /> */}
-                  {/* <p>senderAddress${index}</p>
-                  </div> */}
-                  <div className="formgroup">
-                    <label htmlFor={`receiverAddress${index}`}>
-                      Requester Address
-                    </label>
-                    {/* <input
-                      type="text"
-                      name={`receiverAddress${index}`}
-                      id={`receiverAddress${index}`}
-                      value={payRequesterAddress}
-                      required
-                    /> */}
-                    <p>receiverAddress${index}</p>
-                  </div>
-                  <div className="formgroup">
-                    <label htmlFor={`requestmessage${index}`}>Message</label>
-                    {/* <input
-                      type="text"
-                      name={`requestmessage${index}`}
-                      id={`requestmessage${index}`}
-                      value={payRequesterMessage}
-                      required
-                    /> */}
-                    <p>{payRequesterMessage}</p>
-                  </div>
-                  <div className="formgroup">
-                    <label htmlFor={`amount${index}`}>Amount</label>
-                    {/* <input
-                      type="number"
-                      name={`amount${index}`}
-                      step="any"
-                      id={`amount${index}`}
-                      value={payRequesterAmount / 1000000000000000000}
-                      required
-                    /> */}
-                    <p>{payRequesterAmount / 1000000000000000000} Eth</p>
-                  </div>
-                  <div className="btn-container d-flex-center">
-                    <button className="btn d-flex-center" type="submit">
-                      <span>Pay</span>
-                      <img src={submitIcon} alt="submit" />
-                    </button>
-                  </div>
-                </form>
-              ))}
+              {requests && requests["0"].length > 0 && (
+                <>
+                  <h2>Sending payment to {requests["3"][0]}</h2>
+                  <h3>Value: {requests["1"][0]} Matic</h3>
+                  <p>"{requests["2"][0]}"</p>
+                  <button className="btn d-flex-center" >
+                    <span>Pay</span>
+                    <img src={submitIcon} alt="submit" />
+                  </button>
+
+                </>
+
+              )}
             </div>
           }
         />
