@@ -33,6 +33,7 @@ const Settings = () => {
             </Link>
           </li>
           <li>
+            {/* <Link to="https://form.jotform.com/231843206325450"> */}
             <Link to="/feedback">
               <p>Feedback</p>
             </Link>

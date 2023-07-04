@@ -48,7 +48,8 @@ const Feedback = () => {
           <div className="heading">
             <h1>Feedback</h1>
           </div>
-          <form onSubmit={handleSubmit}>
+          {/* <form onSubmit={handleSubmit}> */}
+          <form action='https://formspree.io/f/mvojpekk' method="post">
             <div className="formgroup">
               <label htmlFor="issue">Your Issue</label>
               <textarea
