@@ -98,6 +98,11 @@ const ViewWallet = () => {
     // setDollars(String(response.dollars));
     setHistory(response.history);
     setRequests(response.requests);
+
+    console.log("history", history);
+    console.log("requests", requests);
+    console.log("name", name);
+    console.log("balance", balance);
   }
 
   useEffect(() => {
@@ -105,8 +110,6 @@ const ViewWallet = () => {
       getNameAndBalance();
     }
   }, [address]); // <--- This is the dependency array
-
-
 
   return (
     <>

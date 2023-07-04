@@ -3,7 +3,7 @@ import "../styles/components/transactionHistory.scss";
 import transactionHistoryData from "../data/transactionHistory.json";
 import { getWeb3, getBlockNestContract } from "../utils/blockNestContract.js";
 import { Card, Table } from "antd";
-import Loader from "./loader"
+import Loader from "./loader";
 
 const TransactionHistory = ({ history }) => {
   const [transactions, setTransactions] = useState([]);
@@ -61,7 +61,8 @@ const TransactionHistory = ({ history }) => {
 
   // for fetching data from the json
   useEffect(() => {
-    setTransactions(transactionHistoryData.transactions);
+    // setTransactions(transactionHistoryData.transactions);
+    setTransactions(history);
     getTransactions();
   }, []);
 
