@@ -2,11 +2,11 @@ import React from "react";
 import "../styles/components/commentSection.scss";
 
 const Comment = ({ userPic, userName, text, isExpanded, toggleExpanded }) => {
-  const words = text.split(" ");
-  const isLongComment = words.length > 50;
-  const displayedText = isLongComment && !isExpanded
-    ? words.slice(0, 50).join(" ") + "..."
-    : text;
+  // const words = text;
+  // const isLongComment = words.length > 50;
+  // const displayedText = isLongComment && !isExpanded
+  //   ? words.slice(0, 50).join(" ") + "..."
+  //   : text;
 
   return (
     <li className="comment-item">
@@ -14,7 +14,8 @@ const Comment = ({ userPic, userName, text, isExpanded, toggleExpanded }) => {
       <div className="comment-content">
         <p className="comment-author">{userName}</p>
         <p className="comment-text">
-          {displayedText}
+          {text}
+          {/* {displayedText}
           {isLongComment && (
             <span
               className="toggle-text-visibility "
@@ -22,7 +23,7 @@ const Comment = ({ userPic, userName, text, isExpanded, toggleExpanded }) => {
             >
               {isExpanded ? "See less" : "See more"}
             </span>
-          )}
+          )} */}
         </p>
       </div>
     </li>

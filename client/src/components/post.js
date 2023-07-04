@@ -134,7 +134,7 @@ const Post = ({ data }) => {
   const getComments = async () => {
     try {
       const res = await axios.get(`/posts/${data._id}/comment`);
-      // setComments(res.data);
+      setComments(res.data);
       console.log(res.data);
       setshowCommentSectionection(true);
     } catch (err) {
@@ -215,14 +215,16 @@ const Post = ({ data }) => {
 
             <div
               className="action-item d-flex-center"
-              onClick={() =>
-                setshowCommentSectionection(!showCommentSectionection)
+              onClick={() => {
+                setshowCommentSectionection(!showCommentSectionection);
+                getComments();
+              }
               }
             >
 
               <img src={commentIcon} alt="comment" />
               <p>Comment</p>
-              <button onClick={getComments}>Get Comments</button>
+              {/* <button onClick={getComments}>Get Comments</button> */}
             </div>
             <div
               className="action-item d-flex-center"
