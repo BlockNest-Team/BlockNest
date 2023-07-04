@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import "../styles/pages/login-signup.scss";
 import { getWeb3, getBlockNestContract } from "../utils/blockNestContract";
 import Navbar from "../components/navbar";
+import Popup from "../components/dynamicPopup";
 import axios from "axios";
 
 const Register = () => {
   const [status, setStatus] = useState("Proceed");
   const [allFieldsFilled, setAllFieldsFilled] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupStatus, setPopupStatus] = useState("");
 
   const firstName = useRef();
   const lastName = useRef();
@@ -57,17 +60,6 @@ const Register = () => {
     }
   };
 
-  // const checkAllFieldsFilled = (event) => {
-  //   const formElements = event.currentTarget.elements;
-  //   let filled = true;
-  //   for (let i = 0; i < formElements.length; i++) {
-  //     if (formElements[i].type !== "submit" && formElements[i].value === "") {
-  //       filled = false;
-  //     }
-  //   }
-  //   setAllFieldsFilled(filled);
-  // };
-
   const checkAllFieldsFilled = (event) => {
     const formElements = event.currentTarget.elements;
     let filled = true;
@@ -76,14 +68,17 @@ const Register = () => {
     if (dobField) {
       const dob = new Date(dobField.value);
       const today = new Date();
-      const age = today.getFullYear() - dob.getFullYear();
+      let age = today.getFullYear() - dob.getFullYear();
       const m = today.getMonth() - dob.getMonth();
       if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
         age--;
       }
       if (age < 18) {
         filled = false;
-        alert("You must be at least 18 years old to register.");
+        // alert("You must be at least 18 years old to register.");
+        setPopupStatus("Age");
+        setShowPopup(true);
+        console.log("You must be at least 18 years old to register.");
       }
     }
     // for age validation
@@ -194,8 +189,6 @@ const Register = () => {
                         type="file"
                         name="fileUpload"
                         id="fileUpload"
-                        // ref={firstname}
-                        // required
                         accept="image/png, image/jpg, image/gif, image/jpeg"
                       />
                     </label>
@@ -210,7 +203,6 @@ const Register = () => {
                         disabled={!allFieldsFilled}
                       />
                     </div>
-                    {/* <p>register status {status}</p> */}
                     <div className="redirect">
                       <a href="/">Have an account? Login</a>
                     </div>
@@ -221,6 +213,9 @@ const Register = () => {
           </div>
         </div>
       </div>
+      {showPopup && (
+        <Popup status={popupStatus} onClose={() => setShowPopup(false)} />
+      )}
     </>
   );
 };

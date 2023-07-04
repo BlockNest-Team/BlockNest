@@ -46,6 +46,11 @@ const DynamicPopup = ({ status, onClose }) => {
     desc = "Thank Your for your Feedback";
     buttonLabel = "Ok";
   }
+  else if (status === "Age") {
+    heading = "Age";
+    desc = "You must be 18+ to use this app";
+    buttonLabel = "Ok";
+  }
   const handleClose = () => {
     onClose();
   }
