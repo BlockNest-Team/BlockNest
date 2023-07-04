@@ -77,7 +77,7 @@ const Post = ({ data }) => {
         userId: currentUser._id,
         comment: commentInput,
       });
-    } catch (err) {}
+    } catch (err) { }
     setComments([
       {
         userPic: currentUser.profilePicture,
@@ -131,15 +131,16 @@ const Post = ({ data }) => {
   };
 
   // get all comments for the post when clicked on comment icon
-  // const getComments = async () => {
-  //   try {
-  //     const res = await axios.get(`/posts/${data._id}/comment`);
-  //     setComments(res.data);
-  //     setshowCommentSectionection(true);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const getComments = async () => {
+    try {
+      const res = await axios.get(`/posts/${data._id}/comment`);
+      // setComments(res.data);
+      console.log(res.data);
+      setshowCommentSectionection(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="card">
@@ -211,14 +212,17 @@ const Post = ({ data }) => {
 
               <p>Like</p>
             </div>
+
             <div
               className="action-item d-flex-center"
               onClick={() =>
                 setshowCommentSectionection(!showCommentSectionection)
               }
             >
+
               <img src={commentIcon} alt="comment" />
               <p>Comment</p>
+              <button onClick={getComments}>Get Comments</button>
             </div>
             <div
               className="action-item d-flex-center"
