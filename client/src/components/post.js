@@ -73,23 +73,26 @@ const Post = ({ data }) => {
     e.preventDefault();
 
     try {
-      axios.put(`/posts/${data._id}/comment`, {
+      await axios.put(`/posts/${data._id}/comment`, {
         userId: currentUser._id,
         userName: currentUser.firstName + " " + currentUser.lastName,
         comment: commentInput,
       });
-    } catch (err) { }
+    } catch (err) {
+      console.log(err);
+    }
     setComments([
       {
         userPic: currentUser.profilePicture,
         userName: currentUser.firstName + " " + currentUser.lastName,
-        text: commentInput,
+        comment: commentInput,
       },
       ...comments,
     ]);
     setCommentCount(commentCount + 1);
-    setCommentInput(""); // Add this line
+    setCommentInput("");
   };
+
 
   const toggleExpandedComment = (index) => {
     const newExpandedComments = [...expandedComments];
