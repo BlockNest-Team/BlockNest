@@ -59,6 +59,38 @@ router.put("/:id/like", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// comment on a post
+
+// add comment
+router.put("/:id/comment", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    await post.updateOne({
+      $push: {
+        comments: {
+          userId: req.body.userId,
+          comment: req.body.comment,
+        },
+      },
+    });
+    res.status(200).json("The comment has been added");
+    // console.log("The comment has been added");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+// get all comments
+router.get("/:id/comment", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    res.status(200).json(post.comments);
+    // console.log(post.comments);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 //get a post
 
 router.get("/:id", async (req, res) => {

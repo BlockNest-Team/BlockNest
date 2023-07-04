@@ -47,6 +47,7 @@ const Post = ({ data }) => {
     fetchUser();
 
     setLikeCount(data.likes.length); // Update the initial like count
+    setCommentCount(data.comments.length); // Update the initial comment count
 
     if (data.likes.includes(currentUser._id)) {
       setLiked(true);
@@ -68,12 +69,19 @@ const Post = ({ data }) => {
     }
   };
 
-  const handleAddComment = (e) => {
+  const handleAddComment = async (e) => {
     e.preventDefault();
+
+    try {
+      axios.put(`/posts/${data._id}/comment`, {
+        userId: currentUser._id,
+        comment: commentInput,
+      });
+    } catch (err) {}
     setComments([
       {
-        userPic: "https://www.w3schools.com/howto/img_avatar.png",
-        userName: "Jhon Doe",
+        userPic: currentUser.profilePicture,
+        userName: currentUser.firstName + " " + currentUser.lastName,
         text: commentInput,
       },
       ...comments,
@@ -121,6 +129,17 @@ const Post = ({ data }) => {
     setShowPopup(true);
     console.log("delete");
   };
+
+  // get all comments for the post when clicked on comment icon
+  // const getComments = async () => {
+  //   try {
+  //     const res = await axios.get(`/posts/${data._id}/comment`);
+  //     setComments(res.data);
+  //     setshowCommentSectionection(true);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <div className="card">
