@@ -30,7 +30,7 @@ const Post = ({ data }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupStatus, setPopupStatus] = useState("");
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const [poster, setPoster] = useState("");
+  const [poster, setPoster] = useState("a");
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -38,6 +38,7 @@ const Post = ({ data }) => {
       setUser(res.data);
     };
     fetchUser();
+    fetchPoster();
     // fetchPoster();
   }, [data.userId]);
 
@@ -47,6 +48,7 @@ const Post = ({ data }) => {
       setUser(res.data);
     };
     fetchUser();
+    fetchPoster();
 
     setLikeCount(data.likes.length); // Update the initial like count
     setCommentCount(data.comments.length); // Update the initial comment count
@@ -62,9 +64,16 @@ const Post = ({ data }) => {
 
   // fetching name of the user who posted the post
   const fetchPoster = async () => {
-    const res = await axios.get(`/users?userId=${data.userId}`);
+    // console.log("data", data);
+    console.log("data.userId", data.userId);
+    const res = await axios.get(`/users/${data.userId}`);
     setPoster(res.data.firstName + " " + res.data.lastName);
+    console.log("poster", poster);
   };
+  // call on load
+  useEffect(() => {
+    fetchPoster();
+  }, []);
 
   const likePost = async () => {
     try {
@@ -146,11 +155,13 @@ const Post = ({ data }) => {
     try {
       const res = await axios.get(`/posts/${data._id}/comment`);
       setComments(res.data);
-      console.log(res.data);
+      // console.log(res.data);
       setshowCommentSectionection(true);
     } catch (err) {
       console.log(err);
     }
+
+    // fetchPoster();
   };
 
   return (
@@ -170,8 +181,8 @@ const Post = ({ data }) => {
                 />
               </div>
               <div className="profile-name">
-                <p>{currentUser.firstName + " " + currentUser.lastName}</p>
-
+                {/* <p>{user.firstName + " " + user.lastName}</p> */}
+                <p>{poster}</p>
                 <p className="uploded-time">{format(data.createdAt)}</p>
               </div>
             </div>
