@@ -61,12 +61,12 @@ function App() {
         />
         <Route
           exact
-          path="/s"
+          path="/ai"
           element={user ? <StableDiffusion /> : <Login />}
         />
         <Route
           exact
-          path="/message"
+          path="/messages"
           element={user ? <Messenger /> : <Home />}
         />
 
