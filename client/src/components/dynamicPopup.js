@@ -51,6 +51,11 @@ const DynamicPopup = ({ status, onClose }) => {
     desc = "You must be 18+ to use this app";
     buttonLabel = "Ok";
   }
+  else if (status === "User not Exist") {
+    heading = "User Does Not Exist";
+    desc = "Please Register First";
+    buttonLabel = "Ok";
+  }
   const handleClose = () => {
     onClose();
   }
