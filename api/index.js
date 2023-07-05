@@ -8,6 +8,8 @@ const multer = require("multer");
 const userRoute = require("./Routes/users");
 const authRoute = require("./Routes/auth");
 const postRoute = require("./Routes/posts");
+const conversationRoute = require("./Routes/conversations");
+const messageRoute = require("./Routes/messages");
 const router = express.Router();
 const path = require("path");
 const Moralis = require("moralis").default;
@@ -436,6 +438,8 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
+app.use("/api/conversations", conversationRoute);
+app.use("/api/messages", messageRoute);
 
 // Moralis
 // const replicate = new Replicate({
