@@ -9,7 +9,7 @@ router.post("/register", async (req, res) => {
     const newUser = new User({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      Location: req.body.Location,
+      location: req.body.location,
       occupation: req.body.occupation,
       DateOfBirth: req.body.DateOfBirth,
       email: req.body.email,

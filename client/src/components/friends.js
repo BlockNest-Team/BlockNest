@@ -17,12 +17,12 @@ function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
 
     getFriends();
   }, [currentId]);
-  console.log("friends", friends);
+  console.log("friends", friends._id);
 
   useEffect(() => {
     setOnlineFriends(friends.filter((f) => onlineUsers.includes(f._id)));
   }, [friends, onlineUsers]);
-  console.log("Onlinefriends", onlineUsers);
+  console.log("Onlinefriends", onlineUsers._id);
 
   const handleClick = async (user) => {
     console.log("I am clicked")
@@ -54,7 +54,7 @@ function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
             Online Friends
           </h1></div>
         <div className="chatOnline">
-          {onlineFriends.map((o) => (
+          {friends._id.map((o) => (
 
             <div className="chatOnlineFriend" onClick={() => handleClick(o)}>
               <div className="chatOnlineImgContainer">

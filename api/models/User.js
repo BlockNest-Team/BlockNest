@@ -21,7 +21,7 @@ const UserSchema = new mongoose.Schema(
       min: 2,
       max: 30,
     },
-    Location: {
+    location: {
       type: String,
       max: 50,
     },

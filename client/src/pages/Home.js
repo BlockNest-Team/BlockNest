@@ -7,6 +7,7 @@ import ChatOnline from "../components/chatOnline";
 
 import "../styles/pages/home.scss";
 import FriendsSuggestions from "../components/friendsSuggestions";
+import Friends from "../components/friends";
 import Navbar from "../components/navbar";
 
 const Home = () => {
@@ -28,7 +29,8 @@ const Home = () => {
           </div>
           <div className="friends-request-container">
             {/* <FriendsSuggestions /> */}
-            <ChatOnline />
+            {/* <ChatOnline /> */}
+            {/* <Friends /> */}
           </div>
         </div>
       </div>

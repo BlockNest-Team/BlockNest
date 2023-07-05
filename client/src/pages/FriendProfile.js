@@ -2,7 +2,7 @@ import React from "react";
 import Wallet from "../components/wallet";
 import Posts from "../components/friendsPosts";
 import ProfileCard from "../components/profileCard";
-import About from "../components/about";
+import About from "../components/otherprofileabout";
 import "../styles/pages/friendprofile.scss";
 import FriendsSuggestions from "../components/friendsSuggestions";
 import Navbar from "../components/navbar";
@@ -23,14 +23,14 @@ const FriendProfile = () => {
           <div className="wallet-container d-flex-col">
             <Wallet currentPage={currentPage} />
             <div className="about-card-1">
-              <About />
+              <About userProfile={userProfile} />
             </div>
           </div>
           <div className="feed-container d-flex-center d-flex-col">
             <div className="post-items">
               <ProfileCard userProfile={userProfile} />
               <div className="about-card-2">
-                <About />
+                <About userProfile={userProfile} />
               </div>
               <Posts userProfile={userProfile} />
             </div>

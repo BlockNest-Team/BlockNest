@@ -87,6 +87,10 @@
   padding: 10px;
   height: 100%;
 }
+.chatMenuWrapper .conv{
+  height: calc(100vh - 160px);
+  overflow-x: scroll;
+}
 
 .noConversationText {
   position: absolute;

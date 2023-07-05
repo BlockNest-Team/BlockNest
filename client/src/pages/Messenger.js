@@ -136,11 +136,13 @@ function Messenger() {
                   Chats
                 </h1>
               </div>
-              {conversations.map((c) => (
-                <div onClick={() => setCurrentChat(c)}>
-                  <Conversation conversation={c} currentUser={user} />
-                </div>
-              ))}
+              <div className="conv">
+                {conversations.map((c) => (
+                  <div onClick={() => setCurrentChat(c)}>
+                    <Conversation conversation={c} currentUser={user} />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div >
