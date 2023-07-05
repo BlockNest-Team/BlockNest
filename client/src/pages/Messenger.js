@@ -63,17 +63,17 @@ function Messenger() {
     });
   }, [user]);
 
-  // useEffect(() => {
-  //   const getConversations = async () => {
-  //     try {
-  //       const res = await axios.get("/conversations/" + user._id);
-  //       setConversations(res.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   getConversations();
-  // }, [user._id]);
+  useEffect(() => {
+    const getConversations = async () => {
+      try {
+        const res = await axios.get("/conversations/" + user._id);
+        setConversations(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getConversations();
+  }, [user._id]);
 
   useEffect(() => {
     const getMessages = async () => {
