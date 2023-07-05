@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/components/chatOnline.css";
+import "../styles/theme/theme.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -45,33 +46,39 @@ function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
     }
   };
   return (
-    <>
-      <div>ChatOnline</div>;
-      <div className="chatOnline">
-        {onlineFriends.map((o) => (
+    <div className="card">
+      <div className="onlineFriends-container">
+        <div className="card-heading">
+          <h1>
+            Online Friends
+          </h1></div>
+        <div className="chatOnline">
+          {onlineFriends.map((o) => (
 
-          <div className="chatOnlineFriend" onClick={() => handleClick(o)}>
-            <div className="chatOnlineImgContainer">
-              <img
-                className="conversationImg"
-                src=
-                {
-                  o.profilePicture
-                    ? o.profilePicture
-                    : PF + "person/noAvatar.png"
-                }
-                alt=""
-              />
-              <div className="chatOnlineBadge"></div>
+            <div className="chatOnlineFriend" onClick={() => handleClick(o)}>
+              <div className="chatOnlineImgContainer">
+                <img
+                  className="conversationImg"
+                  src=
+                  {
+                    o.profilePicture
+                      ? o.profilePicture
+                      : PF + "person/noAvatar.png"
+                  }
+                  alt=""
+                />
+                <div className="chatOnlineBadge"></div>
+              </div>
+              <span className="chatOnlineName">
+                {o.firstName + " " + o.lastName}
+                {/* {o} */}
+              </span>
             </div>
-            <span className="chatOnlineName">
-              {o.firstName + " " + o.lastName}
-              {/* {o} */}
-            </span>
-          </div>
-        ))}
+
+          ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 
