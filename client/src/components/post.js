@@ -244,6 +244,7 @@ const Post = ({ data }) => {
               <img src={PF + data.img} alt="" />
             </div>
           )}
+          {/* {data.isNFT && <div className="post-nft-indicator">This is an NFT</div>} */}
         </div>
         <div className="post-content-footer">
           <div className="post-stats d-flex-justify-between">
@@ -256,10 +257,10 @@ const Post = ({ data }) => {
                 <p>{formatCount(commentCount)}</p> {/* Update this line */}
                 <img src={commentIcon} alt="comment" />
               </div>
-              <div className="stats-item">
-                <p>{formatCount(shareCount)}</p> {/* Update this line */}
+              {/* <div className="stats-item">
+                <p>{formatCount(shareCount)}</p> 
                 <img src={shareIcon} alt="share" />
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -289,13 +290,13 @@ const Post = ({ data }) => {
               <p>Comment</p>
               {/* <button onClick={getComments}>Get Comments</button> */}
             </div>
-            <div
+            {/* <div
               className="action-item d-flex-center"
               onClick={openSharePostModal}
             >
               <img src={shareIcon} alt="share" />
               <p>Share</p>
-            </div>
+            </div> */}
           </div>
         </div>
         {showCommentSectionection && (
