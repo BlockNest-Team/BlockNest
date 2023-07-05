@@ -8,6 +8,7 @@ import ChatOnline from "../components/chatOnline";
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
+import sendIcon from '../assets/svgs/send-btn.svg'
 import io from "socket.io-client";
 
 function Messenger() {
@@ -129,17 +130,22 @@ function Messenger() {
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <input placeholder="Search for friends" className="chatMenuInput" />
-            {conversations.map((c) => (
-              <div onClick={() => setCurrentChat(c)}>
-                <Conversation conversation={c} currentUser={user} />
+            <div className="card">
+              <div className="card-heading">
+                <h1>
+                  Chats
+                </h1>
               </div>
-            ))}
-            {/* <Conversation /> */}
+              {conversations.map((c) => (
+                <div onClick={() => setCurrentChat(c)}>
+                  <Conversation conversation={c} currentUser={user} />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="chatBox">
-          <div className="chatBoxWrapper">
+        </div >
+        <div className="chatBox ">
+          <div className="chatBoxWrapper card">
             {currentChat ? (
               <>
                 <div className="chatBoxTop">
@@ -156,9 +162,7 @@ function Messenger() {
                     onChange={(e) => setNewMessage(e.target.value)}
                     value={newMessage}
                   ></textarea>
-                  <button className="chatSubmitButton" onClick={handleSubmit}>
-                    Send
-                  </button>
+                  <img src={sendIcon} alt="add comment" onClick={handleSubmit} />
                 </div>
               </>
             ) : (
@@ -178,7 +182,7 @@ function Messenger() {
             />
           </div>
         </div>
-      </div>
+      </div >
 
       {/* end */}
     </>
