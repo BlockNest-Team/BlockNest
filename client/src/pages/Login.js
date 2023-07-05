@@ -5,8 +5,11 @@ import Navbar from "../components/navbar.js";
 import { getWeb3, getBlockNestContract } from "../utils/blockNestContract";
 import { AuthContext } from "../context/AuthContext";
 import { loginCall } from "../apiCalls";
+import Popup from "../components/dynamicPopup";
 const Login = () => {
   const [status, setStatus] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupStatus, setPopupStatus] = useState("");
   const [walletConnected, setWalletConnected] = useState(false);
   const { user, isFetching, error, dispatch } = useContext(AuthContext);
   const [walletAddra, setWalletAddra] = useState("");
@@ -47,8 +50,10 @@ const Login = () => {
         await loginCall({ walletAddr: accounts[0] }, dispatch); //resolve error as if not registered then server crashes
         navigateToHome();
       } else {
-        setStatus("User does not exist. Please register first.");
-        alert("User does not exist. Please register first.");
+        setStatus("Authorize Login");
+        setPopupStatus("User not Exist");
+        setShowPopup(true);
+        // alert("User does not exist. Please register first.");
       }
     } catch (error) {
       console.error("Error during login:", error.message);
@@ -69,6 +74,7 @@ const Login = () => {
               <div className="login-heading ">
                 <h1>Login</h1>
               </div>
+
               <div className="login-profile-details d-flex-center d-flex-col">
                 <div className="profile-pic none">
                   <img
@@ -99,6 +105,9 @@ const Login = () => {
             </div>
           </div>
         </div>
+        {showPopup && (
+          <Popup status={popupStatus} onClose={() => setShowPopup(false)} />
+        )}
       </div>
     </>
   );
