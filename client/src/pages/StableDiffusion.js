@@ -17,8 +17,7 @@ const StableDiffusion = () => {
   // const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-
+  const [fn, setFn] = useState(null);
 
   const [formData, setFormData] = useState({
     prompt: "",
@@ -47,16 +46,29 @@ const StableDiffusion = () => {
     );
     console.log("output");
 
-    console.log(output);
     setSrsAddress(output);
   };
 
   const MintingNFT = async (event) => {
     // event.preventDefault();
     let url;
+    const f = document.getElementById("file");
+
+    var request = new XMLHttpRequest();
+    request.open("GET", srsAddress, true);
+    request.responseType = "blob";
+    request.onload = function () {
+      var reader = new FileReader();
+      reader.readAsDataURL(request.response);
+      reader.onload = function (e) {
+        console.log("DataURL:", e.target.result);
+        f = e.target.result;
+      };
+    };
+    request.send();
     // Upload file to IPFS
     try {
-      const added = await client.add(fileN, {
+      const added = await client.add(request, {
         progress: (prog) => console.log(`received: ${prog}`),
       });
       url = `https://ipfs.io/ipfs/${added.path}`;
@@ -77,10 +89,10 @@ const StableDiffusion = () => {
     console.log(tx.transactionHash);
     alert(
       "nft minted successfully at" +
-      tx.transactionHash +
-      "\n" +
-      "check it at https://sepolia.etherscan.io/tx/" +
-      tx.transactionHash
+        tx.transactionHash +
+        "\n" +
+        "check it at https://sepolia.etherscan.io/tx/" +
+        tx.transactionHash
     );
 
     const newPost = {
@@ -98,7 +110,7 @@ const StableDiffusion = () => {
       try {
         await axios.post("/upload", data);
         console.log("File uploaded successfully " + data);
-      } catch (err) { }
+      } catch (err) {}
     }
     try {
       await axios.post("/posts", newPost);
@@ -147,7 +159,6 @@ const StableDiffusion = () => {
     console.log(response);
     setSrsAddress(response);
     setIsLoading(false); // stop loading
-
   };
 
   const handleReset = () => {
@@ -168,22 +179,23 @@ const StableDiffusion = () => {
       const response = await fetch(srsAddress);
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.style.display = 'none';
+      const a = document.createElement("a");
+      a.style.display = "none";
       a.href = url;
-      a.download = 'image.png'; // you can choose a different filename if you wish
+      a.download = "image.png"; // you can choose a different filename if you wish
+      setFn(a);
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
     } catch (error) {
-      console.error('Error downloading the image:', error);
+      console.error("Error downloading the image:", error);
     }
   };
 
   const PostAsNft = () => {
     console.log("Post as NFT");
-  }
-
+    MintingNFT();
+  };
 
   return (
     <>
@@ -211,7 +223,7 @@ const StableDiffusion = () => {
                 name="negativePrompt"
                 value={formData.negativePrompt}
                 onChange={handleChange}
-              // required
+                // required
               />
             </div>
             <div className="formgroup">
@@ -222,7 +234,7 @@ const StableDiffusion = () => {
                 name="seed"
                 value={formData.seed}
                 onChange={handleChange}
-              // required
+                // required
               />
             </div>
             <div className="formgroup">
@@ -241,7 +253,9 @@ const StableDiffusion = () => {
             </div>
 
             <div className="form-actions">
-              <button className="btn" type="submit">Submit</button>
+              <button className="btn" type="submit">
+                Submit
+              </button>
               <button className="btn" type="button" onClick={handleReset}>
                 Reset
               </button>
@@ -250,7 +264,7 @@ const StableDiffusion = () => {
         </div>
         <div className="output-container">
           <div className="output-section">
-            <h2 className="output-heading">Output</h2>
+            {/* <h2 className="output-heading">Output</h2> */}
             {isSubmitted ? (
               isLoading ? (
                 <Loader />
@@ -264,19 +278,24 @@ const StableDiffusion = () => {
                     onLoad={() => setIsLoading(false)}
                   />
                   <div className="action-buttons d-flex-center g-1">
+                    <button
+                      className="btn"
+                      type="button"
+                      onClick={downloadImage}
+                    >
+                      Download
+                    </button>
 
-                    <button className="btn" type="button" onClick={downloadImage}>Download</button>
-
-                    <button className="btn" type="submit" onClick={PostAsNft}>Post as NFT</button>
+                    {/* <button className="btn" type="submit" onClick={PostAsNft}>
+                      Post as NFT
+                    </button> */}
                   </div>
                 </>
               )
             ) : null}
           </div>
         </div>
-
       </div>
-
     </>
   );
 };
