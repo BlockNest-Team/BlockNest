@@ -24,7 +24,7 @@ function Conversations({ conversation, currentUser }) {
 
   return (
     <>
-      <div>Conversations</div>
+      {/* <div>Conversations</div> */}
 
       <div className="conversation">
         <img
