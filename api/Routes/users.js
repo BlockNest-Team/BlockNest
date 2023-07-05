@@ -105,8 +105,8 @@ router.get("/friends/:userId", async (req, res) => {
     );
     let friendList = [];
     friends.map((friend) => {
-      const { _id, walletAddr, profilePicture } = friend;
-      friendList.push({ _id, walletAddr, profilePicture });
+      const { _id, walletAddr, profilePicture, firstName, lastName } = friend;
+      friendList.push({ _id, walletAddr, profilePicture, firstName, lastName });
     });
     res.status(200).json(friendList);
   } catch (err) {

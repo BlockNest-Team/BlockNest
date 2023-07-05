@@ -6,7 +6,7 @@ import axios from "axios";
 
 function Conversations({ conversation, currentUser }) {
   const [user, setUser] = useState(null);
-  // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {
     const friendId = conversation.members.find((m) => m !== currentUser._id);
@@ -24,20 +24,20 @@ function Conversations({ conversation, currentUser }) {
 
   return (
     <>
-      <div>Conversations</div>
+      {/* <div>Conversations</div> */}
 
       <div className="conversation">
         <img
           className="conversationImg"
-          src="https://images.pexels.com/photos/3686769/pexels-photo-3686769.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-          // {
-          //   user?.profilePicture
-          //     ? PF + user.profilePicture
-          //     : PF + "person/noAvatar.png"
-          // }
-          alt="user image here"
+          src=
+          {
+            currentUser.profilePicture
+              ? currentUser.profilePicture
+              : PF + "person/noAvatar.png"
+          }
+          alt=""
         />
-        <span className="conversationName">{currentUser?._id} </span>
+        <span className="conversationName">{currentUser?.firstName + " " + currentUser.lastName} </span>
       </div>
     </>
   );

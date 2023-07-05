@@ -23,12 +23,24 @@ function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   }, [friends, onlineUsers]);
 
   const handleClick = async (user) => {
+    console.log("I am clicked")
     try {
+      // create a new conversation
+      const res = await axios.post("/conversations", {
+        senderId: currentId,
+        receiverId: user._id,
+      });
+    } catch (err) {
+      console.log(err);
+    };
+    try {
+      console.log("From Try");
       const res = await axios.get(
         `/conversations/find/${currentId}/${user._id}`
       );
       setCurrentChat(res.data);
     } catch (err) {
+      console.log("From Catch")
       console.log(err);
     }
   };
@@ -37,23 +49,24 @@ function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
       <div>ChatOnline</div>;
       <div className="chatOnline">
         {onlineFriends.map((o) => (
+
           <div className="chatOnlineFriend" onClick={() => handleClick(o)}>
             <div className="chatOnlineImgContainer">
               <img
-                className="chatOnlineImg"
-                src="https://images.pexels.com/photos/3686769/pexels-photo-3686769.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                //   {
-                //     o?.profilePicture
-                //       ? PF + o.profilePicture
-                //       : PF + "person/noAvatar.png"
-                //   }
-                alt="chat online image"
+                className="conversationImg"
+                src=
+                {
+                  o.profilePicture
+                    ? o.profilePicture
+                    : PF + "person/noAvatar.png"
+                }
+                alt=""
               />
               <div className="chatOnlineBadge"></div>
             </div>
             <span className="chatOnlineName">
-              {o?.username}
-              username here
+              {o.firstName + " " + o.lastName}
+              {/* {o} */}
             </span>
           </div>
         ))}
