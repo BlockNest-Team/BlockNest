@@ -55,8 +55,8 @@ const ProfileCard = ({ userProfile }) => {
           <button className="btn" onClick={handleFollow}>
             {isFollowing ? "Unfollow" : "Follow"}
           </button>
-          <div className="border">|</div>
-          <button className="btn">Message</button>
+          {/* <div className="border">|</div>
+          <button className="btn">Message</button> */}
         </div>
       </div>
     </div>

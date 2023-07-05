@@ -3,7 +3,7 @@ import Wallet from "../components/wallet";
 import PostUpload from "../components/postUpload";
 import Posts from "../components/posts";
 // import Status from '../components/status'
-import Stories from '../components/stories'
+import ChatOnline from "../components/chatOnline";
 
 import "../styles/pages/home.scss";
 import FriendsSuggestions from "../components/friendsSuggestions";
@@ -27,7 +27,8 @@ const Home = () => {
             </div>
           </div>
           <div className="friends-request-container">
-            <FriendsSuggestions />
+            {/* <FriendsSuggestions /> */}
+            <ChatOnline />
           </div>
         </div>
       </div>
