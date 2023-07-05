@@ -18,6 +18,7 @@ import NotFound from "./pages/NotFound";
 import StableDiffusion from "./pages/StableDiffusion";
 import { AuthContext } from "./context/AuthContext";
 // import Messenger from "./pages/MessengerScreen";
+import Messenger from "./pages/Messenger";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -62,6 +63,11 @@ function App() {
           exact
           path="/s"
           element={user ? <StableDiffusion /> : <Login />}
+        />
+        <Route
+          exact
+          path="/message"
+          element={user ? <Messenger /> : <Home />}
         />
 
         {/* <Route path="/messenger">{!
