@@ -19,7 +19,7 @@ function Messenger() {
   // const [arrivalMessage, setArrivalMessage] = useState(null);
   // const [onlineUsers, setOnlineUsers] = useState([]);
   // const socket = useRef();
-  // const scrollRef = useRef();
+  const scrollRef = useRef();
 
   useEffect(() => {
     const getConversations = async () => {
@@ -102,9 +102,9 @@ function Messenger() {
     }
   };
 
-  // useEffect(() => {
-  //   scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  // }, [messages]);
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
     <>
@@ -130,17 +130,10 @@ function Messenger() {
               <>
                 <div className="chatBoxTop">
                   {messages.map((m) => (
-                    <Message message={m} own={m.sender === user._id} />
+                    <div ref={scrollRef}>
+                      <Message message={m} own={m.sender === user._id} />
+                    </div>
                   ))}
-                  {/* 
-                  <Message />
-                  <Message />
-                  <Message own={true} />
-                  <Message />
-                  <Message own={true} />
-                  <Message />
-                  <Message />
-                  <Message /> */}
                 </div>
                 <div className="chatBoxBottom">
                   <textarea
