@@ -3,6 +3,8 @@ import "../styles/components/commentSection.scss";
 
 const Comment = ({ userPic, userName, text, isExpanded, toggleExpanded }) => {
   console.log(text);
+  console.log(userPic); // should log the url
+
   // const words = text;
   // const isLongComment = words.length > 50;
   // const displayedText = isLongComment && !isExpanded

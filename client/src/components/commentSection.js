@@ -6,6 +6,7 @@ import sendIcon from '../assets/svgs/send-btn.svg'
 
 const CommentSection = ({ comments, handleAddComment, commentInput, setCommentInput }) => {
 
+  console.log(comments)
   return (
     <div className="comment-section">
       <form onSubmit={handleAddComment} className="comment-form">

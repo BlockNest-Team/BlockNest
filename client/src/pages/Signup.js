@@ -69,7 +69,7 @@ const Register = () => {
         const res = await axios.post("/auth/register", user);
         console.log("user registered" + res);
       } catch (err) {
-        console.log(err);
+        console.log("Register/auth: ", err);
       }
       setStatus("Registration successful!");
       navigateToHome();

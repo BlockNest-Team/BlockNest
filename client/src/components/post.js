@@ -85,6 +85,31 @@ const Post = ({ data }) => {
       console.log(err);
     }
   };
+  // const handleAddComment = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     await axios.put(`/posts/${data._id}/comment`, {
+  //       userId: currentUser._id,
+  //       userName: currentUser.firstName + " " + currentUser.lastName,
+  //       comment: commentInput,
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  //   setComments([
+  //     {
+  //       userPic: currentUser.profilePicture,
+  //       userName: currentUser.firstName + " " + currentUser.lastName,
+  //       comment: commentInput,
+  //     },
+  //     ...comments,
+  //   ]);
+  //   setCommentCount(commentCount + 1);
+  //   setCommentInput("");
+  // };
+
+
 
   const handleAddComment = async (e) => {
     e.preventDefault();
@@ -93,22 +118,29 @@ const Post = ({ data }) => {
       await axios.put(`/posts/${data._id}/comment`, {
         userId: currentUser._id,
         userName: currentUser.firstName + " " + currentUser.lastName,
+        userPic: currentUser.profilePicture,
         comment: commentInput,
       });
+      // const res = await axios.get(`/posts/${data._id}/comment`);
+      // setComments(res.data);
+      // setCommentCount(commentCount + 1);
+      // setCommentInput("");
+
+      setComments([
+        {
+          userPic: currentUser.profilePicture,
+          userName: currentUser.firstName + " " + currentUser.lastName,
+          comment: commentInput,
+        },
+        ...comments,
+      ]);
+      setCommentCount(commentCount + 1);
+      setCommentInput("");
     } catch (err) {
       console.log(err);
     }
-    setComments([
-      {
-        userPic: currentUser.profilePicture,
-        userName: currentUser.firstName + " " + currentUser.lastName,
-        comment: commentInput,
-      },
-      ...comments,
-    ]);
-    setCommentCount(commentCount + 1);
-    setCommentInput("");
   };
+
 
   const toggleExpandedComment = (index) => {
     const newExpandedComments = [...expandedComments];
@@ -151,18 +183,28 @@ const Post = ({ data }) => {
   };
 
   // get all comments for the post when clicked on comment icon
+  // get all comments for the post when clicked on comment icon
   const getComments = async () => {
     try {
       const res = await axios.get(`/posts/${data._id}/comment`);
-      setComments(res.data);
-      // console.log(res.data);
+      const commentData = await Promise.all(
+        res.data.map(async (comment) => {
+          const userRes = await axios.get(`/users/${comment.userId}`);
+          return {
+            ...comment,
+            userName: userRes.data.firstName + " " + userRes.data.lastName,
+            userPic: userRes.data.profilePicture,
+          };
+        })
+      );
+      setComments(commentData);
       setshowCommentSectionection(true);
     } catch (err) {
       console.log(err);
     }
-
-    // fetchPoster();
   };
+
+
 
   return (
     <div className="card">
@@ -199,15 +241,7 @@ const Post = ({ data }) => {
           <div className="post-text">{data.desc}</div>
           {data.img && (
             <div className="post-image">
-              <img
-                src={
-                  user.profilePicture || currentUser.profilePicture
-                    ? currentUser.profilePicture
-                    : PF + "person/noAvatar.png"
-                }
-                alt="profile-pic"
-              />
-
+              <img src={PF + data.img} alt="" />
             </div>
           )}
         </div>
