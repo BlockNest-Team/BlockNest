@@ -4,7 +4,8 @@ import "../styles/pages/messenger.css";
 import Conversation from "../components/conversations";
 import Message from "../components/message";
 import ChatOnline from "../components/chatOnline";
-
+import searchIcon from "../assets/svgs/search.svg";
+import sendIcon from '../assets/svgs/send-btn.svg'
 function Messenger() {
   return (
     <>
@@ -15,17 +16,34 @@ function Messenger() {
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <input placeholder="Search for friends" className="chatMenuInput" />
+
+            <div className="searchchatwrapper">
+              <input
+                type="text"
+                placeholder="Search For Friends"
+                className="chatMenuInput"
+              // value={searchTerm}
+              // onChange={(e) => setSearchTerm(e.target.value)}
+              // className={inputVisible ? "visible" : ""}
+              />
+
+              <img
+                src={searchIcon}
+                alt=""
+              />
+
+
+            </div>
             {/* {conversations.map((c) => (
               <div onClick={() => setCurrentChat(c)}>
                 <Conversation conversation={c} currentUser={user} />
               </div>
             ))} */}
             <Conversation />
+            {/* <Conversation />
             <Conversation />
             <Conversation />
-            <Conversation />
-            <Conversation />
+            <Conversation /> */}
           </div>
         </div>
         <div className="chatBox">
@@ -49,18 +67,17 @@ function Messenger() {
                 <Message />
               </div>
               <div className="chatBoxBottom">
-                <textarea
-                  className="chatMessageInput"
-                  placeholder="write something..."
-                  // onChange={(e) => setNewMessage(e.target.value)}
-                  //   value={newMessage}
-                ></textarea>
-                <button
-                  className="chatSubmitButton"
-                  //   onClick={handleSubmit}
-                >
-                  Send
-                </button>
+                <form className="comment-form">
+                  <input
+                    type="text"
+                    // value={commentInput}
+                    // onChange={(e) => setCommentInput(e.target.value)}
+                    placeholder="Write a message..."
+                  />
+                  <span className="add-comment-btn">
+                    <img src={sendIcon} alt="add comment" />
+                  </span>
+                </form>
               </div>
             </>
             {/* ) : ( */}
@@ -70,7 +87,7 @@ function Messenger() {
             {/* )} */}
           </div>
         </div>
-        <div className="chatOnline">
+        {/* <div className="chatOnline">
           <div className="chatOnlineWrapper">
             <ChatOnline />
             {/* <ChatOnline
@@ -78,9 +95,9 @@ function Messenger() {
               currentId={user._id}
               setCurrentChat={setCurrentChat}
             /> */}
-          </div>
-        </div>
-      </div>
+        {/* </div> */}
+        {/* </div > * /} */}
+      </div >
 
       {/* end */}
     </>

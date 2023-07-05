@@ -271,7 +271,7 @@ const Navbar = () => {
           </li>
 
           <li className="navbar__item">
-            <Link to="/s" className="navbar__link">
+            <Link to="/ai" className="navbar__link">
               Ai
             </Link>
           </li>
@@ -281,7 +281,7 @@ const Navbar = () => {
             </a>
           </li> */}
           <li className="navbar__item">
-            <a href="/" className="navbar__link">
+            <a href="/messages" className="navbar__link">
               Messages
             </a>
           </li>

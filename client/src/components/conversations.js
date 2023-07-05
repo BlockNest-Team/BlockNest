@@ -5,7 +5,7 @@ import "../styles/components/conversation.css";
 function Conversations() {
   return (
     <>
-      <div>Conversations</div>
+      {/* <div>Conversations</div> */}
 
       <div className="conversation">
         <img
