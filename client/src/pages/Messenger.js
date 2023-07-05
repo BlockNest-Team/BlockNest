@@ -8,12 +8,14 @@ import ChatOnline from "../components/chatOnline";
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
+import { io } from "socket.io-client";
 
 function Messenger() {
   const [conversations, setConversations] = useState([]);
   const { user } = useContext(AuthContext);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
+  const [socket, setSocket] = useState(null);
 
   const [newMessage, setNewMessage] = useState("");
   // const [arrivalMessage, setArrivalMessage] = useState(null);
