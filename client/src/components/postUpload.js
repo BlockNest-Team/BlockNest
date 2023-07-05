@@ -39,6 +39,8 @@ const PostUpload = () => {
   const [userName, setUserName] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const [isNFTUploading, setIsNFTUploading] = useState(false);
+  const { user: currentUser } = useContext(AuthContext);
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
 
   const { user } = useContext(AuthContext);
@@ -199,7 +201,11 @@ const PostUpload = () => {
                 <div className="post-upload-header d-flex-align-center">
                   <div className="profile-pic">
                     <img
-                      src="https://www.w3schools.com/howto/img_avatar.png"
+                      src={
+                        user.profilePicture || currentUser.profilePicture
+                          ? currentUser.profilePicture
+                          : PF + "person/noAvatar.png"
+                      }
                       alt="profile-pic"
                     />
                   </div>

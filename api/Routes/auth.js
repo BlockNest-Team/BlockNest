@@ -4,12 +4,8 @@ const User = require("../models/User");
 
 //REGISTER
 router.post("/register", async (req, res) => {
+  console.log(req.body);
   try {
-    //generate new password
-    // const salt = await bcrypt.genSalt(10);
-    // const hashedPassword = await bcrypt.hash(req.body.password, salt);
-
-    //create new user
     const newUser = new User({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -17,13 +13,9 @@ router.post("/register", async (req, res) => {
       occupation: req.body.occupation,
       DateOfBirth: req.body.DateOfBirth,
       email: req.body.email,
-      profilePicture: req.body.profilePicture,
+      profilePicture: req.body.profilepic, // Make sure to match the field name
       walletAddr: req.body.walletAddr,
-
-      // password: hashedPassword,
     });
-
-    //save user and respond
     const user = await newUser.save();
     res.status(200).json(user);
   } catch (err) {
@@ -31,17 +23,11 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// Done in block chain no need to connect
 
-// LOGIN
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ walletAddr: req.body.walletAddr });
     !user && res.status(404).json("user not founds");
-
-    // const validPassword = await bcrypt.compare(req.body.password, user.password)
-    // !validPassword && res.status(400).json("wrong password")
-
     res.status(200).json(user);
   } catch (err) {
     res.status(500).json(err);

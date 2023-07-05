@@ -24,7 +24,7 @@ const ProfileCard = () => {
             <img
               src={
                 currentUser.profilePicture
-                  ? PF + currentUser.profilePicture
+                  ? currentUser.profilePicture
                   : PF + "person/noAvatar.png"
               }
               alt=""

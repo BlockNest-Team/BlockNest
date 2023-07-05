@@ -174,7 +174,7 @@ const Post = ({ data }) => {
                 <img
                   src={
                     user.profilePicture || currentUser.profilePicture
-                      ? PF + currentUser.profilePicture
+                      ? currentUser.profilePicture
                       : PF + "person/noAvatar.png"
                   }
                   alt="profile-pic"
@@ -199,7 +199,15 @@ const Post = ({ data }) => {
           <div className="post-text">{data.desc}</div>
           {data.img && (
             <div className="post-image">
-              <img src={PF + data.img} alt="post-image" />
+              <img
+                src={
+                  user.profilePicture || currentUser.profilePicture
+                    ? currentUser.profilePicture
+                    : PF + "person/noAvatar.png"
+                }
+                alt="profile-pic"
+              />
+
             </div>
           )}
         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/pages/login-signup.scss";
 import { getWeb3, getBlockNestContract } from "../utils/blockNestContract";
@@ -12,6 +12,8 @@ const Register = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupStatus, setPopupStatus] = useState("");
   const [fileN, setFileN] = useState(null);
+  const [profilePicBase64, setProfilePicBase64] = useState(null);
+
 
   const firstName = useRef();
   const lastName = useRef();
@@ -33,8 +35,15 @@ const Register = () => {
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setFileN(event.target.files[0]);
+      setProfilePicBase64(reader.result); // Save the base64 string in state
+      console.log(profilePicBase64);  // Log the base64 string
     };
   };
+
+  useEffect(() => {
+    console.log(profilePicBase64); // this will log the updated base64 string whenever it changes
+  }, [profilePicBase64]);
+
 
   const registerUser = async () => {
     try {
@@ -53,12 +62,12 @@ const Register = () => {
         occupation: occupation.current.value,
         dob: dob.current.value,
         email: email.current.value,
-        profilepic: fileN,
+        profilepic: profilePicBase64, // Use the base64 string here
         walletAddr: accounts[0],
       };
       try {
         const res = await axios.post("/auth/register", user);
-        console.log("user regiestered" + res);
+        console.log("user registered" + res);
       } catch (err) {
         console.log(err);
       }
@@ -69,6 +78,9 @@ const Register = () => {
       setStatus("Registration failed");
     }
   };
+
+
+
 
   const checkAllFieldsFilled = (event) => {
     const formElements = event.currentTarget.elements;
