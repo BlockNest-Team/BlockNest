@@ -252,30 +252,30 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
   // implement web3 here endforshare
 
   const payRequestssss = async () =>
-    // senderAddress,
-    // payRequesterAddress,
-    // payRequesterAmount,
-    // payRequesterMessage
-    {
-      try {
-        // setStatus("Logging in...");
-        const web3 = await getWeb3();
-        const contract = await getBlockNestContract(web3);
-        const accounts = await web3.eth.getAccounts();
-        const weiAmount = web3.utils.toWei(payRequesterAmount, "ether");
-        console.log("weiAmount", weiAmount);
-        console.log("RequesterAddress", payRequesterAddress);
-        const payRequest = await contract.methods
-          .payRequest(requests[0][0])
-          .send({
-            from: accounts[0],
-            value: weiAmount,
-          });
-      } catch (error) {
-        console.error("Error during sentpayment:", error.message);
-        // setStatus("Login failed.");
-      }
-    };
+  // senderAddress,
+  // payRequesterAddress,
+  // payRequesterAmount,
+  // payRequesterMessage
+  {
+    try {
+      // setStatus("Logging in...");
+      const web3 = await getWeb3();
+      const contract = await getBlockNestContract(web3);
+      const accounts = await web3.eth.getAccounts();
+      const weiAmount = web3.utils.toWei(payRequesterAmount, "ether");
+      console.log("weiAmount", weiAmount);
+      console.log("RequesterAddress", payRequesterAddress);
+      const payRequest = await contract.methods
+        .payRequest(requests[0][0])
+        .send({
+          from: accounts[0],
+          value: weiAmount,
+        });
+    } catch (error) {
+      console.error("Error during sentpayment:", error.message);
+      // setStatus("Login failed.");
+    }
+  };
   // implement web3 here endforshare
 
   const handleSendFormSubmit = (event) => {
@@ -423,14 +423,15 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
           {/* Render View Wallet button only when on home page */}
           {(currentPage === "/home" ||
             currentPage === "/profile" ||
+            currentPage === "/otherprofile" ||
             currentPage === "/myprofile") && (
-            <Link to="/wallet">
-              <button className="btn d-flex-center">
-                <img className="wallet-icon" src={walletIcon} alt="wallet" />
-                <span>View Wallet</span>
-              </button>
-            </Link>
-          )}
+              <Link to="/wallet">
+                <button className="btn d-flex-center">
+                  <img className="wallet-icon" src={walletIcon} alt="wallet" />
+                  <span>View Wallet</span>
+                </button>
+              </Link>
+            )}
           {/* Render Send and Request buttons only when on VIEWWALLET page */}
           {currentPage === "/wallet" && (
             <div className="button-container d-flex-col-align-center">
@@ -532,7 +533,7 @@ const Wallet = ({ currentPage, requests, getNameAndBalance }) => {
                     type="text"
                     name="receiverAddress"
                     id="receiverAddress"
-                    // readOnly
+                  // readOnly
                   />
                 </div>
                 <div className="formgroup">
