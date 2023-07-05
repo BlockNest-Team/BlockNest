@@ -17,6 +17,7 @@ import Feedback from "./pages/Feedback";
 import NotFound from "./pages/NotFound";
 import StableDiffusion from "./pages/StableDiffusion";
 import { AuthContext } from "./context/AuthContext";
+// import Messenger from "./pages/MessengerScreen";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -62,6 +63,12 @@ function App() {
           path="/s"
           element={user ? <StableDiffusion /> : <Login />}
         />
+
+        {/* <Route path="/messenger">{!
+        
+
+        ? <Home /> : <Messenger />}</Route> */}
+
         <Route exact path="/not-found" element={<NotFound />} />
         <Route path="*" element={<Navigate replace to="/not-found" />} />
       </Routes>
