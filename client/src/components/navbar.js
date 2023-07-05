@@ -294,7 +294,7 @@ const Navbar = () => {
             <Settings />
           </>
         )}
-        <button className="navbar__connect-btn" onClick={connectWallet}>
+        <button className="navbar__connect-btn" onClick={walletAddress && walletAddress.length > 0 ? null : connectWallet}>
           <span className="is-link has-text-weight-bold">
             {connecting ? (
               <span className="is-link has-text-weight-bold">
